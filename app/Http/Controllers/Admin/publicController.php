@@ -31,7 +31,7 @@ class publicController extends Controller
       public function AdminSliderUpdate(REQUEST $req)
       {
              
-          $dir = 'assets/img/';
+          $dir = 'assets/img/hero/';
           $extension = strtolower($req['logo']->getClientOriginalExtension()); // get image extension
           $fileName = bin2hex(random_bytes(20)).'.'. $extension; // rename image
           $req['logo']->move($dir, $fileName);
@@ -64,7 +64,7 @@ class publicController extends Controller
     public function TermConditionsUpdate(REQUEST $req)
     {
         
-        Terms_Conditions::where('id', 1)
+        Terms_Conditions::where('id', $req->id)
         ->update([
             'content' => $req->area
          ]);
@@ -82,7 +82,7 @@ class publicController extends Controller
     public function PrivacyPolicyUpdate(REQUEST $req)
     {
         
-        privacy_policys::where('id', 1)
+        privacy_policys::where('id', $req->id)
         ->update([
             'content' => $req->area
          ]);
@@ -162,7 +162,7 @@ class publicController extends Controller
     public function AdminAboutUpdate(REQUEST $req)
     {
         
-        About::where('id', 1)
+        About::where('id', $req->id)
         ->update([
             'content' => $req->area
          ]);
@@ -216,7 +216,7 @@ class publicController extends Controller
           $req['logo']->move($dir, $fileName);
           $logos=$req['logo'] ="{$dir}{$fileName}";
           
-        home_achievement::where('id', 1)
+        home_achievement::where('id', $req->id)
           ->update([
             'title' => $req->title,
             'detail' => $req->detail,
@@ -236,7 +236,7 @@ class publicController extends Controller
 
         }else{
 
-        home_achievement::where('id', 1)
+        home_achievement::where('id', $req->id)
         ->update([
             'title' => $req->title,
             'detail' => $req->detail,

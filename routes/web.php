@@ -8,6 +8,8 @@ use App\Http\Controllers\TwilioSMSController;
 use App\Http\Controllers\Admin\publicController;
 use App\Http\Controllers\Admin\stripeController;
 use App\Http\Controllers\Client\Client_Controller;
+use App\Http\Controllers\Admin\Categories;
+
 
 use App\Models\Country;
 use App\Models\Pro_Category;
@@ -68,11 +70,8 @@ Route::group(['middleware'=>['IsAdmin']],function () {
     return view("admin.index");
  })->name('admin-dashboard');
 
-// Mubashar Start
 
-Route::get("all-subscription", function(){
-   return view("admin.all-subscription");
-});
+
 Route::get("admin-licence", function(){
    return view("admin.admin-licence");
 });
@@ -97,18 +96,13 @@ Route::get("create-new-refferal", function(){
 Route::get("lawyer-category", function(){
    return view("admin.lawyer-category");
 });
-Route::get("view-profile", function(){
-   return view("admin.view-profile");
-});
-Route::get("categories-list", function(){
-   return view("admin.categories-list");
-});
+
+
 Route::get("add-categories", function(){
    return view("admin.add-categories");
 });
-Route::get("sub-categories-list", function(){
-   return view("admin.sub-categories-list");
-});
+
+
 Route::get("add-sub-categories", function(){
    return view("admin.add-sub-categories");
 });
@@ -117,15 +111,39 @@ Route::get("admin-price", function(){
   return view("admin.panel-price");
 });
 
-
-
-
-
-Route::get("add-subscription", function(){
-   return view("admin.add-subscription");
+Route::get("app-chat", function(){
+  return view("admin.app-chat");
 });
-Route::post("add-subscription", [stripeController::class,'addSubscription']);
 
+
+
+
+
+Route::get("view-profile", function(){
+  return view("admin.view-profile");
+});
+
+
+Route::get("sub-categories-list", function(){
+  return view("admin.sub-categories-list");
+});
+
+
+
+
+Route::get("categories-list", [Categories::class,'categorieslist']);
+Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
+Route::get("del_category/{id}", [Categories::class,'delCategory']);
+
+
+
+Route::get("all-subscription", [stripeController::class,'allSubscriptionShow']);
+Route::get("activeSubcription/{id}/{status}", [stripeController::class,'activeSubcription']);
+Route::get("delSubcription/{id}", [stripeController::class,'delSubcription']);
+
+
+Route::get("add-subscription", [stripeController::class,'addSubscriptionShow']);
+Route::post("add-subscription", [stripeController::class,'addSubscription']);
 
 
 Route::get("admin-slider", [publicController::class,'AdminSlider']);
@@ -158,8 +176,6 @@ Route::get("admin-faq_del/{id}", [publicController::class,'AdminFaqDel']);
 Route::post("add_Faq", [publicController::class,'add_Faq']);
 
 
-// saqib end
-// Mubashar End
 
 });
 // admin route end//

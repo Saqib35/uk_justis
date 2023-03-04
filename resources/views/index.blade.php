@@ -5,41 +5,19 @@
     <!--==============================Hero Area==============================-->
     <div class="as-hero-wrapper hero-1" id="hero">
         <div class="hero-slider-2 as-carousel" data-fade="true" data-slide-show="1" data-md-slide-show="1" data-arrows="true" data-xl-arrows="true" data-ml-arrows="true" data-lg-arrows="true">
+         @foreach ($Slider as $Slider)
             <div class="as-hero-slide">
-                <div class="as-hero-bg" data-bg-src="{{ url('assets/img/hero/Lawtalk365_BG_01.png')}}">
-                    <div class="hero-shape"> <img src="{{ url('assets/img/hero/hLawtalk365_BG_01.png')}}" alt="shape"> </div>
+                <div class="as-hero-bg" data-bg-src="{{ url($Slider['img'])}}">
+                    <div class="hero-shape"> <img src="{{ url($Slider['img'])}}" alt="shape"> </div>
                 </div>
                 <div class="container">
-                    <div class="hero-style1"> <span class="hero-subtitle hero-subtitle-two" data-ani="slideindown" data-ani-delay="0.1s">JUSTISCALL <span class="shape"></span></span>
-                        <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.0s">Bring Your Rights</h1>
-                        <!--<div class="btn-group slideinup pt-40" data-ani="slideinleft" data-ani-delay="0.9s" style="animation-delay: 0.9s;"> <a href="about.html" class="as-btn shadow-none" tabindex="-1">Discover More</a> <a href="about.html" class="as-btn border-btn shadow-none" tabindex="-1">Appointment</a> </div>-->
-
+                    <div class="hero-style1"> <span class="hero-subtitle hero-subtitle-two" data-ani="slideindown" data-ani-delay="0.1s"><span class="text-white">{{ $Slider['title']  }}</span> <span class="shape"></span></span>
+                        <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.0s">{{ $Slider['description']  }}</h1>
+                        
                     </div>
                 </div>
             </div>
-            <div class="as-hero-slide">
-                <div class="as-hero-bg" data-bg-src="{{ url('assets/img/hero/hero_bg_1_2.jpg')}}">
-                    <div class="hero-shape"> <img src="{{ url('assets/img/hero/hero_shape_1.svg')}}" alt="shape"> </div>
-                </div>
-                <div class="container">
-                    <div class="hero-style1"> <span class="hero-subtitle hero-subtitle-two" data-ani="slideindown" data-ani-delay="0.1s">JUSTISCALL<span class="shape"></span></span>
-                        <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.0s">Bring Your Rights</h1>
-                        <!--<div class="btn-group slideinup pt-40" data-ani="slideinleft" data-ani-delay="0.9s" style="animation-delay: 0.9s;"> <a href="rsvp.html" class="as-btn shadow-none" tabindex="-1">Discover More</a> <a href="about.html" class="as-btn border-btn shadow-none" tabindex="-1">Appointment</a> </div>-->
-                 
-                    </div>
-                </div>
-            </div>
-            <div class="as-hero-slide">
-                <div class="as-hero-bg" data-bg-src="{{ url('assets/img/hero/hero_bg_1_3.jpg')}}">
-                    <div class="hero-shape"> <img src="{{ url('assets/img/hero/hero_shape_1.svg')}}" alt="shape"> </div>
-                </div>
-                <div class="container">
-                    <div class="hero-style1"> <span class="hero-subtitle hero-subtitle-two" data-ani="slideindown" data-ani-delay="0.1s">JUSTISCALL<span class="shape"></span></span>
-                        <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.0s">Bring Your Rights</h1>
-                        <!--<div class="btn-group slideinup pt-40" data-ani="slideinleft" data-ani-delay="0.9s" style="animation-delay: 0.9s;"> <a href="rsvp.html" class="as-btn shadow-none" tabindex="-1">Discover More</a> <a href="about.html" class="as-btn border-btn shadow-none" tabindex="-1">Appointment</a> </div>-->
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!--==============================Service Area ==============================-->

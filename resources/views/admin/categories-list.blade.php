@@ -1,33 +1,18 @@
-@extends('admin.layouts.main')
-@section('main-container-admin')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>justiscall - Admin</title>
-         <!-- App favicon -->
-         <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+@extends('admin.layouts.master')
+@section('header_style')
+<title>justiscall - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<style>
+    .action .mdi{
+        font-size: 20px;
+    }
+</style>
+@endsection
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
 
-        <!-- DataTables -->
-        <link href="admin/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <!-- Responsive datatable examples -->
-        <link href="admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
-
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
+@section('main_content')
        
     @include('admin.layouts.header')
         
@@ -45,7 +30,7 @@
                         
         
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-11">
                                 <div class="card">
                                     <div class="card-body">
         
@@ -57,43 +42,53 @@
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>NO</th>
-                                                <th>Category NAME</th>
-                                                <th>TYPE</th>
-                                                <th>Fees</th>
-                                                <th>Discount</th>
-                                                <th>STATUS</th>
-                                                <th>ACTION</th>
+                                                <th>SR NO</th>
+                                                <th>category name in english</th>
+                                                <th>category name in french</th>
+                                                <th>category name in german</th>
+                                                <th>category name in italian</th>
+                                                <th>category name in russain</th>
+                                                <th>category name in spanish</th>
+                                                <th>category type</th>
+                                                <th>status</th>
+                                                <th>Action</th>   
+
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($Pro_Category as $Pro_Category)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>Personal</td>
-                                                    <td>100</td>
-                                                    <td>20</td>
-                                                    <td><button class="btn-success rounded">Enable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>Personal</td>
-                                                    <td>100</td>
-                                                    <td>30</td>
-                                                    <td><button class="btn-danger rounded">Disable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
+                                                <td>SR NO</td>
+                                                <td>{{  $Pro_Category['name'] }}</td>
+                                                <td>{{  $Pro_Category['name_french'] }}</td>
+                                                <td>{{  $Pro_Category['name_german'] }}</td>
+                                                <td>{{  $Pro_Category['name_italian'] }}</td>
+                                                <td>{{  $Pro_Category['name_russian'] }}</td>
+                                                <td>{{  $Pro_Category['name_spanish'] }}</td>
+                                                <td>{{  $Pro_Category['category_type'] }}</td>
+                                                <td>
+                                                     @if ($Pro_Category['status']==1)
+                                                      <button class="btn-success rounded">
+                                                        <a href="{{ url('active_category/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">Enable</a>
 
+                                                        </button>
+                                                     @else
+                                                     <button class="btn-danger rounded">
+                                                       <a href="{{ url('active_category/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">disable</a>
+                                                        
+                                                     </button>
+                                                     @endif
+                                                </td>
+                                                 <td class="action">
+                                                        <a href="{{ url('del_category/'.$Pro_Category['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+
+                                                </td>
+                                                    
+                                                </tr>
+                                                @endforeach
+                                                
                                             </tbody>
-                                        </table>        
+                                        </table>      
                                     </div>
                                 </div>
                             </div> <!-- end col -->
@@ -109,14 +104,13 @@
             </div>
             <!--end page-wrapper-inner -->
         </div>
-        <!-- end page-wrapper -->
+@endsection
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
+
+@section("scriptlinks")
+
+
+    
 
         <!-- Required datatable js -->
         <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -135,14 +129,25 @@
         <script src="admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
         <script src="admin/assets/pages/jquery.datatable.init.js"></script>
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
 
-    </body>
-</html>
-<style>
-    .action .mdi{
-        font-size: 20px;
-    }
-</style>
+@endsection
+
+@section('script_code')
+  
+@if(Session::has('status'))
+
+<script>
+swal("success", "Updated Successfully", "success");
+</script>
+
+@endif   
+
+
+@if(Session::has('Del'))
+
+<script>
+swal("success", "Deleted Successfully", "success");
+</script>
+
+@endif   
 @endsection
