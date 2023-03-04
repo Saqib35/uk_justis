@@ -1,30 +1,19 @@
-@extends('admin.layouts.main')
-@section('main-container-admin')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+@extends('admin.layouts.master')
+@section('header_style')
+<title>justiscall - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<style>
+    .action .mdi{
+        font-size: 20px;
+    }
+</style>
 
-         
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
-
-        <link href="admin/assets/plugins/ticker/jquery.jConveyorTicker.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+@endsection
 
 
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
+@section('main_content')
 
     @include('admin.layouts.header')
         
@@ -612,7 +601,11 @@
             </div>
             <!--end page-wrapper-inner -->
         </div>
-        <!-- end page-wrapper -->
+
+@endsection
+
+@section("scriptlinks")
+
 
         <!-- jQuery  -->
         <script src="admin/assets/js/jquery.min.js"></script>
@@ -632,9 +625,8 @@
         <script src="admin/assets/plugins/chartjs/chart.min.js"></script>
         <script src="admin/assets/pages/jquery.profile.init.js"></script>
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
+@endsection
 
-    </body>
-</html>
+@section('script_code')
+
 @endsection

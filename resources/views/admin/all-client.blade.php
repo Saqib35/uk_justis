@@ -1,36 +1,26 @@
-@extends('admin.layouts.main')
-@section('main-container-admin')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>justiscall - Admin</title>
-         <!-- App favicon -->
-         <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+@extends('admin.layouts.master')
+@section('header_style')
+<title>justiscall - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description" />
+<meta content="" name="author" />
+<style>
+    .action .mdi{
+        font-size: 20px;
+    }
+    .profile-img-div{
+        height: 50px;
+        width: 50px;
+    }
+    .profile-img-div img{
+        height: 100%;
+        width: 100%;
+    }
+</style>
+@endsection
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
 
-     
-
-        <!-- DataTables -->
-        <link href="admin/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-        <!-- Responsive datatable examples -->
-        <link href="admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
-
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
-       
+   @section('main_content')    
     @include('admin.layouts.header')
         
         <div class="page-wrapper">
@@ -275,14 +265,12 @@
             </div>
             <!--end page-wrapper-inner -->
         </div>
-        <!-- end page-wrapper -->
+     
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
+    @endsection
+      
+
+      @section("scriptlinks") 
 
         <!-- Required datatable js -->
         <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -306,17 +294,8 @@
 
     </body>
 </html>
-<style>
-    .action .mdi{
-        font-size: 20px;
-    }
-    .profile-img-div{
-        height: 50px;
-        width: 50px;
-    }
-    .profile-img-div img{
-        height: 100%;
-        width: 100%;
-    }
-</style>
+@endsection
+
+@section('script_code')
+
 @endsection
