@@ -51,6 +51,8 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+
+                                               @foreach ($Pro_Sub_Category as $Pro_Sub_Category)   
                                                 <tr>
                                                     <td>1</td>
                                                     <td>Trust Law</td>
@@ -60,7 +62,7 @@
                                                         <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
                                                     </td>
                                                 </tr>
-
+                                                @endforeach
                                             </tbody>
                                         </table>        
                                     </div>

@@ -62,13 +62,13 @@ Route::post('customer-support', [aboutController::class,'customerSupport']);
 
 Route::group(['middleware'=>['IsAdmin']],function () {
 
-  Route::get("admin/login", function(){
-    return view("admin.auth-login");
-  })->name('admin-login');
+Route::get("admin/login", function(){
+  return view("admin.auth-login");
+})->name('admin-login');
 
-  Route::get("admin-dashboard", function(){
-    return view("admin.index");
- })->name('admin-dashboard');
+Route::get("admin-dashboard", function(){
+  return view("admin.index");
+})->name('admin-dashboard');
 
 
 
@@ -103,10 +103,6 @@ Route::get("add-categories", function(){
 });
 
 
-Route::get("add-sub-categories", function(){
-   return view("admin.add-sub-categories");
-});
-
 Route::get("admin-price", function(){
   return view("admin.panel-price");
 });
@@ -116,24 +112,23 @@ Route::get("app-chat", function(){
 });
 
 
-
-
-
 Route::get("view-profile", function(){
   return view("admin.view-profile");
 });
 
 
-Route::get("sub-categories-list", function(){
-  return view("admin.sub-categories-list");
-});
+Route::get("add-sub-categories", [Categories::class,'ShowCategoriesList']);
+Route::post("sub_add_category", [Categories::class,'AddSubCategory']);
+Route::get("sub-categories-list", [Categories::class,'SubCategoriesList']);
 
-
-
+// Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
+// Route::get("del_category/{id}", [Categories::class,'delCategory']);
 
 Route::get("categories-list", [Categories::class,'categorieslist']);
 Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
 Route::get("del_category/{id}", [Categories::class,'delCategory']);
+Route::post("add_category", [Categories::class,'addCategory']);
+
 
 
 
