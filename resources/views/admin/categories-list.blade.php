@@ -69,18 +69,18 @@
                                                 <td>
                                                      @if ($Pro_Category['status']==1)
                                                       <button class="btn-success rounded">
-                                                        <a href="{{ url('activeCategory/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">Enable</a>
+                                                        <a href="{{ url('active_category/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">Enable</a>
 
                                                         </button>
                                                      @else
                                                      <button class="btn-danger rounded">
-                                                       <a href="{{ url('activeCategory/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">disable</a>
+                                                       <a href="{{ url('active_category/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">disable</a>
                                                         
                                                      </button>
                                                      @endif
                                                 </td>
                                                  <td class="action">
-                                                        <a href="{{ url('delCategory/') }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                        <a href="{{ url('del_category/'.$Pro_Category['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
 
                                                 </td>
                                                     
@@ -133,5 +133,21 @@
 @endsection
 
 @section('script_code')
+  
+@if(Session::has('status'))
 
+<script>
+swal("success", "Updated Successfully", "success");
+</script>
+
+@endif   
+
+
+@if(Session::has('Del'))
+
+<script>
+swal("success", "Deleted Successfully", "success");
+</script>
+
+@endif   
 @endsection

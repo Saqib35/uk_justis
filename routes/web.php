@@ -100,9 +100,8 @@ Route::get("lawyer-category", function(){
 Route::get("add-categories", function(){
    return view("admin.add-categories");
 });
-Route::get("sub-categories-list", function(){
-   return view("admin.sub-categories-list");
-});
+
+
 Route::get("add-sub-categories", function(){
    return view("admin.add-sub-categories");
 });
@@ -124,8 +123,16 @@ Route::get("view-profile", function(){
 });
 
 
+Route::get("sub-categories-list", function(){
+  return view("admin.sub-categories-list");
+});
+
+
+
 
 Route::get("categories-list", [Categories::class,'categorieslist']);
+Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
+Route::get("del_category/{id}", [Categories::class,'delCategory']);
 
 
 
