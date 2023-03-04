@@ -1,10 +1,6 @@
 @extends('admin.layouts.master')
 @section('header_style')
 <title>justiscall - Admin</title>
- <!-- App favicon -->
- <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
-
- 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="" name="description" />
 <meta content="" name="author" />
@@ -529,7 +525,6 @@
                 <!-- end page content -->
             </div>
         </div>
-        <!-- end page-wrapper -->
 @endsection
       
 

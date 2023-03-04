@@ -6,8 +6,12 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="{{ url('admin-dashboard') }}" class="logo">
+                        @php
+                        $headerFooter= \App\Models\header_and_footer::get();
+                        @endphp   
+
                         <span>
-                            <img src="{{ url('assets/img/logo.png')}}" alt="logo-small" class="logo-m" style="width:60px">
+                            <img src="{{ $headerFooter[0]->logo  }}" alt="logo-small" class="logo-m" style="width:60px">
                         </span>
                         
                     </a>
@@ -69,7 +73,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             @guest
                             @else
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
+                            <a class="dropdown-item" href="{{ url('view-profile') }}"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
                             <div class="dropdown-divider"></div>
 
                              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -112,13 +116,19 @@
                         <h5 class="text-light">Mr. Rob Smith </h5>
                         <ul class="list-unstyled list-inline mb-0 mt-2">
                             <li class="list-inline-item">
-                                <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
+                                <a href="{{ url('view-profile') }}" class=""><i class="mdi mdi-account text-light"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#" class=""><i class="mdi mdi-settings text-light"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class=""><i class="mdi mdi-power text-danger"></i></a>
+                                @guest
+                            @else
+                             <a class="pl-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                             <i class="mdi mdi-power text-danger text-muted mr-2"></i></a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                            @endguest
+
                             </li>
                         </ul>
                     </div>                    
@@ -127,17 +137,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="page-title-box">
-                            <!-- <div class="float-right align-item-center mt-2">
-                                <button class="btn btn-info px-4 align-self-center report-btn">Create Report</button>
-                            </div>
-                          -->
-                            <div class="">
+                           
+                            <!-- <div class="">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">App</a></li>
                                     <li class="breadcrumb-item active">Calendar</li>
                                 </ol>
-                            </div>                                      
+                            </div>                                       -->
                         </div><!--end page title box-->
                     </div><!--end col-->
                 </div><!--end row-->

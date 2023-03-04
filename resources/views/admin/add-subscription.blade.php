@@ -1,44 +1,20 @@
-@extends('admin.layouts.main')
-@section('main-container-admin')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>justiscall - Admin</title>
-         <!-- App favicon -->
-         <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+@extends('admin.layouts.master')
+@section('header_style')
+<title>justiscall - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description" />
+<meta content="" name="author" />  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
+<style>
+    .btn-submit, .btn-cancel{
+        background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
+        color: #fff;
+    }
+</style>
 
-        <!-- Clock css -->
-        <link href="admin/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-        <!-- Plugins css -->
-        <link href="admin/assets/plugins/timepicker/tempusdominus-bootstrap-4.css" rel="stylesheet" />
-        <link href="admin/assets/plugins/timepicker/bootstrap-material-datetimepicker.css" rel="stylesheet">
-        <link href="admin/assets/plugins/clockpicker/jquery-clockpicker.min.css" rel="stylesheet" />
-        <link href="admin/assets/plugins/colorpicker/asColorPicker.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/plugins/select2/select2.min.css" rel="stylesheet" type="text/css" />
+@endsection
 
-        <link href="admin/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet">
-        <link href="admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
-        <link href="admin/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css" rel="stylesheet" /> 
-
-        
-
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-        <style id="clock-animations"></style>
-
-    </head>
-
-    <body>
-
-         
+@section('main_content')        
     @include('admin.layouts.header')
         
         <div class="page-wrapper">
@@ -63,47 +39,33 @@
                                         <form action="{{ url('add-subscription') }}" method="post">
                                          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                         <div class="row">
-                                            <div class="col-md-6 mb-3 ">
+                                            <div class="col-md-12 mb-3 ">
                                                 <h6 class=" input-title mt-0">Plan Name</h6>
-                                                <input type="text" class="form-control" name="plan_name" id="defaultconfig" placeholder="Name"  />
+                                                <input type="text" class="form-control" required="" name="plan_name" id="defaultconfig" placeholder="Name"  />
                                                 
                                             </div>
 
-                                            <div class="col-md-6 mb-3">
-                                                <h6 class="input-title mt-0">Type</h6>
-                                                <select class="select2 form-control mb-3 custom-select"  name="type" style="width: 100%; height:36px;">
-                                                        <option value="paid" selected>Paid</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <h6 class="input-title mt-0">Price</h6>
-                                                <input type="number"  class="form-control" name="price" placeholder="Price" >
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <h6 class="input-title mt-0">Stripe Dashboard Price ID</h6>
-                                                <input type="text" name="stripe_price_id"  class="form-control" placeholder="price_1MhWXRInukaQhDAUtQlk0uvY">
-                                            </div>
-                                            
                                             <div class="col-md-12 mb-3">
                                                 <h6 class="input-title mt-0">Stripe Dashboard Product ID</h6>
-                                                <input type="text" name="stripe_product_id"  class="form-control" placeholder="prod_NSRQHaJvimhLSX">
+                                                <input type="text" name="stripe_product_id" required=""   class="form-control" placeholder="prod_NSRQHaJvimhLSX">
                                             </div>
-                                            
+
                                             <div class="col-md-12 mb-3">
-                                                <h6 class="input-title mt-0">Duration</h6>
-                                                <select class="select2 form-control mb-3 custom-select" name="duration" style="width: 100%; height:36px;">
-                                                        <option disabled selected>Select</option>
-                                                        <option value="one-month">one month</option>
-                                                        <option value="four-month">four month</option>
-                                                        <option value="six-month">six month</option>
-                                                        <option value="year">Year</option>
-                                                        
+                                                <h6 class="input-title mt-0">Plan price</h6>
+                                                <select class="selet2 form-control mb-3 customlect"  required="" name="type" onchange="getInput(this.value)">
+                                                    <option value="" disabled selected>Please Select</option>
+                                                    <option value="1" >1</option>
+                                                    <option value="2" >2</option>
+                                                    <option value="3" >3</option>
+                                                    <option value="4" >4</option>
+                                                            
                                                 </select>
                                             </div>
-             
+                                            <div class="col-md-12" id="showw"></div>                                          
+  
                                             <div class="col-md-6 mb-3">
                                                 <h6 class="input-title mt-0">Subscription include one</h6>
-                                                 <input type="text" name="include_one"  class="form-control" placeholder="Subscription include one">
+                                                 <input type="text" name="include_one"  required="" class="form-control" placeholder="Subscription include one">
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <h6 class="input-title mt-0">Subscription include two</h6>
@@ -148,15 +110,10 @@
             </div>
             <!--end page-wrapper-inner -->
         </div>
-        <!-- end page-wrapper -->
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
+@endsection
 
+@section("scriptlinks")
         <!-- Plugins js -->
         <script src="admin/assets/plugins/moment/moment.js"></script>
         <script src="admin/assets/plugins/daterangepicker/daterangepicker.js"></script>
@@ -176,16 +133,33 @@
         <script src="admin/assets/pages/jquery.clock-img.init.js"></script>
         <script src="admin/assets/pages/jquery.forms-advanced.js"></script>
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
 
-    </body>
-</html>
+@endsection
 
-<style>
-    .btn-submit, .btn-cancel{
-        background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
-        color: #fff;
+@section('script_code')
+
+<script>
+  function getInput(value)
+  {
+    var data="";
+    for(var a=1;a<=value;a++)
+    {
+      data+='<div class="col-md-12 mb-3"><h6 class="input-title mt-0">Price '+a+'</h6><input  required="" type="number"  class="form-control" name="price'+a+'" placeholder="Price '+a+'" ></div><div class="col-md-12 mb-3"><h6 class="input-title mt-0">Stripe Dashboard Price ID '+a+'</h6><input  required="" type="text" name="stripe_price_id'+a+'"  class="form-control" placeholder="price_1MhWXRInukaQhDAUtQlk0uvY"></div><div class="col-md-12 mb-3"><h6 class="input-title mt-0">Duration '+a+'</h6><select class="select2 form-control mb-3 custom-select"  required="" name="duration'+a+'" style="width: 100%; height:36px;"><option value="" disabled selected>Select</option><option value="one-month">one month</option><option value="four-month">four month</option><option value="six-month">six month</option><option value="year">Year</option></select></div>';
     }
-</style>
+    
+  $("#showw").html(data);
+  }
+
+</script>
+
+@if(Session::has('status'))
+
+<script>
+swal("success", "Subscription Added", "success");
+</script>
+
+
+@endif  
+
+
 @endsection

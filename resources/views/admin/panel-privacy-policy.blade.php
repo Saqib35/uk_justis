@@ -1,25 +1,21 @@
-@extends('admin.layouts.main')
-@section('main-container-admin')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Justice Call</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
-        <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+@extends('admin.layouts.master')
+@section('header_style')
+<title>justiscall - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="" name="description" />
+<meta content="" name="author" />
 
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    </head>
+<style>
+    .btn-submit {
+        background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
+        color: #fff;
+    }
+</style>
 
-    <body>
+@endsection
 
+
+@section('main_content')
          
     @include('admin.layouts.header')
         
@@ -45,13 +41,7 @@
                                 </div>
                             </div>
                         </div>
-@if(Session::has('status'))
 
-<script>
-swal("success", "Updated", "success");
-</script>
-
-@endif                       
          
                         <div class="row">
                             <div class="col-12">
@@ -86,28 +76,28 @@ swal("success", "Updated", "success");
             </div>
             <!--end page-wrapper-inner -->
         </div>
-        <!-- end page-wrapper -->
+        
+@endsection
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
-
+@section("scriptlinks")
+       
+    
         <!--Wysiwig js-->
         <script src="admin/assets/plugins/tinymce/tinymce.min.js"></script>
         <script src="admin/assets/pages/jquery.form-editor.init.js"></script>
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
+@endsection
 
-    </body>
-</html>
-<style>
-    .btn-submit {
-        background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
-        color: #fff;
-    }
-</style>
+@section('script_code')
+
+
+@if(Session::has('status'))
+
+<script>
+swal("success", "Updated", "success");
+</script>
+
+@endif                       
+ 
+
 @endsection
