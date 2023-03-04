@@ -26,7 +26,12 @@
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.flipster.min.css')}}"> <!-- Theme Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+    @php
+    $headerFooter= \App\Models\header_and_footer::get();
+    @endphp   
+
+
+    <link rel="shortcut icon" href="{{ $headerFooter[0]->logo }}">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
@@ -78,9 +83,7 @@
     </div>
     <!--==============================Header Area==============================-->
   
-@php
-$headerFooter= \App\Models\header_and_footer::get();
-@endphp   
+
 <header class="as-header header-layout1">
         <div class="header-top">
             <div class="container-fluid text-lg-start text-center">

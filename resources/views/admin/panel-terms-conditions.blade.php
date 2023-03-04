@@ -48,7 +48,9 @@
                                         <h4 class="mt-0 header-title">Terms And Conditions</h4>
                                                 
                                         <form method="post" action="{{ url('admin-terms-conditions_update') }}">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="id" value="{{ $Terms_Conditions[0]->id }}" />
+                                            
                                             <textarea id="elm1" name="area"><?=  $Terms_Conditions[0]->content;  ?></textarea>
                                             <div class="row">
                                             <div class="col-sm-9 col-xs-12"></div>                  

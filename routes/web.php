@@ -7,6 +7,8 @@ use App\Http\Controllers\aboutController;
 use App\Http\Controllers\TwilioSMSController;
 use App\Http\Controllers\Admin\publicController;
 use App\Http\Controllers\Admin\stripeController;
+use App\Http\Controllers\Admin\Categories;
+
 
 use App\Models\Country;
 use App\Models\Pro_Category;
@@ -94,9 +96,7 @@ Route::get("lawyer-category", function(){
    return view("admin.lawyer-category");
 });
 
-Route::get("categories-list", function(){
-   return view("admin.categories-list");
-});
+
 Route::get("add-categories", function(){
    return view("admin.add-categories");
 });
@@ -115,10 +115,17 @@ Route::get("app-chat", function(){
   return view("admin.app-chat");
 });
 
+
+
+
+
 Route::get("view-profile", function(){
   return view("admin.view-profile");
 });
 
+
+
+Route::get("categories-list", [Categories::class,'categorieslist']);
 
 
 

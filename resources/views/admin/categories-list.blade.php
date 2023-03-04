@@ -30,7 +30,7 @@
                         
         
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-11">
                                 <div class="card">
                                     <div class="card-body">
         
@@ -42,43 +42,53 @@
                                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             <thead>
                                             <tr>
-                                                <th>NO</th>
-                                                <th>Category NAME</th>
-                                                <th>TYPE</th>
-                                                <th>Fees</th>
-                                                <th>Discount</th>
-                                                <th>STATUS</th>
-                                                <th>ACTION</th>
+                                                <th>SR NO</th>
+                                                <th>category name in english</th>
+                                                <th>category name in french</th>
+                                                <th>category name in german</th>
+                                                <th>category name in italian</th>
+                                                <th>category name in russain</th>
+                                                <th>category name in spanish</th>
+                                                <th>category type</th>
+                                                <th>status</th>
+                                                <th>Action</th>   
+
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($Pro_Category as $Pro_Category)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>Personal</td>
-                                                    <td>100</td>
-                                                    <td>20</td>
-                                                    <td><button class="btn-success rounded">Enable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>Personal</td>
-                                                    <td>100</td>
-                                                    <td>30</td>
-                                                    <td><button class="btn-danger rounded">Disable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
+                                                <td>SR NO</td>
+                                                <td>{{  $Pro_Category['name'] }}</td>
+                                                <td>{{  $Pro_Category['name_french'] }}</td>
+                                                <td>{{  $Pro_Category['name_german'] }}</td>
+                                                <td>{{  $Pro_Category['name_italian'] }}</td>
+                                                <td>{{  $Pro_Category['name_russian'] }}</td>
+                                                <td>{{  $Pro_Category['name_spanish'] }}</td>
+                                                <td>{{  $Pro_Category['category_type'] }}</td>
+                                                <td>
+                                                     @if ($Pro_Category['status']==1)
+                                                      <button class="btn-success rounded">
+                                                        <a href="{{ url('activeCategory/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">Enable</a>
 
+                                                        </button>
+                                                     @else
+                                                     <button class="btn-danger rounded">
+                                                       <a href="{{ url('activeCategory/'.$Pro_Category['id'].'/'.$Pro_Category['status']) }}" class="ml-2">disable</a>
+                                                        
+                                                     </button>
+                                                     @endif
+                                                </td>
+                                                 <td class="action">
+                                                        <a href="{{ url('delCategory/') }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+
+                                                </td>
+                                                    
+                                                </tr>
+                                                @endforeach
+                                                
                                             </tbody>
-                                        </table>        
+                                        </table>      
                                     </div>
                                 </div>
                             </div> <!-- end col -->

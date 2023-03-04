@@ -50,7 +50,9 @@
                                         <h4 class="mt-0 header-title">Privacy Policy</h4>
                                                 
                                         <form method="post" action="{{ url('admin-privacy-policy_update') }}">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />   
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="id" value="{{ $privacy_policys[0]->id }}" />
+                                           
                                         <textarea id="elm1" name="area"><?=  $privacy_policys[0]->content;  ?></textarea>
                                         <div class="row">
                                             <div class="col-sm-9 col-xs-12"></div>                  
