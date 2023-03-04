@@ -40,7 +40,7 @@ class LoginController extends Controller
         if (auth()->user()->user_type == 'pro') {
             return 'pro-dashboard';
         }else if(auth()->user()->user_type == 'client'){
-            return 'client-dashboard';
+            return 'client/dashboard';
         }else{
             return 'admin-dashboard';
         }
@@ -49,8 +49,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         // dd(Hash::make("12345678"));
-        
-
+    
         if($request->user_type=="pro"){
             $request->validate([
                 'mobile' => 'required',
@@ -58,10 +57,10 @@ class LoginController extends Controller
             ]);
             if($request->filled('otp')){
                 if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'pro','otp'=>$request->otp])) {
-                    session::flash('success',"Welcome User From Pro Dashboard!");
+                    session::flash('success','Hi '.auth()->user()->last_name.',Welcome Pro User From Dashboard!');
                     return redirect('pro-dashboard');
                 }else{
-                    session::flash('not_success',"Otp Does't Match");
+                    session::flash('not_success',"OTP Does't Match");
                     return redirect()->back()->withInput($request->all());
                 }
             }else{
@@ -90,10 +89,10 @@ class LoginController extends Controller
             ]);
             if($request->filled('otp')){
                 if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'client','otp'=>$request->otp])) {
-                    session::flash('success',"Welcome User From Client Dashboard!");
+                    session::flash('success','Hi '.auth()->user()->last_name.',Welcome Client User From Dashboard!');
                     return redirect('client-dashboard');
                 }else{
-                    session::flash('not_success',"Otp Does't Match");
+                    session::flash('not_success',"OTP Does't Match");
                     return redirect()->back()->withInput($request->all());
                 }
             }else{

@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 
 class RegisterController extends Controller
 {
@@ -36,9 +38,9 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         if (auth()->user()->user_type == 'pro') {
-            return 'pro-dashboard';
+            return 'pro/login';
         }else if(auth()->user()->user_type == 'client'){
-            return 'client-dashboard';
+            return 'client/login';
         }else{
             return '/home';
         }
@@ -175,10 +177,17 @@ class RegisterController extends Controller
                 'password' => Hash::make("12345678"),
             ]);
             if($User){
-                session::flash('success',"Welcome User From Pro Dashboard!");
+                session::flash('success','Hi '.$data['last_name'].',Pro User Register Successfully!');
                 return $User;
             }
         }else{
+              // $data = array('name'=>"Virat Gandhi");
+              // Mail::send('mail', $data, function($message) {
+              //    $message->to('muhammadhamza2236@gmail.com', 'Tutorials Point')->subject('Laravel Basic Testing Mail');
+              //    // $message->from('justiscall.co.uk','Virat Gandhi');
+              // });
+              // echo "Basic Email Sent. Check your inbox.";
+              // dd('ok');
             $User= User::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -190,7 +199,7 @@ class RegisterController extends Controller
                 'password' => Hash::make("12345678"),
             ]);
             if($User){
-                session::flash('success',"Welcome User From Client Dashboard!");
+                session::flash('success','Hi '.$data['last_name'].',Client User Register Successfully!');
                 return $User;
             }
         }

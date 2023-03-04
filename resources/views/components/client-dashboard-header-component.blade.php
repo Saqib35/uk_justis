@@ -69,7 +69,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             @guest
                             @else
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> {{auth()->user()->last_name}}'s Profile</a>
+                            <a class="dropdown-item" href="{{ route('client-profile-setting') }}"><i class="dripicons-user text-muted mr-2"></i> {{auth()->user()->last_name}}'s Profile</a>
                             <div class="dropdown-divider"></div>
 
                              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -109,7 +109,7 @@
                     <img src="admin/assets/images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
                     <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
                     <div class="media-body">
-                        <h5 class="text-light">Mr. Rob Smith </h5>
+                        <h5 class="text-light">{{auth()->user()->first_name}} {{auth()->user()->last_name}} </h5>
                         <ul class="list-unstyled list-inline mb-0 mt-2">
                             <li class="list-inline-item">
                                 <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>

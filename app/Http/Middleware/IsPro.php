@@ -19,7 +19,12 @@ class IsPro
     {
         if(Route::currentRouteName()=='pro-login' || Route::currentRouteName()=='pro-register'){
             if(Auth::check() &&  Auth::user()->user_type=='pro'){
-                return redirect()->route('pro-dashboard');
+                if(str_replace(url('/'), '', url()->previous())=="/pro/register"){
+                    Auth::logout();
+                    return redirect()->route('pro-login');
+                }else{
+                    return redirect()->route('pro-dashboard');
+                }
             }else{
                return $next($request); 
             }

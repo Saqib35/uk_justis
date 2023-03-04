@@ -4,7 +4,8 @@
         <meta charset="utf-8" />
         
 
-        
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
         <link href="{{asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">
 
         <!-- App css -->
@@ -13,6 +14,12 @@
         <link href="{{asset('admin/assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         @yield('header_style')
+        <style>
+            .btn-submit, .btn-cancel{
+                background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
+                color: #fff;
+            }
+        </style>
     </head>
 
     <body>

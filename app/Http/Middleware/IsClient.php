@@ -20,7 +20,12 @@ class IsClient
     {
         if(Route::currentRouteName()=='client-login' || Route::currentRouteName()=='client-register'){
             if(Auth::check() &&  Auth::user()->user_type=='client'){
-                return redirect()->route('client-dashboard');
+                if(str_replace(url('/'), '', url()->previous())=="/client/register"){
+                    Auth::logout();
+                    return redirect()->route('client-login');
+                }else{
+                    return redirect()->route('client-dashboard');
+                }
             }else{
                return $next($request); 
             }

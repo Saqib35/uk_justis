@@ -14,7 +14,7 @@
                             <a href="{{ url('app-chat-client') }}"><i class="mdi mdi-message-text-outline"></i><span>Chat</span>
                         </li>
                         <li>
-                            <a href="{{ url('page-profile-client') }}"><i class="mdi mdi-book-open-page-variant"></i><span>Profile Setting</span></a>
+                            <a href="{{ route('client-profile-setting') }}"><i class="mdi mdi-book-open-page-variant"></i><span>Profile Setting</span></a>
                         </li>
                         <li>
                             <a href="{{ url('change-password-client') }}"><i class="mdi mdi-lock"></i><span>Change Password</span></a>

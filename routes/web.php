@@ -7,6 +7,7 @@ use App\Http\Controllers\aboutController;
 use App\Http\Controllers\TwilioSMSController;
 use App\Http\Controllers\Admin\publicController;
 use App\Http\Controllers\Admin\stripeController;
+use App\Http\Controllers\Client\Client_Controller;
 
 use App\Models\Country;
 use App\Models\Pro_Category;
@@ -371,17 +372,18 @@ Route::get("page-invoice-client", function(){
 Route::get("page-pricing-client", function(){
   return view("client.page-pricing");
 });
+
 // Mubashar Start Client
-Route::get("client-dashboard", function(){
+Route::get("client/dashboard", function(){
    return view("client.index");
 })->name('client-dashboard');
 
 Route::get("app-chat-client", function(){
   return view("client.app-chat");
 });
-Route::get("page-profile-client", function(){
-  return view("client.page-profile");
-});
+
+Route::get("client/profile_setting", [Client_Controller::class,'show_profile_page'])->name('client-profile-setting');
+
 Route::get("change-password-client", function(){
   return view("client.change-password-client");
 });
