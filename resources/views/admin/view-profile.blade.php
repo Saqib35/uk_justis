@@ -59,34 +59,40 @@
                                                 <div class="col-lg-3 col-xs-12 mb-3 mb-lg-0">
                                                     <div class="fro_profile-main">
                                                         <div class="fro_profile-main-pic">
-                                                            <img src="admin/assets/images/users/user-4.jpg" alt="" class="rounded-circle">
+                                                            <img src="{{ Auth::user()->profile_img }}" width="130px" alt="" class="rounded-circle">
                                                             <span class="fro-profile_main-pic-change">
                                                                 <i class="fas fa-camera"></i>
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div><!--end col-->
-
-                                                <div class="col-lg-3 col-xs-12 mb-3 mb-lg-0">
-                                                    <div class="fro_profile_user-detail">
-                                                        <h5 class="fro_user-name">Name</h5>
-                                                        <p class="mb-0 fro_user-name-post">Lawyer</p>
+                                                <form action="{{ url('view-profile-update') }}" method="post" enctype="multipart/form-data">
+                                                 
+                                                <div class="col-md-12 mb-3 mt-5">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" /> 
+                                                        <h6 class=" input-title mt-0">Admin name</h6>
+                                                        <input type="text" required="" value="{{   Auth::user()->last_name }}" class="form-control" name="name" id="defaultconfig" />
+                                                  </div>
+                                                    
+                                                  <div class="col-md-12">
+                                                    <h6 class=" input-title">Change pofile image</h6>
+                                                    
+                                                    <div class="input-group mb-3">
+                                                        <input type="file" id="file-ip-1" class="form-control" accept="image/*" onchange="showPreview(event);" name="logo" >
+                                                    </div>         
+                                                 </div>
+                                                 <div class="col-md-6">
+                                                    <div class="preview">
+                                                        <img id="file-ip-1-preview" width="200px">
                                                     </div>
-                                                </div><!--end col-->
-                                                <div class="col-lg-3 col-xs-12 mb-3 mb-lg-0">
-                                                     <div class="fro_profile_user-detail">
-                                                        <h5 class="fro_user-name">Wallet Balance</h5>
-                                                        <p class="mb-0 fro_user-name-post">$1234</p>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-lg-3 col-xs-12 mb-3 mb-lg-0">
-                                                    <div class="fro_profile_user-detail">
-                                                        <h5 class="fro_user-name">ID Card Number</h5>
-                                                        <p class="mb-0 fro_user-name-post">36502-9876543-2</p>
-                                                    </div> 
+                                                 </div> 
+                                                <div class="col-md-12">
+                                                    <button class="btn-submit form-control">
+                                                        Update
+                                                    </button>
                                                 </div>
                                                 
+                                              </form> 
                                             </div><!--end row-->
                                         </div><!--end f_profile-->                                                                                
                                     </div><!--end card-body-->
@@ -95,72 +101,7 @@
                             </div><!--end col-->
                         </div><!--end row-->
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="card">
-                                    <div class="id-card-img">
-                                        <img src="" alt="">
-                                    </div>
-                                </div><!--end card-->
-
-                                <div class="card">
-                                    <div class="card-body profile-nav"> 
-                                        <div class="nav flex-column nav-pills" id="profile-tab" aria-orientation="vertical">
-                                            <a class="nav-link active" id="profile-dash-tab" data-toggle="pill" href="#profile-dash" aria-selected="true">Overview</a>
-                                            <a class="nav-link" id="profile-activities-tab" data-toggle="pill" href="#profile-activities" aria-selected="false">Reviews</a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center" id="profile-pro-stock-tab" data-toggle="pill" href="#profile-pro-stock" aria-selected="false">Availability</a>
-                                        </div>
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-
-                            </div><!--end col-->
-
-                            <div class="col-lg-9">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="tab-content" id="profile-tabContent">
-                                            <div class="tab-pane fade show active" id="profile-dash">
-                                                <h4 class="header-title mt-0 mb-4">Overview</h4>
-                                                <h4 class="header-title mt-0">Profile Description</h4>
-                                                <p>No Profile Description</p>
-                                                <h4 class="header-title mt-1">Profile Description</h4>
-                                                <p>No Profile Description</p>
-                                                <h4 class="header-title mt-1">Specializations</h4>
-                                                <p>Lawyer</p>
-                                                <h4 class="header-title mt-1">Location</h4>
-                                                <p>Pakistan (PK)<br>Pakistan</p>
-                                            </div><!--end tab-pane-->
-
-                                            <div class="tab-pane fade" id="profile-activities">
-                                                <h4 class="mt-0 header-title mb-3">Reviews</h4>
-                                            </div><!--end tab-pane-->
-
-                                            <div class="tab-pane fade" id="profile-pro-stock">
-                                                <h4 class="header-title mt-0">Todays Availability :-</h4>
-                                                <span class="border mx-2 p-2 rounded">CLOSED NOW</span>
-                                                <h4 class="header-title mt-3">Pro Availability :-</h4>
-                                                <p>
-                                                    <b>Wednesday</b><br>
-                                                    09:00 AM - 18:00 PM <br>
-                                                    <b>Monday</b><br>
-                                                    09:00 AM - 18:00 PM <br>
-                                                    <b>Tuesday</b><br>
-                                                    09:00 AM - 18:00 PM
-                                                </p>
-                                               
-
-
-
-
-
-                                                
-                                            </div><!--end tab-pen-->
-
-                                        </div>  <!--end tab-content-->                                                                              
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-                        </div><!--end row-->
+                       
                     </div><!-- container -->
 
                     <footer class="footer text-center text-sm-left">
@@ -176,12 +117,7 @@
 
 @section("scriptlinks")
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
+      
 
         <script src="admin/assets/plugins/moment/moment.js"></script>
         <script src="admin/assets/plugins/apexcharts/apexcharts.min.js"></script>
@@ -198,5 +134,15 @@
 @endsection
 
 @section('script_code')
+<script type="text/javascript">
+    function showPreview(event){
+      if(event.target.files.length > 0){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-1-preview");
+        preview.src = src;
+        preview.style.display = "block";
+      }
+    }
+</script>
 
 @endsection

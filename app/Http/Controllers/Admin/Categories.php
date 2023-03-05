@@ -95,5 +95,33 @@ class Categories extends Controller
   
   }
 
+  
+  public function activeSubCategory(REQUEST $req)
+  {
+       if($req->status==1)
+       {
+          $status=0;
+
+       }else{
+         
+           $status=1;
+          
+       }
+         Pro_Sub_Category::where('id', $req->id)
+        ->update([
+            'status' => $status
+         ]);
+
+
+         return redirect()->back()->with('status','updated');
+  }
+
+  public function delSubCategory(REQUEST $req)
+  {
+
+      Pro_Sub_Category::where('id', $req->id)->delete();
+      return redirect()->back()->with('Del','Deleted Successfully');
+  }
+
    
 }

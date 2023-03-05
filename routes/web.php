@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\publicController;
 use App\Http\Controllers\Admin\stripeController;
 use App\Http\Controllers\Client\Client_Controller;
 use App\Http\Controllers\Admin\Categories;
+use App\Http\Controllers\Admin\UpdateProfile;
+
 
 
 use App\Models\Country;
@@ -112,17 +114,17 @@ Route::get("app-chat", function(){
 });
 
 
-Route::get("view-profile", function(){
-  return view("admin.view-profile");
-});
+
+Route::get("view-profile", [UpdateProfile::class,'ViewProfile']);
+Route::post("view-profile-update", [UpdateProfile::class,'ViewProfileUpdate']);
 
 
 Route::get("add-sub-categories", [Categories::class,'ShowCategoriesList']);
 Route::post("sub_add_category", [Categories::class,'AddSubCategory']);
 Route::get("sub-categories-list", [Categories::class,'SubCategoriesList']);
+Route::get("active_sub_category/{id}/{status}", [Categories::class,'activeSubCategory']);
+Route::get("del_sub_category/{id}", [Categories::class,'delSubCategory']);
 
-// Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
-// Route::get("del_category/{id}", [Categories::class,'delCategory']);
 
 Route::get("categories-list", [Categories::class,'categorieslist']);
 Route::get("active_category/{id}/{status}", [Categories::class,'activeCategory']);
@@ -131,14 +133,15 @@ Route::post("add_category", [Categories::class,'addCategory']);
 
 
 
-
 Route::get("all-subscription", [stripeController::class,'allSubscriptionShow']);
 Route::get("activeSubcription/{id}/{status}", [stripeController::class,'activeSubcription']);
 Route::get("delSubcription/{id}", [stripeController::class,'delSubcription']);
 
 
+
 Route::get("add-subscription", [stripeController::class,'addSubscriptionShow']);
 Route::post("add-subscription", [stripeController::class,'addSubscription']);
+
 
 
 Route::get("admin-slider", [publicController::class,'AdminSlider']);
