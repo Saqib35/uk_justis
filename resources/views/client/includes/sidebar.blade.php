@@ -5,7 +5,7 @@
                         <li class="menu-title">Main</li>
 
                         <li>
-                            <a href="{{ url('client-dashboard') }}"><i class="mdi mdi-monitor"></i><span>Dashboards</span></a>
+                            <a href="{{ route('client-dashboard') }}"><i class="mdi mdi-monitor"></i><span>Dashboards</span></a>
                         </li>
                         <li>
                             <a href="{{ url('find-professional-client') }}"><i class="mdi mdi-lock"></i><span>Find Professional</span></a>

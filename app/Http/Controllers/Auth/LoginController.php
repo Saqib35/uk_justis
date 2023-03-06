@@ -90,7 +90,7 @@ class LoginController extends Controller
             if($request->filled('otp')){
                 if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'client','otp'=>$request->otp])) {
                     session::flash('success','Hi '.auth()->user()->last_name.',Welcome Client User From Dashboard!');
-                    return redirect('client-dashboard');
+                    return redirect('client/dashboard');
                 }else{
                     session::flash('not_success',"OTP Does't Match");
                     return redirect()->back()->withInput($request->all());
