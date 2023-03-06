@@ -51,20 +51,19 @@
 
 
                         <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-11">
                                 <div class="card">
                                     <div class="card-body profile-nav"> 
-                                        <div class="nav flex-column nav-pills" id="profile-tab" aria-orientation="vertical">
+                                        <div class="nav flex-column nav-pills" id="profile-tab" aria-orientation="vetical">
                                             <a class="nav-link active" id="profile-dash-tab" data-toggle="pill" href="#profile-dash" aria-selected="true">All</a>
                                             <a class="nav-link" id="profile-activities-tab" data-toggle="pill" href="#profile-activities" aria-selected="false">Today</a>
-                                            <a class="nav-link d-flex justify-content-between align-items-center" id="profile-pro-stock-tab" data-toggle="pill" href="#profile-pro-stock" aria-selected="false">Recent</a>
                                         </div>
                                     </div><!--end card-body-->
                                 </div><!--end card-->
 
                             </div><!--end col-->
 
-                            <div class="col-lg-9">
+                            <div class="col-lg-11">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tab-content" id="profile-tabContent">
@@ -73,180 +72,86 @@
                                                     <thead>
                                                     <tr>
                                                         <th>Sr No.</th>
-                                                        <th>PROFILE</th>
-                                                        <th>CLIENT'S ID</th>
-                                                        <th>NAME</th>
-                                                        <th>AGE</th>
-                                                        <th>ADDRESS</th>
-                                                        <th>PHONE</th>
-                                                        <th>WALET BALANCE</th>
-                                                        <th>LAST VISIT</th>
+                                                        <th>Profile</th>
+                                                        <th>Name</th>
+                                                        <th>Age</th>
+                                                        <th>Address</th>
+                                                        <th>Date of Birth</th>
+                                                        <th>Phone</th>
                                                         <th>ACTION</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @php
+                                                            $a=1
+                                                        @endphp
+                                                        @foreach ($client as $client)
                                                         <tr>
-                                                            <td>1</td>
+                                                            <td>{{ $a++ }}</td>
                                                             <td>
                                                                 <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
+                                                                    <img src="{{ $client['profile_img'] }}" alt="" class="rounded-circle">
                                                                 </div>
                                                             </td>
-                                                            <td>123</td>
-                                                            <td>Client</td>
-                                                            <td>23</td>
-                                                            <td>address</td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
+                                                            <td>{{   $client['first_name']." ".$client['last_name']  }}</td>
+                                                            <td>{{ $client['age'] }}</td>
+                                                            <td>{{ $client['address'] }}</td>
+                                                            <td>{{ $client['date_of_birth'] }}</td>
+                                                            <td>{{ $client['mobile'] }}</td>
                                                             <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                                <a href="">chart</a>
+                                                                <a href="{{  url('client-edit/'.$client['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
+                                                                <a href="{{ url('all-client/'. $client['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
-                                                                </div>
-                                                            </td>
-                                                            <td>123</td>
-                                                            <td>Mubashar Mustafa</td>
-                                                            <td>23</td>
-                                                            <td>Sahiwal Pubjab Pakistan </td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
-                                                            <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                            </td>
-                                                        </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>                                                
                                             </div><!--end tab-pane-->
 
                                             <div class="tab-pane fade" id="profile-activities">
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive table-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                            <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive table-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                                     <thead>
                                                     <tr>
                                                         <th>Sr No.</th>
-                                                        <th>PROFILE</th>
-                                                        <th>CLIENT'S ID</th>
-                                                        <th>NAME</th>
-                                                        <th>AGE</th>
-                                                        <th>ADDRESS</th>
-                                                        <th>PHONE</th>
-                                                        <th>WALET BALANCE</th>
-                                                        <th>LAST VISIT</th>
+                                                        <th>Profile</th>
+                                                        <th>Name</th>
+                                                        <th>Age</th>
+                                                        <th>Address</th>
+                                                        <th>Date of Birth</th>
+                                                        <th>Phone</th>
                                                         <th>ACTION</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @php
+                                                            $a=1
+                                                        @endphp
+                                                        @foreach ($client_today as $clients)
                                                         <tr>
-                                                            <td>1</td>
+                                                            <td>{{ $a++ }}</td>
                                                             <td>
                                                                 <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
+                                                                    <img src="{{ $client['profile_img'] }}" alt="" class="rounded-circle">
                                                                 </div>
                                                             </td>
-                                                            <td>123</td>
-                                                            <td>Client</td>
-                                                            <td>23</td>
-                                                            <td>address</td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
+                                                            <td>{{   $clients['first_name']." ".$clients['last_name']  }}</td>
+                                                            <td>{{ $clients['age'] }}</td>
+                                                            <td>{{ $clients['address'] }}</td>
+                                                            <td>{{ $clients['date_of_birth'] }}</td>
+                                                            <td>{{ $clients['mobile'] }}</td>
                                                             <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                                <a href="">chart</a>
+                                                                <a href="{{  url('client-edit/'.$clients['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
+                                                                <a href="{{ url('all-client/'. $clients['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
-                                                                </div>
-                                                            </td>
-                                                            <td>123</td>
-                                                            <td>Mubashar Mustafa</td>
-                                                            <td>23</td>
-                                                            <td>Sahiwal Pubjab Pakistan </td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
-                                                            <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                            </td>
-                                                        </tr>
-
+                                                        @endforeach
                                                     </tbody>
-                                                </table> 
+                                                </table>  
                                             </div><!--end tab-pane-->
 
-                                            <div class="tab-pane fade" id="profile-pro-stock">
-                                                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive table-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>Sr No.</th>
-                                                        <th>PROFILE</th>
-                                                        <th>CLIENT'S ID</th>
-                                                        <th>NAME</th>
-                                                        <th>AGE</th>
-                                                        <th>ADDRESS</th>
-                                                        <th>PHONE</th>
-                                                        <th>WALET BALANCE</th>
-                                                        <th>LAST VISIT</th>
-                                                        <th>ACTION</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
-                                                                </div>
-                                                            </td>
-                                                            <td>123</td>
-                                                            <td>Client</td>
-                                                            <td>23</td>
-                                                            <td>address</td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
-                                                            <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>
-                                                                <div class="profile-img-div">
-                                                                    <img src="" alt="" class="rounded-circle">
-                                                                </div>
-                                                            </td>
-                                                            <td>123</td>
-                                                            <td>Mubashar Mustafa</td>
-                                                            <td>23</td>
-                                                            <td>Sahiwal Pubjab Pakistan </td>
-                                                            <td>+92 3001234567</td>
-                                                            <td>$2300</td>
-                                                            <td>1 hour ago</td>
-                                                            <td class="action">
-                                                                <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                            </td>
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table> 
-                                            </div><!--end tab-pen-->
+                                     
 
                                             
                                         </div>  <!--end tab-content-->                                                                              
@@ -297,5 +202,21 @@
 @endsection
 
 @section('script_code')
+
+@if(Session::has('status'))
+
+<script>
+swal("success", "Client Added Successfully", "success");
+</script>
+
+@endif  
+
+@if(Session::has('Del'))
+
+<script>
+swal("status", "Client Deleted Successfully", "success");
+</script>
+
+@endif  
 
 @endsection

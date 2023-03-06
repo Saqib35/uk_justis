@@ -11,8 +11,9 @@
                         @endphp   
 
                         <span>
-                            <img src="{{ $headerFooter[0]->logo  }}" alt="logo-small" class="logo-m" style="width:60px">
+                            <img src="{{ url($headerFooter[0]->logo)  }}" alt="logo-small" class="logo-m" style="width:60px">
                         </span>
+                        
                         
                     </a>
                 </div>
@@ -67,7 +68,7 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
-                            <img src="admin/assets/images/users/user-1.jpg" alt="profile-user" class="rounded-circle" /> 
+                            <img src="{{ url(Auth::user()->profile_img) }}" alt="profile-user" class="rounded-circle" /> 
                             <span class="ml-1 nav-user-name hidden-sm"> <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -110,10 +111,10 @@
         <div class="page-wrapper-img">
             <div class="page-wrapper-img-inner">
                 <div class="sidebar-user media">                    
-                    <img src="admin/assets/images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
+                    <img src="{{ url(Auth::user()->profile_img) }}" alt="user" style="height:64px !important" class="rounded-circle img-thumbnail mb-1">
                     <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
                     <div class="media-body">
-                        <h5 class="text-light">Mr. Rob Smith </h5>
+                        <h5 class="text-light">{{ Auth::user()->last_name }} </h5>
                         <ul class="list-unstyled list-inline mb-0 mt-2">
                             <li class="list-inline-item">
                                 <a href="{{ url('view-profile') }}" class=""><i class="mdi mdi-account text-light"></i></a>

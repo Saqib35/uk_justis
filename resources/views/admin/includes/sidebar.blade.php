@@ -56,22 +56,15 @@
                         <li>
                             <a href="javascript: void(0);"><i class="mdi mdi-account-multiple-plus"></i><span>Personal Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="{{ url('lawyer-category') }}"><span>Lawyer</span></a></li> <!-- 
-                                <li><a href=""><span>Bailiff</span></a></li>
-                                <li><a href=""><span>Notarie</span></a></li>
-                                <li><a href=""><span>Legal Representative</span></a></li>
-                                <li><a href=""><span>Chartered Accountant</span></a></li> -->
+                                <li><a href="{{ url('lawyer-category') }}"><span>Lawyer</span></a></li>               
                             </ul>
                         </li>
 
                         <li>
                             <a href="javascript: void(0);"><i class="mdi mdi-account-multiple-plus"></i><span>Firm Category</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <!-- <li><a href=""><span>Lawyer Firm</span></a></li>
-                                <li><a href=""><span>Bailiff Firm</span></a></li>
-                                <li><a href=""><span>Notarie Firm</span></a></li>
-                                <li><a href=""><span>Legal Representative Firm</span></a></li>
-                                <li><a href=""><span>Chartered Accountant Firm</span></a></li> -->
+                                 <li><a href=""><span>Lawyer Firm</span></a></li>
+                                
                             </ul>
                         </li>
 

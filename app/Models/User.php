@@ -68,6 +68,10 @@ class User extends Authenticatable
         'longitude',
         'otp',
         'remember_token',
+        'gender',
+        'date_of_birth',
+        'age'
+        
     ];
 
     /**

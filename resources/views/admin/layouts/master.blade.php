@@ -8,7 +8,7 @@
         $headerFooter= \App\Models\header_and_footer::get();
         @endphp 
                         
-        <link rel="shortcut icon" href="{{ $headerFooter[0]->logo  }}">
+        <link rel="shortcut icon" href="{{ url($headerFooter[0]->logo)  }}">
 
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />

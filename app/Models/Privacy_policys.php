@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Privacy_policys extends Model
 {
     use HasFactory;
+    
 }
