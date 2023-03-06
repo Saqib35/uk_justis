@@ -56,7 +56,7 @@ class LoginController extends Controller
                 'user_type'=>'required'
             ]);
             if($request->filled('otp')){
-                if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'pro','otp'=>$request->otp])) {
+                if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'pro','otp'=>$request->otp,'status'=>1])) {
                     session::flash('success','Hi '.auth()->user()->last_name.',Welcome Pro User From Dashboard!');
                     return redirect('pro-dashboard');
                 }else{
@@ -66,15 +66,20 @@ class LoginController extends Controller
             }else{
                 $User=User::where('mobile',$request->mobile)->where('user_type',"pro")->get();
                 if(count($User)==1){
-                    $otp=mt_rand(1000,9999);
-                    // send otp call function
-                    if(TwilioSMSController::sendSMS($request->mobile,$otp)=="success"){
-                        User::where('mobile',$request->mobile)->update(['otp'=>$otp]);
-                        session::flash('sent_otp',$otp);
-                        session::flash('success',"OTP sent successfully.");
-                        return redirect()->back()->withInput($request->all());    
+                    if($User[0]->status==1){
+                        $otp=mt_rand(1000,9999);
+                        // send otp call function
+                        if(TwilioSMSController::sendSMS($request->mobile,$otp)=="success"){
+                            User::where('mobile',$request->mobile)->update(['otp'=>$otp]);
+                            session::flash('sent_otp',$otp);
+                            session::flash('success',"OTP sent successfully.");
+                            return redirect()->back()->withInput($request->all());    
+                        }else{
+                            session::flash('not_success',"OTP not sent Please try Again Later");
+                            return redirect()->back()->withInput($request->all()); 
+                        }
                     }else{
-                        session::flash('not_success',"OTP not sent Please try Again Later");
+                        session::flash('not_success',"Your Account has been disabled");
                         return redirect()->back()->withInput($request->all()); 
                     }
                 }else{
@@ -88,7 +93,7 @@ class LoginController extends Controller
                 'user_type'=>'required'
             ]);
             if($request->filled('otp')){
-                if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'client','otp'=>$request->otp])) {
+                if(Auth::attempt(['mobile' => $request->mobile, 'password' =>"12345678",'user_type'=>'client','otp'=>$request->otp,'status'=>1])) {
                     session::flash('success','Hi '.auth()->user()->last_name.',Welcome Client User From Dashboard!');
                     return redirect('client/dashboard');
                 }else{
@@ -98,15 +103,20 @@ class LoginController extends Controller
             }else{
                 $User=User::where('mobile',$request->mobile)->where('user_type',"client")->get();
                 if(count($User)==1){
-                    $otp=mt_rand(1000,9999);
-                    // send otp call function
-                    if(TwilioSMSController::sendSMS($request->mobile,$otp)=="success"){
-                        User::where('mobile',$request->mobile)->update(['otp'=>$otp]);
-                        session::flash('sent_otp',$otp);
-                        session::flash('success',"OTP sent successfully.");
-                        return redirect()->back()->withInput($request->all());    
+                    if($User[0]->status==1){
+                        $otp=mt_rand(1000,9999);
+                        // send otp call function
+                        if(TwilioSMSController::sendSMS($request->mobile,$otp)=="success"){
+                            User::where('mobile',$request->mobile)->update(['otp'=>$otp]);
+                            session::flash('sent_otp',$otp);
+                            session::flash('success',"OTP sent successfully.");
+                            return redirect()->back()->withInput($request->all());    
+                        }else{
+                            session::flash('not_success',"OTP not sent Please try Again Later");
+                            return redirect()->back()->withInput($request->all()); 
+                        }
                     }else{
-                        session::flash('not_success',"OTP not sent Please try Again Later");
+                        session::flash('not_success',"Your Account has been disabled");
                         return redirect()->back()->withInput($request->all()); 
                     }
                 }else{
@@ -119,7 +129,7 @@ class LoginController extends Controller
                 'email' => 'required',
                 'password'=>'required'
             ]);
-            if(Auth::attempt(['email' => $request->email, 'password' =>$request->password,'user_type'=>'admin'])) {
+            if(Auth::attempt(['email' => $request->email, 'password' =>$request->password,'user_type'=>'admin','status'=>1])) {
                 session::flash('success',"Welcome Admin From Admin Dashboard!");
                 return redirect('admin-dashboard');
             }else{

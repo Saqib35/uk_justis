@@ -67,6 +67,8 @@ class User extends Authenticatable
         'latitude',
         'longitude',
         'otp',
+        'status',
+        'ip_address',
         'remember_token',
         'gender',
         'date_of_birth',

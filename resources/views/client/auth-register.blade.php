@@ -17,7 +17,7 @@
                         <div class="card-body">  
                             <div class="px-3">
                                 <div class="media">
-                                    <a href="index.html" class="logo logo-admin"><img src="{{ asset('assets/img/logo.png')}}" height="55" alt="logo" class="my-3"></a>
+                                    <a href="{{url('/')}}" class="logo logo-admin"><img src="{{ asset('assets/img/logo.png')}}" height="55" alt="logo" class="my-3"></a>
                                     <div class="media-body ml-3 align-self-center">   
                                         <h4 class="mt-0 mb-1">Free Register for Justis Call</h4>
                                         <p class="text-muted mb-0">Get your free Justis Call account now.</p>
@@ -111,7 +111,7 @@
                                                 <select class="form-control" name="country" required>
                                                     <option @if(!old('country')) selected @endif disabled>Choose Country</option>
                                                     @foreach($countries as $country)
-                                                    <option value="{{$country->name}}" @if(old('country')==$country->name) selected @endif>{{$country->name}}</option>
+                                                    <option value="{{$country->sortname}}" @if(old('country')==$country->sortname) selected @endif>{{$country->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('country')
