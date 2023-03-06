@@ -44,7 +44,7 @@
                                 
                                 <div class="form-group mb-0 row">
                                     <div class="col-12 mt-2">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Send OTP <i class="fas fa-sign-in-alt ml-1"></i></button>
+                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">@if(Session::has('sent_otp') || old('otp')) Login @else Send OTP @endif <i class="fas fa-sign-in-alt ml-1"></i></button>
                                     </div>
                                 </div>                            
                             </form>

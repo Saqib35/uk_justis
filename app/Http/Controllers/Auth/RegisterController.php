@@ -111,8 +111,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        // dd($data);
+    {   
         if($data['user_type']=="pro"){
             //upload id card image
             $dir = 'pro/id_card_images/';
@@ -144,7 +143,7 @@ class RegisterController extends Controller
                 'country' => $data['country'],
                 'city' => $data['city'],
                 'category_id' => $data['category_id'],
-                'sub_category_id' => $data['sub_category_id'],
+                'sub_category_id' => json_encode($data['sub_category_id']),
                 // 'sub_category_id' => $data['select_all_subcategory'],
                 'id_card_img' => $data['id_card_img'],
                 'profile_img' => $data['profile_img'],
@@ -173,7 +172,8 @@ class RegisterController extends Controller
                 'check' =>isset($data['check'])?"on":"off",
                 'credit_card' =>isset($data['credit_card'])?"on":"off",
                 'wire_transfer' =>isset($data['wire_transfer'])?"on":"off",
-                'user_type' => "pro",        
+                'user_type' => "pro", 
+                'ip_address' => request()->ip(), 
                 'password' => Hash::make("12345678"),
             ]);
             if($User){
@@ -195,7 +195,8 @@ class RegisterController extends Controller
                 'mobile' => $data['mobile'],
                 'gender' => $data['gender'],
                 'country' => $data['country'],
-                'user_type' => "client",        
+                'user_type' => "client",      
+                'ip_address' => request()->ip(),   
                 'password' => Hash::make("12345678"),
             ]);
             if($User){

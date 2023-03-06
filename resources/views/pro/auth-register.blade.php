@@ -201,7 +201,7 @@
                                                 <input type="hidden" name="longitude" id="longitude" value="{{old('longitude')}}">
                                             </div>                                    
                                         </div>
-                                        <div class="col-sm-6 col-md-12">
+                                        <div class="col-sm-6 col-md-12  mb-3">
                                             <div id="map" style="height: 300px;"></div>
                                         </div>
 
@@ -226,10 +226,10 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-city font-16"></i></span>
                                                 </div>
-                                                <select class="form-control" name="country" required>
+                                                <select class="form-control" name="country" required id="country-id">
                                                     <option @if(!old('country')) selected @endif disabled>Choose Country</option>
                                                     @foreach($countries as $country)
-                                                    <option value="{{$country->name}}" @if(old('country')==$country->name) selected @endif>{{$country->name}}</option>
+                                                    <option value="{{$country->sortname}}" @if(old('country')==$country->sortname) selected @endif>{{$country->name}}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('country')
@@ -280,15 +280,13 @@
                                             </div>                                
                                         </div>
 
-                                        <div class="form-group col-sm-6 col-xs-12">
+                                        <div class="form-group col-sm-12 col-xs-12">
                                             <label for="category">Sub Categories</label>
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-folder-multiple font-16"></i></span>
                                                 </div>
-                                                
-
-                                                <select class="form-control" name="sub_category_id" required id="sub-category-id" multiple>
+                                                <select class="form-control" name="sub_category_id[]" required id="sub-category-id" multiple="multiple">
                                                     <option selected disabled>Choose Sub Category</option>
                                                     @if(old('sub_category_id'))
                                                         @php $Pro_Sub_Categories=App\Models\Pro_Sub_Category::where('status',1)->where('category_id',old('category_id'))->get() @endphp
@@ -304,11 +302,11 @@
                                                 @enderror
                                             </div>                                
                                         </div>
-                                        <div class="form-group col-sm-6 col-xs-12"></div>
-                                        <div class="form-group col-sm-6 col-xs-12">
+                                        <!-- <div class="form-group col-sm-6 col-xs-12"></div> -->
+                                        <!-- <div class="form-group col-sm-6 col-xs-12">
                                             <input type="checkbox" name="select_all_subcategory" id="all" @if(old('select_all_subcategory')=='on') checked="" @endif>
                                             <label class="mx-3" for="all"> Select all</label>
-                                        </div>
+                                        </div> -->
 
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <label for="file-ip-1">Upload ID Card</label>
@@ -545,7 +543,92 @@
       
             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
-     
+            
+            // var addressComponent = place.address_components;     
+            // // alert((addressComponent[0].long_name));       
+            // console.log(addressComponent);       
+            // // place.address_components;
+            // for (var x = 0 ; x < addressComponent.length; x++) {
+            //     var chk = addressComponent[x];
+            //     if (chk.types[0] == 'country') {
+            //         var zipCode = chk.long_name;
+            //     }
+            //     if (chk.types[0] == 'locality') {
+            //         var city = chk.long_name;
+            //     }
+            // }
+            // if (zipCode) {
+            //     alert(zipCode+" / "+city);
+            // }else {
+            //     alert('No result found!!');
+            // }
+            
+
+
+            var address = place.formatted_address;
+            var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
+            var latlng = new google.maps.LatLng(latitude, longitude);
+            var geocoder = (geocoder = new google.maps.Geocoder());
+            geocoder.geocode({ latLng: latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[0]) {
+                        var address = results[0].formatted_address;
+                        var pin =
+                        results[0].address_components[
+                        results[0].address_components.length - 1
+                        ].long_name;
+                        var pin_short =
+                        results[0].address_components[
+                        results[0].address_components.length - 1
+                        ].short_name;
+                        var country =
+                        results[0].address_components[
+                        results[0].address_components.length - 2
+                        ].short_name;
+                        var state =
+                        results[0].address_components[
+                        results[0].address_components.length - 3
+                        ].long_name;
+                        var city =
+                        results[0].address_components[
+                        results[0].address_components.length - 4
+                        ].long_name;
+                        // var country_find=false;
+
+                        $("#country-id option[value='" + country + "']").attr("selected","selected");
+                        $("#country-id option[value='" + pin_short + "']").attr("selected","selected");
+                        $("#city").val(city);
+                        if($.isNumeric(pin)){
+                            $("#pCode").val(pin);
+                        }else{
+                            $("#pCode").val("");
+                        }
+
+                        // $("#country-id > option").each(function() {
+                        //     if(this.value==country){
+                        //        country_find=true;  
+                        //     }
+                        //     if(this.value==pin){
+                        //        country_find=true;  
+                        //     }
+                        // });
+                        // if(country_find==false){
+                        //     $("#country-id option[text='Choose Country']").attr("selected","selected");
+                        // }
+
+                        console.log(country)
+                        console.log(state)
+                        console.log(city)
+                        console.log(pin)
+
+                       
+
+                        
+                    }
+                }
+            });
+
                 
             if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport)
@@ -583,8 +666,6 @@
     });
 
 </script>
-
-
 
 <script type="text/javascript">
     function showPreview(event){
