@@ -32,7 +32,7 @@
                         
         
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-md-11">
                                 <div class="card">
                                     <div class="card-body">
          
@@ -45,22 +45,61 @@
                                             <thead>
                                             <tr>
                                                 <th>SL NO</th>
-                                                <th>SERVICES NAME</th>
-                                                <th>SPECIAlITIES</th>
+                                                <th>category name</th>
+                                                <th>sub category name in english</th>
+                                                <th>sub category name in french</th>
+                                                <th>sub category name in german</th>
+                                                <th>sub category name in italian</th>
+                                                <th>sub category name in russain</th>
+                                                <th>sub category name in spanish</th>
+                                                <th>status</th>
                                                 <th>ACTION</th>
+
                                             </tr>
                                             </thead>
                                             <tbody>
+                                               @php
+                                                $a=1
+                                               @endphp    
+                                               
+                                               @foreach ($Pro_Sub_Category as $Pro_Sub_Category)   
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Trust Law</td>
-                                                    <td>Lawyer</td>
+                                                    <td>{{  $a++ }}  </td>
+                                                    <td>
+                                                    @php
+                                                    $Pro_Category= \App\Models\Pro_Category::where('id', $Pro_Sub_Category['category_id'])->get();
+                                                    @endphp   
+                                                       @if(count($Pro_Category) >0)
+                                                          {{ $Pro_Category[0]->name }}
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $Pro_Sub_Category['name'] }}</td>
+                                                    <td>{{ $Pro_Sub_Category['name_french'] }}</td>
+                                                    <td>{{ $Pro_Sub_Category['name_german'] }}</td>
+                                                    <td>{{ $Pro_Sub_Category['name_italian'] }}</td>
+                                                    <td>{{ $Pro_Sub_Category['name_russian'] }}</td>
+                                                    <td>{{ $Pro_Sub_Category['name_spanish'] }}</td>
+                                                    <td>
+                                                    @if ($Pro_Sub_Category['status']==1)
+                                                      <button class="btn-success rounded">
+                                                        <a href="{{ url('active_sub_category/'.$Pro_Sub_Category['id'].'/'.$Pro_Sub_Category['status']) }}" class="ml-2">Enable</a>
+
+                                                        </button>
+                                                     @else
+                                                     <button class="btn-danger rounded">
+                                                       <a href="{{ url('active_sub_category/'.$Pro_Sub_Category['id'].'/'.$Pro_Sub_Category['status']) }}" class="ml-2">disable</a>
+                                                        
+                                                     </button>
+                                                     
+                                                     @endif
+                                                    </td>
+                                                    
                                                     <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                    <a href="{{ url('del_sub_category/'.$Pro_Sub_Category['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+
                                                     </td>
                                                 </tr>
-
+                                                @endforeach
                                             </tbody>
                                         </table>        
                                     </div>
@@ -109,5 +148,20 @@
 
 
 @section('script_code')
+@if(Session::has('status'))
 
+<script>
+swal("success", "Updated Successfully", "success");
+</script>
+
+@endif   
+
+
+@if(Session::has('Del'))
+
+<script>
+swal("success", "Deleted Successfully", "success");
+</script>
+
+@endif  
 @endsection

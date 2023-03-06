@@ -49,8 +49,8 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="{{ url('categories-list') }}"><span>All Categories</span></a></li>
                                 <li><a href="{{ url('add-categories') }}"><span>Add Categories</span></a></li>
-                                <li><a href="{{ url('sub-categories-list') }}"><span>All Categories</span></a></li>
-                                <li><a href="{{ url('add-sub-categories') }}"><span>Add Categories</span></a></li>
+                                <li><a href="{{ url('sub-categories-list') }}"><span>All Sub Categories</span></a></li>
+                                <li><a href="{{ url('add-sub-categories') }}"><span>Add Sub Categories</span></a></li>
                             </ul>
                         </li>
                         <li>
