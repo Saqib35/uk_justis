@@ -11,6 +11,8 @@ use App\Http\Controllers\Client\Client_Controller;
 use App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Admin\UpdateProfile;
 use App\Http\Controllers\Admin\ShowProAdmin;
+use App\Http\Controllers\Pro\ProStripeController;
+
 
 
 
@@ -108,10 +110,14 @@ Route::get("app-chat", function(){
 });
 
 
+Route::get("stripe", [ProStripeController::class,'stripe']);
 
 
 
+
+Route::get("view-profile-pro/{id}", [ShowProAdmin::class,'ShowProProfile']);
 Route::get("show/{id}", [ShowProAdmin::class,'ShowProAdmin']);
+Route::get("delete-pro/{id}", [ShowProAdmin::class,'DelProAdmin']);
 
 
 
@@ -321,6 +327,7 @@ Route::get("page-pricing-pro", function(){
 Route::get("page-profile-pro", function(){
   return view("pro.page-profile");
 });
+
 Route::get("tables-datatable-pro", function(){
   return view("pro.tables-datatable");
 });
