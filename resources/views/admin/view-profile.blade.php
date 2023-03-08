@@ -71,7 +71,7 @@
                                                 <div class="col-md-12 mb-3 mt-5">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" /> 
                                                         <h6 class=" input-title mt-0">Admin name</h6>
-                                                        <input type="text" required="" value="{{   Auth::user()->last_name }}" class="form-control" name="name" id="defaultconfig" />
+                                                        <input type="text" required="" value="{{  Auth::user()->last_name }}" class="form-control" name="last_name" id="defaultconfig" />
                                                   </div>
                                                     
                                                   <div class="col-md-12">
@@ -144,5 +144,12 @@
       }
     }
 </script>
+@if(Session::has('status'))
+
+<script>
+swal("success", "Updated Successfully", "success");
+</script>
+
+@endif   
 
 @endsection

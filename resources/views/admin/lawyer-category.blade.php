@@ -40,74 +40,40 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-3">
+                           @if (count($pro))
+                               
+                           
+                            @foreach ($pro as $pro)
+                            <div class="col-md-4">
                                 <div class="card  profile-card">
-                                    <img src="admin/assets/images/widgets/profile-1.jpg" alt="" class="img-fluid">                                       
+                                    <img src="{{ url($pro['profile_img']) }}" alt="" style="max-height:400px !important" class="img-fluid">                                       
                                     <div class="card-body pb-0">
                                         <div class="text-center pb-3">
-                                            <h5>Name</h5>
-                                            <p class="mb-2 font-12 text-muted"></i>Lawyer</p>
-                                            <p class="mb-2 font-12 text-muted"></i>Male</p>
-                                            <a class="btn btn-sm btn-success text-light mt-3">View Profile</a>
-                                            <a class="btn btn-sm btn-info text-light mt-3">Edit Profile</a><br>
-                                            <a class="btn btn-sm btn-primary text-light mt-3">Add Wallet</a>
-                                            <a class="btn btn-sm btn-danger text-light mt-3">Delete</a>
-                                        </div>
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
+                                            <h5>{{ $pro['first_name'].' '.$pro['last_name'] }}</h5>
+                                            <p class="mb-2 font-12 text-muted"></i>
+                                              
+                                              @php
+                                              $Pro_Category= \App\Models\Pro_Category::where("id", $pro['category_id'])->get();
+                                              @endphp 
 
-                            <div class="col-lg-3">
-                                <div class="card  profile-card">
-                                    <img src="admin/assets/images/widgets/profile-1.jpg" alt="" class="img-fluid">                                       
-                                    <div class="card-body pb-0">
-                                        <div class="text-center pb-3">
-                                            <h5>Name</h5>
-                                            <p class="mb-2 font-12 text-muted"></i>Lawyer</p>
-                                            <p class="mb-2 font-12 text-muted"></i>Male</p>
-                                            <a class="btn btn-sm btn-success text-light mt-3">View Profile</a>
+                                              {{ $Pro_Category[0]->name }}
+                                            </p>
+                                            <p class="mb-2 font-12 text-muted"></i>{{ $pro['gender'] }}</p>
+                                            <a href="{{ url('view-profile-pro/'.$pro['id']) }}" class="btn btn-sm btn-success text-light mt-3">View Profile</a>
                                             <a class="btn btn-sm btn-info text-light mt-3">Edit Profile</a><br>
-                                            <a class="btn btn-sm btn-primary text-light mt-3">Add Wallet</a>
-                                            <a class="btn btn-sm btn-danger text-light mt-3">Delete</a>
+                                            <!-- <a class="btn btn-sm btn-primary text-light mt-3">Add Wallet</a> -->
+                                            <a  href="{{ url('delete-pro/'.$pro['id']) }}" class="btn btn-sm btn-danger text-light mt-3">Delete</a>
                                         </div>
                                     </div><!--end card-body-->
                                 </div><!--end card-->
                             </div><!--end col-->
-
-                            <div class="col-lg-3">
-                                <div class="card  profile-card">
-                                    <img src="admin/assets/images/widgets/profile-1.jpg" alt="" class="img-fluid">                                       
-                                    <div class="card-body pb-0">
-                                        <div class="text-center pb-3">
-                                            <h5>Name</h5>
-                                            <p class="mb-2 font-12 text-muted"></i>Lawyer</p>
-                                            <p class="mb-2 font-12 text-muted"></i>Male</p>
-                                            <a class="btn btn-sm btn-success text-light mt-3">View Profile</a>
-                                            <a class="btn btn-sm btn-info text-light mt-3">Edit Profile</a><br>
-                                            <a class="btn btn-sm btn-primary text-light mt-3">Add Wallet</a>
-                                            <a class="btn btn-sm btn-danger text-light mt-3">Delete</a>
-                                        </div>
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
-
-                            <div class="col-lg-3">
-                                <div class="card  profile-card">
-                                    <img src="admin/assets/images/widgets/profile-1.jpg" alt="" class="img-fluid">                                       
-                                    <div class="card-body pb-0">
-                                        <div class="text-center pb-3">
-                                            <h5>Name</h5>
-                                            <p class="mb-2 font-12 text-muted"></i>Lawyer</p>
-                                            <p class="mb-2 font-12 text-muted"></i>Male</p>
-                                            <a class="btn btn-sm btn-success text-light mt-3">View Profile</a>
-                                            <a class="btn btn-sm btn-info text-light mt-3">Edit Profile</a><br>
-                                            <a class="btn btn-sm btn-primary text-light mt-3">Add Wallet</a>
-                                            <a class="btn btn-sm btn-danger text-light mt-3">Delete</a>
-                                        </div>
-                                    </div><!--end card-body-->
-                                </div><!--end card-->
-                            </div><!--end col-->
+                            @endforeach
+                            @else
                             
+                            <div class="col-12 text-center"><h3>Not Found</h3></div>
+
+                            @endif
+                                
 
                         </div><!--end row-->
                     </div><!-- container -->
@@ -137,5 +103,14 @@
 @endsection
 
 @section('script_code')
+
+@if(Session::has('Del'))
+
+<script>
+swal("success", "Pro Deleted Successfully", "success");
+</script>
+
+@endif  
+
 
 @endsection

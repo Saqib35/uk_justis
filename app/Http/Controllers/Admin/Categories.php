@@ -41,6 +41,7 @@ class Categories extends Controller
 
         Pro_Category::where('id', $req->id)->delete();
         return redirect()->back()->with('Del','Deleted Successfully');
+        
     }
 
    public function addCategory(REQUEST $req)

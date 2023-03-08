@@ -29,7 +29,8 @@
 
 
   
-@section('main_content')       
+@section('main_content')  
+     
     @include('admin.layouts.header')
         
         <div class="page-wrapper">
@@ -55,11 +56,15 @@
                                                 </p>
                                             </div>                    
                                             
-                                            <form action="{{ url('add-client') }}" method="post" enctype="multipart/form-data">
+                                            <form action="{{ url('add-client-update') }}" method="post" enctype="multipart/form-data">
                                                 <div class="row">
                                                       <input type="hidden" name="_token" value="{{ csrf_token() }}" /> 
-                                                      <input type="hidden" name="latitude" id="latitude" value="" /> 
-                                                      <input type="hidden" name="longitude" id="longitude" value="" /> 
+                                                      <input type="hidden" name="latitude" id="latitude" value="{{ $Client[0]->latitude }}" /> 
+                                                      <input type="hidden" name="longitude" id="longitude" value="{{ $Client[0]->longitude }}" />
+                                                      <input type="hidden" name="current_img" id="" value="{{ $Client[0]->profile_img }}" />
+                                                      <input type="hidden" name="id" id="" value="{{ $Client[0]->id }}" />
+                                                       
+                                                      
                                                       <input type="hidden" name="user_type" value="client" /> 
                                                   
                                                     <div class="form-group col-sm-6 col-xs-12">
@@ -68,7 +73,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                                                             </div>
-                                                            <input type="text" required="" class="form-control" id="fName" placeholder="Enter First Name" name="first_name">
+                                                            <input type="text" required="" value="{{ $Client[0]->first_name }}" class="form-control" id="fName" placeholder="Enter First Name" name="first_name">
                                                         </div>                                    
                                                     </div>
 
@@ -78,7 +83,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                                                             </div>
-                                                            <input type="text" class="form-control" required="" id="lName" placeholder="Enter Last Name" name="last_name">
+                                                            <input type="text" class="form-control" required="" id="lName" value="{{ $Client[0]->last_name }}" placeholder="Enter Last Name" name="last_name">
                                                         </div>                                    
                                                     </div>
 
@@ -88,7 +93,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
                                                             </div>
-                                                            <input type="date" class="form-control" required="" id="dob" placeholder="Date of Birth" name="date_of_birth">
+                                                            <input type="date" class="form-control" value="{{ $Client[0]->date_of_birth }}" required="" id="dob" placeholder="Date of Birth" name="date_of_birth">
                                                         </div>                                  
                                                     </div>
 
@@ -98,7 +103,7 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
                                                             </div>
-                                                            <input type="number" class="form-control" required="" id="dob" placeholder="Date of Birth" name="age">
+                                                            <input type="number" class="form-control"  value="{{ $Client[0]->age }}"   required="" id="dob" placeholder="Date of Birth" name="age">
                                                         </div>                                  
                                                     </div>
                                                     <div class="form-group col-sm-6 col-xs-12">
@@ -109,8 +114,8 @@
                                                             </div>
                                                             <select class="form-control" name="gender" required="">
                                                                 <option  value="" selected disabled>Choose Gender</option>
-                                                                <option value="Male">Male</option>
-                                                                <option value="Female">Female</option>
+                                                                <option  value="Male" @if($Client[0]->gender=="Male"){{ "selected" }} @endif >Male</option>
+                                                                <option value="Female" @if($Client[0]->gender=="Female"){{ "selected" }} @endif>Female</option>
                                                             </select>
                                                         </div>                                
                                                     </div>
@@ -123,7 +128,7 @@
                                                             <select class="form-control" name="country" required="">
                                                                 <option value="" selected  disabled>Choose Country</option>
                                                                 @foreach ($Country as $Country)
-                                                                 <option value="{{ $Country['id']  }}"> {{ $Country['name']  }}</option>
+                                                                 <option value="{{ $Country['id']  }}" @if($Client[0]->country==$Country['id']){{ "selected" }} @endif > {{ $Country['name']  }}</option>
                                                                 @endforeach
                                                                 
                                                             </select>
@@ -134,7 +139,7 @@
                                                         <label for="phNum">Phone Number</label>
                                                         <div class="input-group mb-3">
                                                             
-                                                            <input type="text" class="form-control" required="" id="phone_number" placeholder="Enter Phone Number" name="mobile">
+                                                            <input type="text" value="{{ $Client[0]->mobile }}" class="form-control" required="" id="phone_number" placeholder="Enter Phone Number" name="mobile">
                                                         </div>                                
                                                     </div>
                                                    
@@ -144,11 +149,12 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-email-outline font-16"></i></span>
                                                             </div>
-                                                            <input type="email" required="" class="form-control" id="eMial" name="email" placeholder="Email Address">
+                                                            <input type="email"   value="{{ $Client[0]->email }}" required="" class="form-control" id="eMial" name="email" placeholder="Email Address">
                                                         </div>                                    
                                                     </div>
 
-                                                    <div class="form-group col-sm-12 col-xs-12">
+
+                                                    <div class="form-group col-sm-6 col-xs-12">
                                                         <label for="profile">Upload Profile</label>
                                                         <div class="input-group mb-3">
                                                             <div class="input-group-prepend">
@@ -158,28 +164,30 @@
 
                                                         </div>                                    
                                                     </div>
-                                                    <div class="form-group col-sm-12 col-xs-12">
-                                                        <label for="address">Address</label>
+                                                    <div class="form-group col-sm-6 col-xs-12">
+                                                        <label for="eMial">Client profile image current</label>
                                                         <div class="input-group mb-3">
-                                                            <textarea class="form-control" required="" id="searchTextField" placeholder="Enter Address" name="address" rows="4"></textarea>
+                                                           <img src="{{ url($Client[0]->profile_img) }}" width="130px" height="130px">    
                                                         </div>                                    
                                                     </div>
-                                                    
-                                                        <div id="map" style="height: 1px;"></div>
-                                                        
-                                                        
                                                     <div class="form-group col-sm-6 col-xs-12">
                                                         <div class="preview1">
                                                             <img id="file-ip-11-preview" height="200px">
                                                         </div>
                                                     </div>
-
+                                                    <div class="form-group col-sm-12 col-xs-12">
+                                                        <label for="address">Address</label>
+                                                        <div class="input-group mb-3">
+                                                            <textarea class="form-control" required="" id="searchTextField" placeholder="Enter Address" name="address" rows="4">{{  $Client[0]->address }}</textarea>
+                                                        </div>                                    
+                                                    </div>
                                                     
-                                                    
+                                                        <div id="map" style="height: 1px;"></div>
+                                                         
                                                     <div class="col-md-10 mb-3"></div>
                                                    
                                                     <div class="col-md-2 mb-3">
-                                                        <input type="submit" name="submit" class="btn-submit form-control" value="Add">
+                                                        <input type="submit" name="submit" class="btn-submit form-control" value="update">
                                                     </div>                          
                                                 </div>
                                             </form>
@@ -321,7 +329,7 @@ var phone_number = window.intlTelInput(document.querySelector("#phone_number"), 
 @if(Session::has('status'))
 
 <script>
-swal("success", "Client Added Successfully", "success");
+swal("success", "Client updated Successfully", "success");
 </script>
 
 @endif  

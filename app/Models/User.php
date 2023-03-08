@@ -70,6 +70,10 @@ class User extends Authenticatable
         'status',
         'ip_address',
         'remember_token',
+        'gender',
+        'date_of_birth',
+        'age'
+        
     ];
 
     /**

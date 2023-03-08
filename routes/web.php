@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\stripeController;
 use App\Http\Controllers\Client\Client_Controller;
 use App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Admin\UpdateProfile;
+use App\Http\Controllers\Admin\ShowProAdmin;
+use App\Http\Controllers\Pro\ProStripeController;
+
+
 
 use App\Models\Country;
 use App\Models\Pro_Category;
@@ -75,12 +79,6 @@ Route::get("admin-dashboard", function(){
 Route::get("admin-licence", function(){
    return view("admin.admin-licence");
 });
-Route::get("add-client", function(){
-   return view("admin.add-client");
-});
-Route::get("all-client", function(){
-   return view("admin.all-client");
-});
 Route::get("create-coupan", function(){
    return view("admin.create-coupan");
 });
@@ -93,9 +91,7 @@ Route::get("create-refferal", function(){
 Route::get("create-new-refferal", function(){
    return view("admin.create-new-refferal");
 });
-Route::get("lawyer-category", function(){
-   return view("admin.lawyer-category");
-});
+
 
 
 Route::get("add-categories", function(){
@@ -112,9 +108,31 @@ Route::get("app-chat", function(){
 });
 
 
+Route::get("stripe", [ProStripeController::class,'stripe']);
+
+
+
+
+Route::get("view-profile-pro/{id}", [ShowProAdmin::class,'ShowProProfile']);
+Route::get("show/{id}", [ShowProAdmin::class,'ShowProAdmin']);
+Route::get("delete-pro/{id}", [ShowProAdmin::class,'DelProAdmin']);
+
+
+
+Route::get("all-client", [UpdateProfile::class,'AllClient']);
+Route::get("all-client/{id}", [UpdateProfile::class,'AddClientDel']);
+Route::get("client-edit/{id}", [UpdateProfile::class,'ClientEdit']);
+Route::get("add-client", [UpdateProfile::class,'ShowClientForm']);
+Route::post("add-client", [UpdateProfile::class,'AddClient']);
+Route::post("add-client-update", [UpdateProfile::class,'AddClientUpdate']);
+
+
+
 
 Route::get("view-profile", [UpdateProfile::class,'ViewProfile']);
 Route::post("view-profile-update", [UpdateProfile::class,'ViewProfileUpdate']);
+
+
 
 
 Route::get("add-sub-categories", [Categories::class,'ShowCategoriesList']);
@@ -122,6 +140,7 @@ Route::post("sub_add_category", [Categories::class,'AddSubCategory']);
 Route::get("sub-categories-list", [Categories::class,'SubCategoriesList']);
 Route::get("active_sub_category/{id}/{status}", [Categories::class,'activeSubCategory']);
 Route::get("del_sub_category/{id}", [Categories::class,'delSubCategory']);
+
 
 
 Route::get("categories-list", [Categories::class,'categorieslist']);
@@ -304,6 +323,7 @@ Route::get("page-pricing-pro", function(){
 Route::get("page-profile-pro", function(){
   return view("pro.page-profile");
 });
+
 Route::get("tables-datatable-pro", function(){
   return view("pro.tables-datatable");
 });
