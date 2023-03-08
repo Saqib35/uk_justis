@@ -2,10 +2,10 @@
 
 @section('header_style')
 <meta charset="utf-8" />
-<title>Frogetor - Responsive Bootstrap 4 Admin Dashboard</title>
+<title>Profile Client || JUSTISCALL</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta content="A premium admin dashboard template by themesbrand" name="description" />
-<meta content="Mannatthemes" name="author" />
+<meta content="" name="description" />
+<meta content="Codehub" name="author" />
 <link href="{{asset('admin/assets/plugins/ticker/jquery.jConveyorTicker.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('admin/assets/plugins/dropify/css/dropify.min.css')}}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet"/>
@@ -100,6 +100,11 @@
                                                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
                                                                         </div>
                                                                         <input type="date" class="form-control" id="date_of_birth" placeholder="Enter Last Name" name="date_of_birth" value="{{auth()->user()->date_of_birth}}">
+                                                                        @error('date_of_birth')
+                                                                            <span class="text-danger">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                     </div>                                  
                                                                 </div>
 
@@ -134,20 +139,7 @@
                                                                     </div>                                    
                                                                 </div>
                                                             
-                                                                <div class="form-group col-sm-6 col-xs-12">
-                                                                    <label for="phNum">Phone Number</label>
-                                                                    <div class="input-group mb-3">
-                                                                        <!-- <div class="input-group-prepend">
-                                                                            <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-lock-outline font-16"></i></span>
-                                                                        </div> -->
-                                                                        <input type="text" class="form-control" id="mobile" placeholder="Enter Phone Number"  maxlength="50" required value="{{auth()->user()->mobile}}">
-                                                                        @error('mobile')
-                                                                            <span class="text-danger">
-                                                                                <strong>{{ $message }}</strong>
-                                                                            </span>
-                                                                        @enderror
-                                                                    </div>                                
-                                                                </div>
+                                                                
 
                                                                 <div class="form-group col-sm-6 col-xs-12">
                                                                     <label for="phNum">Address</label>
@@ -155,7 +147,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-lock-outline font-16"></i></span>
                                                                         </div>
-                                                                        <input type="text" class="form-control" id="google-map-address" placeholder="Enter Address" name="address" size="50" required value="{{auth()->user()->address}}">
+                                                                        <input type="text" class="form-control" id="google-map-address" placeholder="Enter Address" name="address" size="50" value="{{auth()->user()->address}}">
                                                                         @error('address')
                                                                             <span class="text-danger">
                                                                                 <strong>{{ $message }}</strong>
@@ -170,7 +162,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-lock-outline font-16"></i></span>
                                                                         </div>
-                                                                       <input type="text" class="form-control" id="pCode" placeholder="Enter Postal Code" name="post_code" required maxlength="50" value="{{auth()->user()->post_code}}">
+                                                                       <input type="text" class="form-control" id="pCode" placeholder="Enter Postal Code" name="post_code" maxlength="50" value="{{auth()->user()->post_code}}">
                                                                         @error('post_code')
                                                                             <span class="text-danger">
                                                                                 <strong>{{ $message }}</strong>
@@ -188,7 +180,7 @@
                                                                         <select class="form-control" name="country" required>
                                                                             <option  selected disabled>Choose Country</option>
                                                                            @foreach($countries as $country)
-                                                                            <option value="{{$country->name}}" @if(auth()->user()->country==$country->name) selected @endif>{{$country->name}}</option>
+                                                                            <option value="{{$country->sortname}}" @if(auth()->user()->country==$country->sortname) selected @endif>{{$country->name}}</option>
                                                                             @endforeach
                                                                         </select>
                                                                         @error('country')
@@ -205,7 +197,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-lock-outline font-16"></i></span>
                                                                         </div>
-                                                                        <input type="text" class="form-control" id="city" placeholder="Enter City" name="city" required value="{{auth()->user()->city}}">
+                                                                        <input type="text" class="form-control" id="city" placeholder="Enter City" name="city" value="{{auth()->user()->city}}">
                                                                         @error('city')
                                                                             <span class="text-danger">
                                                                                 <strong>{{ $message }}</strong>

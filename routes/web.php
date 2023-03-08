@@ -11,8 +11,6 @@ use App\Http\Controllers\Client\Client_Controller;
 use App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Admin\UpdateProfile;
 
-
-
 use App\Models\Country;
 use App\Models\Pro_Category;
 use App\Models\Pro_Sub_Category;
@@ -172,8 +170,6 @@ Route::post("admin-terms-conditions_update", [publicController::class,'TermCondi
 Route::get("admin-faq", [publicController::class,'AdminFaq']);
 Route::get("admin-faq_del/{id}", [publicController::class,'AdminFaqDel']);
 Route::post("add_Faq", [publicController::class,'add_Faq']);
-
-
 
 });
 // admin route end//
@@ -388,19 +384,23 @@ Route::get("page-pricing-client", function(){
 });
 
 // Mubashar Start Client
-Route::get("client/dashboard", function(){
-   return view("client.index");
-})->name('client-dashboard');
+Route::get("client/dashboard", [Client_Controller::class,'show_client_dashboard'])->name('client-dashboard');
 
 Route::get("app-chat-client", function(){
   return view("client.app-chat");
 });
 
-Route::get("client/profile_setting", [Client_Controller::class,'show_profile_page'])->name('client-profile-setting');
+Route::get("client/profile", [Client_Controller::class,'show_profile_page'])->name('client-profile-setting');
+Route::post("client/profile", [Client_Controller::class,'update_profile']);
+Route::get("client/change_mobile",[Client_Controller::class,'show_change_mobile_page'])->name('client-mobile-setting');
+Route::post("client/change_mobile",[Client_Controller::class,'update_mobile']);
 
 Route::get("change-password-client", function(){
   return view("client.change-password-client");
 });
+
+
+
 Route::get("find-professional-client", function(){
   return view("client.find-professional-client");
 });

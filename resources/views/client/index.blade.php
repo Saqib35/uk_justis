@@ -10,13 +10,15 @@
 
 @section('main_content')
 
-        @include('client.layouts.header')
-        
+       {{-- @include('client.layouts.header')--}}
+        <x-client-dashboard-header-component />
         <div class="page-wrapper">
             <div class="page-wrapper-inner">
 
                 <!-- Left Sidenav -->
-                  @include('client.includes.sidebar')
+                {{-- @include('client.includes.sidebar') --}}
+                <x-client-dashboard-sidebar-component />
+
                 <!-- end left-sidenav-->
 
                 <!-- Page Content-->
@@ -520,9 +522,7 @@
                         </div><!--end row-->
                     </div><!-- container -->
 
-                    <footer class="footer text-center text-sm-left">
-                        &copy; 2019 Frogetor <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
-                    </footer>
+                    <x-client-dashboard-footer-component />
                 </div>
                 <!-- end page content -->
             </div>

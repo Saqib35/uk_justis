@@ -17,7 +17,7 @@
                 <a href="{{ route('client-profile-setting') }}"><i class="mdi mdi-book-open-page-variant"></i><span>Profile Setting</span></a>
             </li>
             <li>
-                <a href="{{ url('change-password-client') }}"><i class="mdi mdi-lock"></i><span>Change Password</span></a>
+                <a href="{{ route('client-mobile-setting') }}"><i class="mdi mdi-lock"></i><span>Change Mobile Number</span></a>
             </li>
             
 
