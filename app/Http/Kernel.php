@@ -57,7 +57,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\IsPro::class,
         ],
         
-
+        'ProStripe' =>[
+            \App\Http\Middleware\ProStripe::class,
+        ],
     ];
 
     /**

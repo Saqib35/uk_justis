@@ -108,8 +108,6 @@ Route::get("app-chat", function(){
 });
 
 
-Route::get("stripe", [ProStripeController::class,'stripe']);
-
 
 
 
@@ -229,14 +227,25 @@ Route::get("pro/getProSubCategoriesThroughProCategoryAjax",function(Request $req
 
 Route::group(['middleware'=>['IsPro']],function () {
 
-Route::get("pro/login", function(){ return view("pro.auth-login"); })->name('pro-login');
+
+Route::post("showStripePaymentPage", [ProStripeController::class,'stripe'])->name('stripe');
+Route::get("stripe-success/{session_id}", [ProStripeController::class,'stripeSuccessPro'])->name('stripe-success');  
+
 
 Route::get("pro/register", function(){ 
-  $countries=Country::all();  
-  return view("pro.auth-register",['countries'=>$countries]);
+$countries=Country::all();  
+return view("pro.auth-register",['countries'=>$countries]);
 })->name('pro-register');
+  
+  
+  
+Route::group(['middleware'=>['ProStripe']],function () {
 
 
+
+
+Route::get("stripe-plan-pro", [ProStripeController::class,'stripePlanShowPro'])->name('stripe-plan-pro');
+Route::get("pro/login", function(){ return view("pro.auth-login"); })->name('pro-login');
 Route::get("pro-dashboard", function(){
    return view("pro.index");
 })->name('pro-dashboard');
@@ -255,10 +264,6 @@ Route::get("app-chat-pro", function(){
 Route::get("app-contact-list-pro", function(){
   return view("pro.app-contact-list");
 });
-
-
-// Mubasher Start
-
 Route::get("subscription-pro", function(){
   return view("pro.subscription");
 });
@@ -286,10 +291,6 @@ Route::get("calender-pro", function(){
 Route::get("profile-pro", function(){
   return view("pro.profile");
 });
-
-
-
-// Mubasher End
 Route::get("auth-recoverpw-pro", function(){
   return view("pro.auth-recoverpw");
 });
@@ -329,6 +330,11 @@ Route::get("tables-datatable-pro", function(){
 });
 Route::get("ui-other-clipboard-pro", function(){
   return view("pro.ui-other-clipboard");
+});
+
+
+
+
 });
 
 });
