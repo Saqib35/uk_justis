@@ -11,9 +11,11 @@ class ClientDashboardHeaderComponent extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $page_name;
+    public function __construct($pagename=null)
     {
         //
+        $this->page_name=$pagename;
     }
 
     /**

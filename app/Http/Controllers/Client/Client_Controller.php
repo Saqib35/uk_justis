@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Country;
+use App\Models\User;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TwilioSMSController;

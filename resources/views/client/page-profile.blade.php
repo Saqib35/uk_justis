@@ -15,7 +15,7 @@
 
 
 @section('main_content')
-        <x-client-dashboard-header-component/>
+        <x-client-dashboard-header-component pagename="Profile"/>
         <div class="page-wrapper">
             <div class="page-wrapper-inner">
 

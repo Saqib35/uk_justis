@@ -1,9 +1,9 @@
 @extends('admin.layouts.master')
 @section('header_style')
-<title>justiscall - Admin</title>
+<title>justiscall - Admin Show All Pro</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="" name="description" />
-<meta content="" name="author" />
+<meta content="CodeHub" name="author" />
 <style>
     .action .mdi{
         font-size: 20px;
@@ -40,7 +40,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="mt-0 header-title">All Clients</h4>
+                                        <h4 class="mt-0 header-title">All Pro</h4>
                                         <p class="text-muted mb-4 font-13">
                                             Welcome to JUSTISCALL
                                         </p>        
@@ -85,23 +85,23 @@
                                                         @php
                                                             $a=1
                                                         @endphp
-                                                        @foreach ($client as $client)
+                                                        @foreach ($pro as $pr)
                                                         <tr>
                                                             <td>{{ $a++ }}</td>
                                                             <td>
                                                                 <div class="profile-img-div">
-                                                                    <img src="{{ asset($client['profile_img']) }}" alt="" class="rounded-circle">
+                                                                    <img src="{{ asset($pr['profile_img'])}}" alt="" class="rounded-circle">
                                                                 </div>
                                                             </td>
-                                                            <td>{{ $client['first_name']." ".$client['last_name']  }}</td>
-                                                            <td>{{ calculate_age($client['date_of_birth']) }}</td>
-                                                            <td>{{ $client['address'] }}</td>
-                                                            <td>{{ $client['date_of_birth'] }}</td>
-                                                            <td>{{ $client['mobile'] }}</td>
+                                                            <td>{{ $pr['first_name']." ".$pr['last_name']  }}</td>
+                                                            <td>{{ calculate_age($pr['date_of_birth']) }}</td>
+                                                            <td>{{ $pr['address'] }}</td>
+                                                            <td>{{ $pr['date_of_birth'] }}</td>
+                                                            <td>{{ $pr['mobile'] }}</td>
                                                             <td class="action">
                                                                 <a href="">chart</a>
-                                                                <a href="{{  url('client-edit/'.$client['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="{{ url('all-client/'. $client['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                                <a href="{{  url('all-pro/edit/'.$pr['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
+                                                                <a href="{{ url('all-pro/delete/'. $pr['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -127,23 +127,23 @@
                                                         @php
                                                             $a=1
                                                         @endphp
-                                                        @foreach ($client_today as $clients)
+                                                        @foreach ($pro_today as $pr_today)
                                                         <tr>
                                                             <td>{{ $a++ }}</td>
                                                             <td>
                                                                 <div class="profile-img-div">
-                                                                    <img src="{{ $client['profile_img'] }}" alt="" class="rounded-circle">
+                                                                    <img src="{{ $pr_today['profile_img'] }}" alt="" class="rounded-circle">
                                                                 </div>
                                                             </td>
-                                                            <td>{{   $clients['first_name']." ".$clients['last_name']  }}</td>
-                                                            <td>{{ $clients['age'] }}</td>
-                                                            <td>{{ $clients['address'] }}</td>
-                                                            <td>{{ $clients['date_of_birth'] }}</td>
-                                                            <td>{{ $clients['mobile'] }}</td>
+                                                            <td>{{ $pr_today['first_name']." ".$pr_today['last_name']  }}</td>
+                                                            <td>{{ $pr_today['age'] }}</td>
+                                                            <td>{{ $pr_today['address'] }}</td>
+                                                            <td>{{ $pr_today['date_of_birth'] }}</td>
+                                                            <td>{{ $pr_today['mobile'] }}</td>
                                                             <td class="action">
                                                                 <a href="">chart</a>
-                                                                <a href="{{  url('client-edit/'.$clients['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                                <a href="{{ url('all-client/'. $clients['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
+                                                                <a href="{{  url('pro-edit/'.$pr_today['id']) }}"><i class="mdi mdi-pencil-box-outline"></i></a>
+                                                                <a href="{{ url('all-pro/'. $pr_today['id']) }}" class="ml-2"><i class="mdi mdi-delete"></i> </a>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -178,38 +178,29 @@
       @section("scriptlinks") 
 
         <!-- Required datatable js -->
-        <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="admin/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
         <!-- Buttons examples -->
-        <script src="admin/assets/plugins/datatables/dataTables.buttons.min.js"></script>
-        <script src="admin/assets/plugins/datatables/buttons.bootstrap4.min.js"></script>
-        <script src="admin/assets/plugins/datatables/jszip.min.js"></script>
-        <script src="admin/assets/plugins/datatables/pdfmake.min.js"></script>
-        <script src="admin/assets/plugins/datatables/vfs_fonts.js"></script>
-        <script src="admin/assets/plugins/datatables/buttons.html5.min.js"></script>
-        <script src="admin/assets/plugins/datatables/buttons.print.min.js"></script>
-        <script src="admin/assets/plugins/datatables/buttons.colVis.min.js"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/buttons.bootstrap4.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/jszip.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/pdfmake.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/vfs_fonts.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/buttons.html5.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/buttons.print.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/buttons.colVis.min.js')}}"></script>
         <!-- Responsive examples -->
-        <script src="admin/assets/plugins/datatables/dataTables.responsive.min.js"></script>
-        <script src="admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
-        <script src="admin/assets/pages/jquery.datatable.init.js"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/dataTables.responsive.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/plugins/datatables/responsive.bootstrap4.min.js')}}"></script>
+        <script src="{{ asset('admin/assets/pages/jquery.datatable.init.js')}}"></script>
 
         <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
 
     </body>
 </html>
 @endsection
 
 @section('script_code')
-
-@if(Session::has('status'))
-
-<script>
-swal("success", "Client Added Successfully", "success");
-</script>
-
-@endif  
 
 @if(Session::has('Del'))
 

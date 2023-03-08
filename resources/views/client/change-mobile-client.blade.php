@@ -14,7 +14,7 @@
 @section('main_content')
     
     {{--@include('client.layouts.header')--}}
-    <x-client-dashboard-header-component />
+    <x-client-dashboard-header-component pagename="Change Mobile"/>
     <div class="page-wrapper">
         <div class="page-wrapper-inner">
 
@@ -34,7 +34,7 @@
                                     <div class="fro_profile">
                                         <div class="row">
                                             <div class="col-lg-4 mb-3 mb-lg-0">
-                                                <h4 class="mt-0 header-title">EDIT PASSWORD</h4>
+                                                <h4 class="mt-0 header-title">EDIT MOBILE</h4>
                                                 <p class="text-muted mb-4 font-13">Welcome to JUSTISCALL</p>
                                                 <div class="row" style="display: none;">
                                                     <div class="col-5 align-item-center">
@@ -64,7 +64,7 @@
                                                             <div class="form-group col-sm-6 col-xs-12">
                                                                 <label for="phNum">New Phone Number</label>
                                                                 <div class="input-group mb-3">
-                                                                    <input type="text" class="form-control" id="mobile" placeholder="Enter Phone Number"  maxlength="50" required>
+                                                                    <input type="text" class="form-control" id="mobile" placeholder="Enter Phone Number"  maxlength="50" required value="{{old('mobile')}}">
                                                                     @error('mobile')
                                                                         <span class="text-danger">
                                                                             <strong>{{ $message }}</strong>

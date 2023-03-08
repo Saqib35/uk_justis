@@ -127,6 +127,11 @@ Route::post("add-client", [UpdateProfile::class,'AddClient']);
 Route::post("add-client-update", [UpdateProfile::class,'AddClientUpdate']);
 
 
+Route::get("all-pro/{type?}/{id?}", [UpdateProfile::class,'ShowPro']);
+Route::get("add-pro", [UpdateProfile::class,'ShowProForm']);
+Route::post("add-pro", [UpdateProfile::class,'AddPro']);
+
+
 
 
 Route::get("view-profile", [UpdateProfile::class,'ViewProfile']);

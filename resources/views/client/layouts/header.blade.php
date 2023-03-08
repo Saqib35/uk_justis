@@ -7,7 +7,7 @@
                 <div class="topbar-left">
                     <a href="{{ url('client-dashboard') }}" class="logo">
                         <span>
-                            <img src="{{ url('assets/img/logo.png')}}" alt="logo-small" class="logo-m" style="width:60px">
+                            <img src="{{ asset('assets/img/logo.png')}}" alt="logo-small" class="logo-m" style="width:60px">
                         </span>
                         
                     </a>
