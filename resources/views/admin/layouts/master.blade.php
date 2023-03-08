@@ -8,7 +8,7 @@
         $headerFooter= \App\Models\header_and_footer::get();
         @endphp 
                         
-        <link rel="shortcut icon" href="{{ url($headerFooter[0]->logo)  }}">
+        <link rel="shortcut icon" href="{{ asset($headerFooter[0]->logo)  }}">
 
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -28,8 +28,8 @@
         <link href="{{ url('admin/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
         <link href="{{ url('admin/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet" /> 
         <style id="clock-animations"></style>
-        <link href="admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
-        <link href="admin/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/assets/plugins/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" /> 
+        <link href="{{ asset('admin/assets/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
@@ -52,7 +52,35 @@
         <!-- App js -->
         <script src="{{ asset('admin/assets/js/app.js')}}"></script>
         @yield('script_code')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.all.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                @if(Session::has('success') )
+                     Swal.fire(
+                      'Success!',
+                      "{{ session('success')}}",
+                      'success'
+                    )
+                @endif
 
+                @if(Session::has('not_success') )
+                     Swal.fire(
+                      'Error!',
+                      "{{ session('not_success')}}",
+                      'error'
+                    )
+                @endif
+
+                @if(Session::has('error') )
+                     Swal.fire(
+                      'Error!',
+                      "",
+                      'error'
+                    )
+                @endif
+
+             });  
+        </script>
 
     </body>
 </html>

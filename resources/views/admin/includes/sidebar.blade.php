@@ -37,6 +37,15 @@
                               
                             </ul>
                         </li>
+
+                        <li>
+                            <a href="javascript: void(0);"><i class="mdi mdi-account-multiple"></i><span>Pro</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{ url('all-pro') }}"><span>All Pro</span></a></li>
+                                <li><a href="{{ url('add-pro') }}"><span>Add Pro</span></a></li> 
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="javascript: void(0);"><i class="mdi mdi-format-page-break"></i><span>Referral Coupon</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="nav-second-level" aria-expanded="false">

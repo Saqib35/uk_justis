@@ -123,9 +123,8 @@
                                                             <select class="form-control" name="country" required="">
                                                                 <option value="" selected  disabled>Choose Country</option>
                                                                 @foreach ($Country as $Country)
-                                                                 <option value="{{ $Country['id']  }}"> {{ $Country['name']  }}</option>
+                                                                 <option value="{{ $Country['sortname']  }}"> {{ $Country['name']  }}</option>
                                                                 @endforeach
-                                                                
                                                             </select>
                                                             </div>                                
                                                         </div>

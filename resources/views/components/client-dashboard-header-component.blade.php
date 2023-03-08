@@ -63,7 +63,7 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
-                            <img src="admin/assets/images/users/user-1.jpg" alt="profile-user" class="rounded-circle" /> 
+                            <img src="{{asset(auth()->user()->profile_img)}}" alt="profile-user" class="rounded-circle" /> 
                             <span class="ml-1 nav-user-name hidden-sm"> <i class="mdi mdi-chevron-down"></i> </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -133,9 +133,11 @@
                           -->
                             <div class="">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Frogetor</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">App</a></li>
-                                    <li class="breadcrumb-item active">Calendar</li>
+                                    <li class="breadcrumb-item"><a href="{{route('client-dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Client</a></li>
+                                    @if(!is_null($page_name))
+                                    <li class="breadcrumb-item active"><a href="javascript:void(0);">{{$page_name}}</a></li>
+                                    @endif
                                 </ol>
                             </div>                                      
                         </div><!--end page title box-->
