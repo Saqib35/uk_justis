@@ -520,6 +520,7 @@ class ComposerStaticInitfb68f880b533c9b3d4b81b73b41cf5cb
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\Categories' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Categories.php',
+        'App\\Http\\Controllers\\Admin\\ShowProAdmin' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ShowProAdmin.php',
         'App\\Http\\Controllers\\Admin\\UpdateProfile' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UpdateProfile.php',
         'App\\Http\\Controllers\\Admin\\publicController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/publicController.php',
         'App\\Http\\Controllers\\Admin\\stripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/stripeController.php',
