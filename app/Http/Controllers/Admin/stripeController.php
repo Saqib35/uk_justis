@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Add_Subscription;
-
+use App\Models\Pro\Pro_Stripe_Subcriptions;
 
 
 class stripeController extends Controller
@@ -83,6 +83,14 @@ class stripeController extends Controller
 
       Add_Subscription::where('id', $req->id)->delete();
       return redirect()->back()->with('Del','Deleted Successfully');
+    }
+
+    public function AdminShowActiveSubscription()
+    {
+
+      $active_subcription=Pro_Stripe_Subcriptions::get();
+      return view("admin.admin-licence",['active_subcription'=>$active_subcription]);
+    
     }
 
 

@@ -22,6 +22,8 @@ class ProStripeController extends Controller
 
         Session::put('time-interval', $details[3]);
         Session::put('price', $details[1]);
+        Session::put('plan_id', $details[0]);
+        
         
         require base_path('app/Http/stripe/vendor/autoload.php');
        \Stripe\Stripe::setApiKey(getenv("STRIPE_TEST_SECRET_KEY"));
@@ -75,7 +77,9 @@ class ProStripeController extends Controller
           'subscription_id' => $subscription_id,
           'customer_id' => $customer_id,
           'plan_interval'=> Session::get('time-interval'),
-          'plan_amount'=>Session::get('price'),          
+          'plan_amount'=>Session::get('price'),   
+          'plan_id_link'=>Session::get('plan_id'),
+          'start_date'=>now()   
           ]);
 
 
@@ -101,19 +105,138 @@ class ProStripeController extends Controller
 
 
       }
-    //  $ses= $stripe->subscriptions->retrieve(
-    //     'sub_1MjMibInukaQhDAUcQ84Z0P4',
-    //     []
-    //   );
-    //   echo $ses;
 
-    // $cancel=$stripe->subscriptions->cancel(
-    //     'sub_1MjMibInukaQhDAUcQ84Z0P4',
-    //     []
-    //   );
-//    echo  $cancel;
 
 
 
     }
+
+
+    public  function SubcriptionPro()
+    {
+       $pro_active_sub=Pro_Stripe_Subcriptions::where("pro_id", Auth::user()->id)->orderBy('id', 'desc')->get();
+       return view("pro.subscription",['pro_active_sub'=>$pro_active_sub]);
+    }
+
+      public function delProSubcription(REQUEST $req)
+      {
+
+      
+
+    
+        require base_path('app/Http/stripe/vendor/autoload.php');
+
+        $stripe = new \Stripe\StripeClient(getenv("STRIPE_TEST_SECRET_KEY"));
+        $ses= $stripe->subscriptions->retrieve(
+          $req->subscription_id,
+          []
+        );
+         $status=$ses->status;
+
+       if($status=='active')
+       {
+
+
+        // if stripe subscription active then we cancel that subscription
+
+
+        $cancel=$stripe->subscriptions->cancel(
+          $req->subscription_id,
+            []
+          );
+          
+
+        Pro_Stripe_Subcriptions::where('id',$req->id)
+        ->update([
+            'expired_date' => now()
+          ]);
+
+        User::where('id',Auth::user()->id)
+        ->update([
+            'Is_piad' => 'off'
+          ]);
+
+
+
+       }else{
+
+
+        Pro_Stripe_Subcriptions::where('id',$req->id)
+        ->update([
+            'expired_date' => now()
+          ]);
+
+        User::where('id',Auth::user()->id)
+        ->update([
+            'Is_piad' => 'off'
+          ]);
+
+        
+
+       }
+       return redirect()->back()->with('status','updated');
+      }
+
+      
+
+      public function delProSubcriptionAdminPro(REQUEST $req)
+      {
+
+      
+dd("check");
+    
+        require base_path('app/Http/stripe/vendor/autoload.php');
+
+        $stripe = new \Stripe\StripeClient(getenv("STRIPE_TEST_SECRET_KEY"));
+        $ses= $stripe->subscriptions->retrieve(
+          $req->subscription_id,
+          []
+        );
+         $status=$ses->status;
+
+       if($status=='active')
+       {
+
+
+        // if stripe subscription active then we cancel that subscription
+
+
+        $cancel=$stripe->subscriptions->cancel(
+          $req->subscription_id,
+            []
+          );
+          
+
+        Pro_Stripe_Subcriptions::where('id',$req->id)
+        ->update([
+            'expired_date' => now()
+          ]);
+
+        User::where('id',Auth::user()->id)
+        ->update([
+            'Is_piad' => 'off'
+          ]);
+
+
+
+       }else{
+
+
+        Pro_Stripe_Subcriptions::where('id',$req->id)
+        ->update([
+            'expired_date' => now()
+          ]);
+
+        User::where('id',Auth::user()->id)
+        ->update([
+            'Is_piad' => 'off'
+          ]);
+
+        
+
+       }
+       return redirect()->back()->with('status','updated');
+      }
+
+
 }

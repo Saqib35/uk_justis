@@ -1,38 +1,21 @@
 @extends('pro.layouts.master')
+
+@section('header_style')
+<title>PRO - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta content="A premium admin dashboard template by themesbrand" name="description" />
+<meta content="Mannatthemes" name="author" />
+@endsection
 @section('main_content')
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Justice Call</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by mannatthemes" name="description" />
-        <meta content="Mannatthemes" name="author" />
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="admin/assets/images/favicon.ico">
-
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
-  
-    @include('pro.layouts.header')
-        <div class="page-wrapper">
-            <div class="page-wrapper-inner">
-
-             <!-- Left Sidenav -->
-             @include('pro.includes.sidebar')
-                <!-- end left-sidenav-->
-
-
+ @include('pro.layouts.header')
+    <div class="page-wrapper">
+        <div class="page-wrapper-inner">
+            <!-- Left Sidenav -->
+            @include('pro.includes.sidebar')
+            
+            <!-- end left-sidenav-->
            
                 <!-- Page Content-->
                 <div class="page-content">
@@ -348,7 +331,8 @@
             </div>
         </div>
         <!-- end page-wrapper -->
-
+ @endsection
+ @section('scriptlinks')
         <!-- jQuery  -->
         <script src="admin/assets/js/jquery.min.js"></script>
         <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
@@ -356,9 +340,8 @@
         <script src="admin/assets/js/waves.min.js"></script>
         <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
+@endsection
 
-    </body>
-</html>
+
+@section('script_code')
 @endsection

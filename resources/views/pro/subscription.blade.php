@@ -1,34 +1,20 @@
 @extends('pro.layouts.master')
-@section('main_content')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Justice Call</title>
+
+    @section('header_style')
+        <title>PRO - Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A premium admin dashboard template by themesbrand" name="description" />
         <meta content="Mannatthemes" name="author" />
+    @endsection
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="admin/assets/images/favicon.ico">
+    @section('main_content')
 
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
-                        
     @include('pro.layouts.header')
-        <div class="page-wrapper">
-            <div class="page-wrapper-inner">
-
-             <!-- Left Sidenav -->
-             @include('pro.includes.sidebar')
+    <div class="page-wrapper">
+        <div class="page-wrapper-inner">
+            <!-- Left Sidenav -->
+            @include('pro.includes.sidebar')
+            
                 <!-- end left-sidenav-->
 
                 <!-- Page Content-->
@@ -65,19 +51,55 @@
                                     </div><!--end card-body-->
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            @if (count($pro_active_sub))
+                                                
+                                            
+                                            @foreach ($pro_active_sub as  $pro_active_subs)
+                                            <div class="col-md-12 border">
                                                 <div class="">
                                                     <h6 class="mb-0">
-                                                        <b>Validity From :</b> 
-                                                        <label> 2022-12-13 11:19:07</label>
+                                                        <b>Start From : </b> 
+                                                        <label> {{ $pro_active_subs['start_date']  }}</label>
                                                     </h6>
                                                     <h6>
-                                                        <b>Validity To :</b>
-                                                        <label> 2023-01-13</label>
+                                                        <b>Expired To :</b>
+                                                        <label> {{ $pro_active_subs['expired_date']  }} </label>
+                                                    </h6>
+                                                    
+                                                    <h6 class="pt-2">
+                                                        <b>Price :</b>
+                                                        <label>€  {{ $pro_active_subs['plan_amount']  }} </label>
+                                                    </h6>
+                                                    @if (is_null($pro_active_subs['expired_date']))
+                                                    <h6 class="pt-1">
+                                                        <b>Status :</b>
+                                                        <label> Active </label>
+                                                    </h6>
+
+                                                    <button class="btn btn-danger mb-3 ml-3"><a class="text-white" href="{{ url('delete-subscription/'.$pro_active_subs['id'].'/'.$pro_active_subs['subscription_id'] ) }}" >Cancel</a></buttun>
+                                                    @else
+                                                    
+                                                    <h6 class="pt-1">
+                                                        <b>Status :</b>
+                                                        <label> Unactive </label>
+                                                    </h6>
+                                                    
+
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @else
+                                            <div class="col-md-12">
+                                                <div class="text-center">
+                                                    <h6 class="mb-0">
+                                                        <b>Not Subcription Active</b> 
                                                     </h6>
                                                 </div>
                                             </div>
-                                      
+                                            
+                                            @endif
+                                            
                                         </div>
 
                                     </div>
@@ -95,17 +117,17 @@
             <!--end page-wrapper-inner -->
         </div>
         <!-- end page-wrapper -->
-
+ @endsection
+    @section('scriptlinks')
         <!-- jQuery  -->
         <script src="admin/assets/js/jquery.min.js"></script>
         <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
         <script src="admin/assets/js/metisMenu.min.js"></script>
         <script src="admin/assets/js/waves.min.js"></script>
         <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
+  
+      @endsection
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
 
-    </body>
-</html>
+@section('script_code')
 @endsection

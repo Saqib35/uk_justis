@@ -30,7 +30,7 @@
     <script type="text/javascript">
 
 
-     var stripe = Stripe(getenv("STRIPE_TEST_PUBLIC_KEY"));
+     var stripe = Stripe('pk_test_51KHlXHInukaQhDAUHpWzT3N6HZEIItgkDBmBwUJwDUqPZaJzDNUWyuwOqLMQRBbToE9TXtqx0hht6Uf4F72jEldv00dVJjPPY3');
      var session = "<?php echo $checkout_session['id']; ?>";
           stripe.redirectToCheckout({ sessionId: session })
                   .then(function(result) {

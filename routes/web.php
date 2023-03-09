@@ -75,10 +75,6 @@ Route::get("admin-dashboard", function(){
 })->name('admin-dashboard');
 
 
-
-Route::get("admin-licence", function(){
-   return view("admin.admin-licence");
-});
 Route::get("create-coupan", function(){
    return view("admin.create-coupan");
 });
@@ -109,8 +105,11 @@ Route::get("app-chat", function(){
 
 
 
+// Route::get("delete-subscription-pro-admin/{id}/{subscription_id}", [ProStripeController::class,'delProSubcriptionAdminPro
+// ']);
 
 
+Route::get("admin-licence", [stripeController::class,'AdminShowActiveSubscription']);
 Route::get("view-profile-pro/{id}", [ShowProAdmin::class,'ShowProProfile']);
 Route::get("show/{id}", [ShowProAdmin::class,'ShowProAdmin']);
 Route::get("delete-pro/{id}", [ShowProAdmin::class,'DelProAdmin']);
@@ -233,48 +232,37 @@ Route::get("pro/getProSubCategoriesThroughProCategoryAjax",function(Request $req
 Route::group(['middleware'=>['IsPro']],function () {
 
 
+
+
 Route::post("showStripePaymentPage", [ProStripeController::class,'stripe'])->name('stripe');
 Route::get("stripe-success/{session_id}", [ProStripeController::class,'stripeSuccessPro'])->name('stripe-success');  
-
-
 Route::get("pro/register", function(){ 
 $countries=Country::all();  
 return view("pro.auth-register",['countries'=>$countries]);
 })->name('pro-register');
+Route::get("pro/login", function(){ return view("pro.auth-login"); })->name('pro-login');
   
   
-  
+
 Route::group(['middleware'=>['ProStripe']],function () {
 
 
 
 
 Route::get("stripe-plan-pro", [ProStripeController::class,'stripePlanShowPro'])->name('stripe-plan-pro');
-Route::get("pro/login", function(){ return view("pro.auth-login"); })->name('pro-login');
 Route::get("pro-dashboard", function(){
    return view("pro.index");
 })->name('pro-dashboard');
-Route::get("advanced-ratings-pro", function(){
-   return view("pro.advanced-ratings");
-});
-Route::get("advanced-sweetalerts-pro", function(){
-  return view("pro.advanced-sweetalerts");
-});
-Route::get("app-calendar-pro", function(){
-  return view("pro.app-calendar");
-});
-Route::get("app-chat-pro", function(){
-  return view("pro.app-chat");
-});
-Route::get("app-contact-list-pro", function(){
-  return view("pro.app-contact-list");
-});
-Route::get("subscription-pro", function(){
-  return view("pro.subscription");
-});
-Route::get("wallet-pro", function(){
-  return view("pro.wallet");
-});
+Route::get("delete-subscription/{id}/{subscription_id}", [ProStripeController::class,'delProSubcription']);
+Route::get("subscription-pro", [ProStripeController::class,'SubcriptionPro']);
+
+
+
+
+// Route::get("wallet-pro", function(){
+//   return view("pro.wallet");
+// });
+
 Route::get("client-chat-pro", function(){
   return view("pro.client-chat");
 });
@@ -291,52 +279,15 @@ Route::get("client-chart-pro", function(){
   return view("pro.client-chart");
 });
 Route::get("calender-pro", function(){
-  return view("pro.calender");
+  return view("pro.calendar");
 });
-Route::get("profile-pro", function(){
-  return view("pro.profile");
-});
+
 Route::get("auth-recoverpw-pro", function(){
   return view("pro.auth-recoverpw");
 });
 Route::get("charts-apex-pro", function(){
   return view("pro.charts-apex");
 });
-Route::get("email-templates-alert-pro", function(){
-  return view("pro.email-templates-alert");
-});
-Route::get("forms-advanced-pro", function(){
-  return view("pro.forms-advanced");
-});
-Route::get("forms-editors-pro", function(){
-  return view("pro.forms-editors");
-});
-Route::get("forms-repeater-pro", function(){
-  return view("pro.forms-repeater");
-});
-Route::get("forms-uploads-pro", function(){
-  return view("pro.forms-uploads");
-});
-Route::get("forms-wizard-pro", function(){
-  return view("pro.forms-wizard");
-});
-Route::get("page-invoice-pro", function(){
-  return view("pro.page-invoice");
-});
-Route::get("page-pricing-pro", function(){
-  return view("pro.page-pricing");
-});
-Route::get("page-profile-pro", function(){
-  return view("pro.page-profile");
-});
-
-Route::get("tables-datatable-pro", function(){
-  return view("pro.tables-datatable");
-});
-Route::get("ui-other-clipboard-pro", function(){
-  return view("pro.ui-other-clipboard");
-});
-
 
 
 

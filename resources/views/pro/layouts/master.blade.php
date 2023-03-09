@@ -6,7 +6,7 @@
 
         <!-- App favicon -->
 
-
+        <title>justiscall</title>
         <link href="{{asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">
 
         <!-- App css -->

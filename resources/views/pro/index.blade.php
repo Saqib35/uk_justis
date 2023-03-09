@@ -1,7 +1,7 @@
 @extends('pro.layouts.master')
 
     @section('header_style')
-        <title>Frogetor - Responsive Bootstrap 4 Admin Dashboard</title>
+        <title>PRO - Admin</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="A premium admin dashboard template by themesbrand" name="description" />
         <meta content="Mannatthemes" name="author" />

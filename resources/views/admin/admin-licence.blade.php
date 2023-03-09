@@ -97,7 +97,7 @@
                                             <thead>
                                             <tr>
                                                 <th>Sl NO</th>
-                                                <th>SUBSCRIPTION NAME</th>
+                                                <th>PRO NAME</th>
                                                 <th>SUBSCRIPTION TYPE</th>
                                                 <th>VALIDITY</th>
                                                 <th>DURATION</th>
@@ -107,33 +107,68 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                @php
+                                                    $a=1
+                                                @endphp
+                                                @foreach ($active_subcription as $active_subcriptions)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>paid</td>
-                                                    <td>1</td>
-                                                    <td>month</td>
-                                                    <td>60</td>
-                                                    <td><button class="btn-success rounded">Enable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Justiscall PRO</td>
-                                                    <td>paid</td>
-                                                    <td>1</td>
-                                                    <td>month</td>
-                                                    <td>60</td>
-                                                    <td><button class="btn-danger rounded">Disable</button></td>
-                                                    <td class="action">
-                                                        <a href=""><i class="mdi mdi-pencil-box-outline"></i></a>
-                                                        <a href="" class="ml-2"><i class="mdi mdi-delete"></i> </a>
-                                                    </td>
-                                                </tr>
+                                                    <td>{{  $a++  }}</td>
+                                                    <td>
 
+                                                    @php
+                                                    $pro_name= \App\Models\User::where('id',$active_subcriptions['pro_id'])->get();
+                                                    @endphp 
+                                                    
+                                                    @if(count($pro_name))
+                                                    {{   $pro_name[0]->first_name.' '.$pro_name[0]->last_name  }}
+                                                    @else
+                                                    Plan may be delete
+                                                    @endif
+                                                    
+                                                    </td>
+                                                    <td>
+                                                    
+                                                    @php
+                                                    $plans_details= \App\Models\Admin\Add_Subscription::where('id',$active_subcriptions['plan_id_link'])->get();
+                                                    @endphp 
+                                                    
+                                                    @if(count($plans_details))
+                                                    {{   $plans_details[0]->plan_name }}
+                                                    @else
+                                                    Plan may be delete
+                                                    @endif
+                                                        
+                                                 
+
+                                                    </td>
+                                                    <td>{{ $active_subcriptions['start_date']   }}</td>
+                                                    <td>{{ $active_subcriptions['plan_interval']   }}</td>
+                                                    <td>{{ $active_subcriptions['plan_amount']   }}</td>
+
+                                                    <td>
+                                                        @if (is_null($active_subcriptions['expired_date']))
+                                                        <button class="btn-success rounded">Active</button>
+                                                        @else
+                                                        <button class="btn-success rounded bg-danger">Unactive</button>
+                                                            
+                                                        @endif
+                                                    
+                                                    </td>
+                                                    
+                                                    <td class="action">
+                                                          @if (is_null($active_subcriptions['expired_date']))
+                                                          <a href="{{ url('delete-subscription-pro-admin/'.$active_subcriptions['id'].'/'.$active_subcriptions['subscription_id']) }}" class="btn-success rounded bg-danger">click me to cancel</a>
+                                                           
+                                                        @else
+                                                        <a  class="ml-2">Cancelled</a>
+                                                            
+                                                        @endif
+                                                    
+                                                       
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                
                                             </tbody>
                                         </table>        
                                     </div>
