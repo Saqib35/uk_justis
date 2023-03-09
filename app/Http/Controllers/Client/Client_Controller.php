@@ -10,7 +10,7 @@ use App\Models\User;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TwilioSMSController;
-
+use App\Models\Pro_Category;
 class Client_Controller extends Controller
 {
     //show client dashboard
@@ -96,13 +96,7 @@ class Client_Controller extends Controller
                 session::flash('not_success',"OTP not sent Please try Again Later");
                 return redirect()->back()->withInput($request->all()); 
             }
-        }
-
-
-
-
-
-       
+        }       
 
         $user =Auth::user();
         $user->first_name = $request['first_name'];
@@ -119,4 +113,21 @@ class Client_Controller extends Controller
         return back();
     }
     
+    //find professionals 
+    public function find_professional(){
+        if(isset($_GET['pro_name'])){
+            if(is_null($_GET['pro_name'])){
+                session::flash('search_result',"ok");
+            }
+            
+            // dd('df');
+        }
+
+        $countries=Country::all();  
+        $pro_categories=Pro_Category::where('status',1)->get();
+        return view("client.find-professional-client",['countries'=>$countries,'pro_categories'=>$pro_categories]);
+    }
+    public function search_result_professionals(){
+        return view("client.search-professional-client");
+    }
 }

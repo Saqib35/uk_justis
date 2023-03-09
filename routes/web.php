@@ -382,13 +382,9 @@ Route::get("change-password-client", function(){
 });
 
 
+Route::get("client/find_professional", [Client_Controller::class,'find_professional'])->name('find-professional-client');
+Route::get("client/result_search_professional", [Client_Controller::class,'search_result_professionals'])->name('search-professional-client');
 
-Route::get("find-professional-client", function(){
-  return view("client.find-professional-client");
-});
-Route::get("search-professional-client", function(){
-  return view("client.search-professional-client");
-});
 Route::get("profile-professional-client", function(){
   return view("client.profile-professional-client");
 });
