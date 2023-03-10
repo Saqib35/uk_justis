@@ -2,6 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        @php
+        $headerFooter= \App\Models\header_and_footer::get();
+        @endphp 
+                        
+        <link rel="shortcut icon" href="{{ asset($headerFooter[0]->logo)  }}">
         <!-- App css -->
         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
@@ -9,7 +14,7 @@
         <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <style>
 		    body{
-		        background-image: url({{asset('assets/img/adminimages.jpg')}});
+		         /* background-image: url('assets/img/adminimages.jpg');  */
 		        height: 100vh;
 		        background-size: cover;
 		        background-repeat: no-repeat;
@@ -17,14 +22,16 @@
 		</style>
         @yield('header_style')
     </head>
-    <body>
+    <body style="background-image: url('{{ asset('assets/img/adminimages.jpg')}}');">
        @yield('main_content')
+
         <!-- jQuery  -->
         <script src="{{asset('admin/assets/js/jquery.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/metisMenu.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/waves.min.js')}}"></script>
         <script src="{{asset('admin/assets/js/jquery.slimscroll.min.js')}}"></script>
+        
 
         <!-- App js -->
         <script src="{{asset('admin/assets/js/app.js')}}"></script>
@@ -58,5 +65,6 @@
 
              });  
         </script>
+        
     </body>
 </html>

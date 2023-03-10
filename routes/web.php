@@ -11,6 +11,7 @@ use App\Http\Controllers\Client\Client_Controller;
 use App\Http\Controllers\Admin\Categories;
 use App\Http\Controllers\Admin\UpdateProfile;
 use App\Http\Controllers\Admin\ShowProAdmin;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Pro\ProStripeController;
 
 
@@ -105,6 +106,12 @@ Route::get("calender-admin", function(){
   return view("admin.calendar");
 });
 
+
+
+Route::get("find-chat-search", [MessageController::class,'FindPro']);
+ 
+
+Route::get("chnage-pro-status-ispaid", [UpdateProfile::class,'changeProStatusIspaid']);
 
 
 Route::get("delete-subscription-pro-admin/{id}/{subscription_id}/{pro_id}", [ProStripeController::class,'delProSubcriptionAdminPro']);

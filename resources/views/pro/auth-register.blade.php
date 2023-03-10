@@ -46,8 +46,12 @@
                     <div class="card mb-0 shadow-none">
                         <div class="card-body">  
                             <div class="px-3">
+                            @php
+                            $headerFooter= \App\Models\header_and_footer::get();
+                            @endphp  
+                            
                                 <div class="media">
-                                    <a href="{{url('/')}}" class="logo logo-admin"><img src="{{ asset('assets/img/logo.png')}}" height="55" alt="logo" class="my-3"></a>
+                                    <a href="{{url('/')}}" class="logo logo-admin"><img src="{{ asset($headerFooter[0]->logo)}}" height="55" alt="logo" class="my-3"></a>
                                     <div class="media-body ml-3 align-self-center">   
                                         <h4 class="mt-0 mb-1">Free Register for Justis Call</h4>
                                         <p class="text-muted mb-0">Get your free Justis Call account now.</p>
@@ -498,7 +502,7 @@
                 <div class="col-lg-6 col-sm-12 px-0">
                     <div class="accountbg d-flex align-items-center"> 
                         <div class="account-title text-white text-center">
-                            <img src="{{ asset('assets/img/logo.png')}}" alt="" class="thumb-sm">
+                            <img src="{{ asset($headerFooter[0]->logo)}}" alt="" class="thumb-sm">
                             <h4 class="mt-3">Welcome To Justis Call</h4>
                             <div class="border w-25 mx-auto border-primary"></div>
                             <h1 class="">Let's Get Started</h1>

@@ -2,7 +2,7 @@
 @section('header_style')
 <title>justiscall - Admin</title>
  <!-- App favicon -->
- <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+ 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta content="A premium admin dashboard template by mannatthemes" name="description" />
@@ -19,8 +19,12 @@
                 <div class="card-body">  
                     <div class="px-3">
                         <div class="text-center">
+                        @php
+                        $headerFooter= \App\Models\header_and_footer::get();
+                        @endphp 
+                                        
                             <a href="{{ url('/') }}" class="logo logo-admin">
-                                <img src="{{ url('assets/img/logo.png')}}" height="55" alt="logo" class="my-3">
+                                <img src="{{ url($headerFooter[0]->logo)}}" height="55" alt="logo" class="my-3">
                             </a>
                         </div>                            
                         
