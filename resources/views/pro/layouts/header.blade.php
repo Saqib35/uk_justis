@@ -2,12 +2,15 @@
    <div class="topbar">
              <!-- Navbar -->
              <nav class="navbar-custom">
+                @php
+                $headerFooter= \App\Models\header_and_footer::get();
+                @endphp   
 
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="{{ url('pro-dashboard') }}" class="logo">
                         <span>
-                            <img src="{{ url('assets/img/logo.png')}}" alt="logo-small" class="logo-m" style="width:60px">
+                            <img src="{{ url($headerFooter[0]->logo)  }}" alt="logo-small" class="logo-m" style="width:60px">
                         </span>
                         
                     </a>

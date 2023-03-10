@@ -182,8 +182,8 @@ class ProStripeController extends Controller
       public function delProSubcriptionAdminPro(REQUEST $req)
       {
 
-      
-dd("check");
+  
+
     
         require base_path('app/Http/stripe/vendor/autoload.php');
 
@@ -212,7 +212,7 @@ dd("check");
             'expired_date' => now()
           ]);
 
-        User::where('id',Auth::user()->id)
+        User::where('id',$req->pro_id)
         ->update([
             'Is_piad' => 'off'
           ]);
@@ -227,7 +227,7 @@ dd("check");
             'expired_date' => now()
           ]);
 
-        User::where('id',Auth::user()->id)
+        User::where('id',$req->pro_id)
         ->update([
             'Is_piad' => 'off'
           ]);

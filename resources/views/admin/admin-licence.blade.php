@@ -157,7 +157,7 @@
                                                     
                                                     <td class="action">
                                                           @if (is_null($active_subcriptions['expired_date']))
-                                                          <a href="{{ url('delete-subscription-pro-admin/'.$active_subcriptions['id'].'/'.$active_subcriptions['subscription_id']) }}" class="btn-success rounded bg-danger">click me to cancel</a>
+                                                          <a href="{{ url('delete-subscription-pro-admin/'.$active_subcriptions['id'].'/'.$active_subcriptions['subscription_id'].'/'.$active_subcriptions['pro_id']) }}" class="btn-success rounded bg-danger">click me to cancel</a>
                                                            
                                                         @else
                                                         <a  class="ml-2">Cancelled</a>

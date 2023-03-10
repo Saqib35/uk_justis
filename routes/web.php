@@ -74,39 +74,40 @@ Route::get("admin-dashboard", function(){
   return view("admin.index");
 })->name('admin-dashboard');
 
-
-Route::get("create-coupan", function(){
-   return view("admin.create-coupan");
-});
-Route::get("create-new-coupan", function(){
-   return view("admin.create-new-coupan");
-});
-Route::get("create-refferal", function(){
-   return view("admin.create-refferal");
-});
-Route::get("create-new-refferal", function(){
-   return view("admin.create-new-refferal");
-});
-
-
-
 Route::get("add-categories", function(){
-   return view("admin.add-categories");
+  return view("admin.add-categories");
 });
 
+// Route::get("create-coupan", function(){
+//    return view("admin.create-coupan");
+// });
+// Route::get("create-new-coupan", function(){
+//    return view("admin.create-new-coupan");
+// });
+// Route::get("create-refferal", function(){
+//    return view("admin.create-refferal");
+// });
+// Route::get("create-new-refferal", function(){
+//    return view("admin.create-new-refferal");
+// });
 
-Route::get("admin-price", function(){
-  return view("admin.panel-price");
-});
+
+
+// Route::get("admin-price", function(){
+//   return view("admin.panel-price");
+// });
 
 Route::get("app-chat", function(){
   return view("admin.app-chat");
 });
 
+Route::get("calender-admin", function(){
+  return view("admin.calendar");
+});
 
 
-// Route::get("delete-subscription-pro-admin/{id}/{subscription_id}", [ProStripeController::class,'delProSubcriptionAdminPro
-// ']);
+
+Route::get("delete-subscription-pro-admin/{id}/{subscription_id}/{pro_id}", [ProStripeController::class,'delProSubcriptionAdminPro']);
 
 
 Route::get("admin-licence", [stripeController::class,'AdminShowActiveSubscription']);

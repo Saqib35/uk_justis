@@ -23,7 +23,7 @@ class header_and_footer extends Model
         'whatapp_link',
         'linkdin_link',
         'design_by',
-        
+        'pro_logo'
       
     ];
 

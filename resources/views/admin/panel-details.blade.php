@@ -137,7 +137,7 @@
                                                                         <div class="input-group mb-3">
                                                                             <input type="file" id="file-ip-1" class="form-control" accept="image/*" onchange="showPreview(event);" name="logo">
                                                                             <div class="preview">
-                                                                              <img id="file-ip-1-preview">
+                                                                              <img id="file-ip-1-preview" width="130" height="130">
                                                                             </div>
                                                                         </div>                                    
                                                                     </div>
@@ -146,6 +146,23 @@
                                                                         
                                                                             <img src="{{ $header_and_footer[0]->logo  }}" width="100px">                            
                                                                     </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <h6 class=" input-title mt-lg-3">Client Logo</h6>
+                                                                        
+                                                                        <div class="input-group mb-3">
+                                                                            <input type="file" id="file-ip-1" class="form-control" accept="image/*" onchange="showPreview1(event);" name="logo2">
+                                                                            <div class="preview">
+                                                                              <img id="file-ip-1-preview1" width="130" height="130">
+                                                                            </div>
+                                                                        </div>                                    
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <h6 class=" input-title mt-lg-3">Current Logo</h6>
+                                                                        
+                                                                            <img src="{{ $header_and_footer[0]->pro_logo  }}" width="100px">                            
+                                                                    </div>
+                                                                    
                                                                     <div class="col-sm-10">
                                                                        
                                                                     </div>
@@ -218,6 +235,18 @@
       if(event.target.files.length > 0){
         var src = URL.createObjectURL(event.target.files[0]);
         var preview = document.getElementById("file-ip-1-preview");
+        preview.src = src;
+        preview.style.display = "block";
+      }
+    }
+</script>
+
+
+<script type="text/javascript">
+    function showPreview1(event){
+      if(event.target.files.length > 0){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-1-preview1");
         preview.src = src;
         preview.style.display = "block";
       }

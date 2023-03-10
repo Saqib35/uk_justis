@@ -147,6 +147,25 @@ class publicController extends Controller
     
       }
 
+
+
+      
+      if($req->hasFile('logo2'))
+      {
+       
+        $dir = 'assets/img/';
+        $extension = strtolower($req['logo2']->getClientOriginalExtension()); // get image extension
+        $fileName = bin2hex(random_bytes(20)).'.'. $extension; // rename image
+        $req['logo2']->move($dir, $fileName);
+        $logoss=$req['logo2'] ="{$dir}{$fileName}";
+
+
+        header_and_footer::first()
+        ->update([
+         'pro_logo'=>$logoss
+           ]);
+
+      }
       
         
          return redirect()->back()->with('status','updated');

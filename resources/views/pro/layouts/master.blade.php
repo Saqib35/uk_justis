@@ -3,18 +3,18 @@
     <head>
         <meta charset="utf-8" />
         
-
-        <!-- App favicon -->
-
         <title>justiscall</title>
         <link href="{{asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">
+        @php
+        $headerFooter= \App\Models\header_and_footer::get();
+        @endphp   
 
         <!-- App css -->
         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="{{ asset('assets/img/logo.png')}}">
+        <link rel="shortcut icon" href="{{ asset($headerFooter[0]->logo)  }}">
         @yield('header_style')
     </head>
 
