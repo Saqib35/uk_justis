@@ -16,7 +16,11 @@
                         
                         <div class="px-3">
                             <div class="media">
-                                <a href="{{ url('/') }}" class="logo logo-admin"><img src="{{ url('assets/img/logo.png') }}" height="55" alt="logo" class="my-3"></a>
+                            @php
+                            $headerFooter= \App\Models\header_and_footer::get();
+                            @endphp 
+                            
+                                <a href="{{ url('/') }}" class="logo logo-admin"><img src="{{ url($headerFooter[0]->logo) }}" height="55" alt="logo" class="my-3"></a>
                                 <div class="media-body ml-3 align-self-center">                                                                                                                       
                                     <h4 class="mt-0 mb-1">Login on Justiscall</h4>
                                 </div>
@@ -54,16 +58,7 @@
                                 </div>                            
                             </form>
                         </div>
-                        <div class="account-social text-center">
-                            <h6 class="my-4">Or Login With</h6>
-                            <ul class="list-inline mb-4">
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-google google"></i>
-                                    </a>                                    
-                                </li>
-                            </ul>
-                        </div>
+                       
                         <div class="m-3 text-center bg-light p-3 text-primary">
                             <h5 class="">Don't have an account ? </h5>
                             <a href="{{  url('pro/register') }}" class="btn btn-primary btn-round waves-effect waves-light">Sign Up</a>                
@@ -74,8 +69,8 @@
             <div class="col-lg-6 p-0 d-flex justify-content-center">
                 <div class="accountbg d-flex align-items-center"> 
                     <div class="account-title text-white text-center">
-                        <img src="admin/assets/images/logo-sm.png" alt="" class="thumb-sm">
-                        <h4 class="mt-3">Welcome To Frogetor</h4>
+                        <img src="{{ url($headerFooter[0]->logo) }}" alt="" class="thumb-sm">
+                        <h4 class="mt-3">Welcome To justislib</h4>
                         <div class="border w-25 mx-auto border-primary"></div>
                         <h1 class="">Let's Get Started</h1>
                         <p class="font-14 mt-3">Don't have an account ? <a href="{{  url('pro/register') }}" class="text-primary">Sign up</a></p>
