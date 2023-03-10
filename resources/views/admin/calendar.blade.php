@@ -25,11 +25,135 @@
                 <div class="page-content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-12">
+                        	<div class="col-md-2 col-xs-12 d-none">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>All Firms</h4>
+                                        <ul>
+                                        	<li>Lawyer</li>
+                                        	<li>Bailiff</li>
+											<li>Notarie</li>
+											<li>Legal Representative</li>
+											<li>Chartered Accountant</li>
+											<li>Lawyer Firm</li>
+											<li>Bailiff Firm</li>
+											<li>Notarie Firm</li>
+											<li>Legal Representative Firm</li>
+											<li>Chartered Accountant Firm</li>
+
+                                        </ul>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4>All Firms</h4>
+                                        <ul>
+                                        	<li>Lawyer</li>
+                                        	<li>Bailiff</li>
+											<li>Notarie</li>
+											<li>Legal Representative</li>
+											<li>Chartered Accountant</li>
+											<li>Lawyer Firm</li>
+											<li>Bailiff Firm</li>
+											<li>Notarie Firm</li>
+											<li>Legal Representative Firm</li>
+											<li>Chartered Accountant Firm</li>
+
+                                        </ul>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end card-->
+                            </div>
+                            <div class="col-md-8 col-xs-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div id="calendar"></div>
                                         <div style="clear: both;"></div>
+                                    </div>
+                                    <!--end card-body-->
+                                </div>
+                                <!--end card-->
+                            </div>
+                            <div class="col-md-4 col-xs-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                        	<h4>Today Schedule</h4>
+                                        	<div class="row">
+                                        		<div class="col-6">
+	                                        		<div class="card">
+	                                    				<div class="card-body">	
+	                                    					<div class="text-center">
+		                                    					<span style="color: red;"><b>1</b></span>
+		                                    					<hr>
+		                                    					Schedule
+	                                    					</div>
+	                                    				</div>
+	                                    			</div>
+	                                    		</div>
+	                                    		<div class="col-6">
+	                                        		<div class="card">
+	                                    				<div class="card-body">	
+	                                    					<div class="text-center">
+		                                    					<span style="color: blue;"><b>0</b></span>
+		                                    					<hr>
+		                                    					Check In
+	                                    					</div>
+	                                    				</div>
+	                                    			</div>
+	                                    		</div>
+	                                    		<div class="col-6">
+	                                        		<div class="card">
+	                                    				<div class="card-body">	
+	                                    					<div class="text-center">
+		                                    					<span style="color: green;"><b>0</b></span>
+		                                    					<hr>
+		                                    					Engaged
+	                                    					</div>
+	                                    				</div>
+	                                    			</div>
+	                                    		</div>
+	                                    		<div class="col-6">
+	                                        		<div class="card">
+	                                    				<div class="card-body">	
+	                                    					<div class="text-center">
+		                                    					<span style="color: pink;"><b>2</b></span>
+		                                    					<hr>
+		                                    					Check Out
+	                                    					</div>
+	                                    				</div>
+	                                    			</div>
+	                                    		</div>
+
+                                        		
+                                        	</div>
+                                        	
+                                        </div>
+                                        <div class="card">
+                                        	<div class="card-body" style="border-left: 5px solid red;">
+                                        		<h6>Developer <i style="float: right;" class="fa fa-arrow-right"></i></h6>
+                                        		<h6>Checked Out <i style="float: right;" class="mdi mdi-calendar-check"></i></h6>
+                                        		<button style="float: right;" class="btn btn-primary"> View Client</button>
+                                        	</div>
+                                        </div>
+
+                                        <div class="card">
+                                        	<div class="card-body" style="border-left: 5px solid green;">
+                                        		<h6>Developer <i style="float: right;" class="fa fa-arrow-right"></i></h6>
+                                        		<h6>Checked Out <i style="float: right;" class="mdi mdi-calendar-check"></i></h6>
+                                        		<button style="float: right;" class="btn btn-primary"> View Client</button>
+                                        	</div>
+                                        </div>
+
+                                        <div class="card">
+                                        	<div class="card-body" style="border-left: 5px solid yellow;">
+                                        		<h6>Developer <i style="float: right;" class="fa fa-arrow-right"></i></h6>
+                                        		<h6>Checked Out <i style="float: right;" class="mdi mdi-calendar-check"></i></h6>
+                                        		<button style="float: right;" class="btn btn-primary"> View Client</button>
+                                        	</div>
+                                        </div>
                                     </div>
                                     <!--end card-body-->
                                 </div>

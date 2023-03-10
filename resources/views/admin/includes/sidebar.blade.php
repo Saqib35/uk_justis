@@ -34,7 +34,7 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="{{ url('all-client') }}"><span>All Clients</span></a></li>
                                 <li><a href="{{ url('add-client') }}"><span>Add Client</span></a></li> 
-                                <li><a href="{{ url('add-client') }}"><span>Add Appointment</span></a></li> 
+                                <li><a href="{{ url('calender-admin') }}"><span>Add Appointment</span></a></li> 
                                 
                               
                             </ul>

@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}">
+
+        @php
+        $headerFooter= \App\Models\header_and_footer::get();
+        @endphp   
         <!-- App css -->
         <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/metismenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('admin/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="{{ url('assets/img/logo.png')}}">
+        <link rel="shortcut icon" href="{{ asset($headerFooter[0]->logo)  }}">
 
         @yield('header_style')
     </head>

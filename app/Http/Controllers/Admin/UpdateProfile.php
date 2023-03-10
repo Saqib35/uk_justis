@@ -366,5 +366,18 @@ class UpdateProfile extends Controller
         }
     }
     
+   public function changeProStatusIspaid(REQUEST $req)
+   {
 
+ 
+    User::where('id', $req->id)
+    ->update([
+        'Is_piad' => $req->status,
+       
+     ]);
+
+
+     return "success";
+
+   }
 }
