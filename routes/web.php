@@ -384,11 +384,10 @@ Route::get("change-password-client", function(){
 
 
 Route::get("client/find_professional", [Client_Controller::class,'find_professional'])->name('find-professional-client');
-Route::get("client/result_search_professional", [Client_Controller::class,'search_result_professionals'])->name('search-professional-client');
+Route::get("client/profile_professional/{id}", [Client_Controller::class,'profile_professional_client']);
 
-Route::get("profile-professional-client", function(){
-  return view("client.profile-professional-client");
-});
+// Route::get("client/result_search_professional", [Client_Controller::class,'search_result_professionals'])->name('search-professional-client');
+
 Route::get("professional-checkout-client", function(){
   return view("client.professional-checkout-client");
 });

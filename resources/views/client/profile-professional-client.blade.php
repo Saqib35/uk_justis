@@ -1,38 +1,25 @@
-@extends('client.layouts.main')
-@section('main-container-client')
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Justice Call</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="A premium admin dashboard template by themesbrand" name="description" />
-        <meta content="Mannatthemes" name="author" />
+@extends('client.layouts.master')
 
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="admin/assets/images/favicon.ico">
-
-        <link href="admin/assets/plugins/ticker/jquery.jConveyorTicker.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/plugins/dropify/css/dropify.min.css" rel="stylesheet">
+@section('header_style')
+    <title>Justice Call</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A premium admin dashboard template by themesbrand" name="description" />
+    <meta content="Mannatthemes" name="author" />
+    <link href="{{asset('admin/assets/plugins/ticker/jquery.jConveyorTicker.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('admin/assets/plugins/dropify/css/dropify.min.css')}}" rel="stylesheet">
+@endsection
 
 
-        <!-- App css -->
-        <link href="admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css" />
-        <link href="admin/assets/css/style.css" rel="stylesheet" type="text/css" />
-
-    </head>
-
-    <body>
-
-    @include('client.layouts.header')
+@section('main_content')
+        {{-- @include('client.layouts.header')--}}
+        <x-client-dashboard-header-component pagename="Profile Professional"/>
         
         <div class="page-wrapper">
             <div class="page-wrapper-inner">
 
                 <!-- Left Sidenav -->
-                  @include('client.includes.sidebar')
+                {{-- @include('client.includes.sidebar') --}}
+                <x-client-dashboard-sidebar-component />
                 <!-- end left-sidenav-->
 
 
@@ -72,15 +59,15 @@
                                                         <div class="row border rounded pt-3 pb-5">
                                                             <div class="col-sm-3 col-xs-12 mt-3">
                                                                 <div class="profile-image-div">
-                                                                    <img src="admin/assets/images/users/user-1.jpg" alt="">
+                                                                    <img src="{{asset($pro[0]->profile_img)}}" alt="" style="max-width:180px">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-4 col-xs-12 mt-3">
                                                                 <div class="col-sm-12">
-                                                                    <h4>Name</h4>
+                                                                    <h4>{{$pro[0]->first_name}} {{$pro[0]->last_name}}</h4>
                                                                 </div>
                                                                 <div class="col-sm-12">
-                                                                    <b><label>Lawyer</label></b>
+                                                                    <b><label>{{$pro_category_name}}</label></b>
                                                                 </div>
                                                                 <div class="col-sm-12">
                                                                     <label><i class="mdi mdi-star"></i> (5/5)</label>
@@ -88,8 +75,7 @@
                                                                 <div class="col-sm-12">
                                                                     <label>
                                                                         <i class="mdi mdi-map-marker"></i>
-                                                                        109 Bd Carnot, 06400 Cannes, France
-                                                                        Postal Code: 06400
+                                                                        {{$pro[0]->address}}
                                                                     </label>
                                                                 </div>
                                                                 <div class="col-sm-12 mt-4">
@@ -108,7 +94,12 @@
                                                                     <b><label></label></b>
                                                                 </div>
                                                                 <div class="col-sm-12">
-                                                                    <label>Cash, Credit Card, Check, Wire Transfert,</label>
+                                                                    <label>
+                                                                    {{ $pro[0]->cash=="on"?"Cash, ":""}}    
+                                                                    {{ $pro[0]->credit_card=="on"?"Credit Card, ":""}}    
+                                                                    {{ $pro[0]->check=="on"?"Check, ":""}}    
+                                                                    {{ $pro[0]->wire_transfer=="on"?"Wire Transfert, ":""}}
+                                                                    </label>
                                                                 </div>
                                                                 <div class="col-sm-12 mt-4">
                                                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn-cancel form-control py-1 text-white">
@@ -200,26 +191,26 @@
 
                                                 <h4 class="header-title mt-0 mb-4">Overview</h4>
                                                 <h4 class="header-title mt-0">Profile Description</h4>
-                                                <p>No Profile Description</p>
+                                                <p>{{$pro[0]->cashprofile_description!=null?$pro[0]->cashprofile_description:"No Profile Description"}}</p>
 
                                                 <h4 class="header-title mt-1">Services</h4>
                                                 <p>
                                                     <ul>
-                                                        <li>Service 1</li>
-                                                        <li>Service 2</li>
-                                                        <li>Service 3</li>
+                                                        @foreach($pro_sub_categories as $sub_category)
+                                                            <li>{{$sub_category->name}}</li>
+                                                        @endforeach                                                       
                                                     </ul>
                                                 </p>
                                                 <h4 class="header-title mt-1">Specializations</h4>
                                                 <p>
                                                     <ul>
-                                                        <li>Lawyer</li>
+                                                        <li>{{$pro_category_name}}</li>
                                                     </ul>
                                                 </p>
                                                 <h4 class="header-title mt-1">Country</h4>
                                                 <p>
                                                     <ul>
-                                                        <li>Country Name</li>
+                                                        <li>{{$country_name}}</li>
                                                     </ul>
                                                 </p>
                                             </div><!--end tab-pane-->
@@ -229,10 +220,10 @@
                                                 <div class="col-sm-6 col-xs-12 mt-3">
 
                                                     <div class="col-sm-12">
-                                                        <h4>Name</h4>
+                                                        <h4>{{$pro[0]->first_name}} {{$pro[0]->last_name}}</h4>
                                                     </div>
                                                     <div class="col-sm-12">
-                                                        <b><label>Lawyer</label></b>
+                                                        <b><label>{{$pro_category_name}}</label></b>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label><i class="mdi mdi-star"></i> (5/5)</label>
@@ -240,12 +231,12 @@
                                                     <div class="col-sm-12">
                                                         <label>
                                                             <i class="mdi mdi-map-marker"></i>
-                                                            109 Bd Carnot, 06400 Cannes, France
+                                                            {{$pro[0]->address}}
                                                         </label>
                                                     </div>
                                                     <div class="col-sm-12">
                                                         <label>
-                                                            Postal Code: 06400
+                                                            Postal Code: {{$pro[0]->post_code}}
                                                         </label>
                                                     </div>
                                                 </div>
@@ -258,15 +249,44 @@
 
                                             <div class="tab-pane fade" id="profile-pro-stock">
                                                 <h4 class="header-title mt-0">Todays Availability :-</h4>
-                                                <span class="border mx-2 p-2 rounded">CLOSED NOW</span>
+                                                <span class="border mx-2 p-2 rounded">
+                                                   {{$today_availablity}}</span>
                                                 <h4 class="header-title mt-3">Pro Availability :-</h4>
                                                 <p>
-                                                    <b>Wednesday</b><br>
-                                                    09:00 AM - 18:00 PM <br>
-                                                    <b>Monday</b><br>
-                                                    09:00 AM - 18:00 PM <br>
-                                                    <b>Tuesday</b><br>
-                                                    09:00 AM - 18:00 PM
+                                                    @if($pro[0]->monday=="on")
+                                                        <b>Monday</b><br>
+                                                        {{$pro[0]->monday_start_time}} - {{$pro[0]->monday_end_time}} <br>
+                                                    @endif
+
+                                                    @if($pro[0]->tuesday=="on")
+                                                        <b>Tuesday</b><br>
+                                                        {{$pro[0]->tuesday_start_time}} - {{$pro[0]->tuesday_end_time}} <br>
+                                                    @endif
+
+                                                    @if($pro[0]->wednesday=="on")
+                                                        <b>Wednesday</b><br>
+                                                        {{$pro[0]->wednesday_start_time}} - {{$pro[0]->wednesday_end_time}}<br>
+                                                    @endif
+
+                                                    @if($pro[0]->thursday=="on")
+                                                        <b>Thursday</b><br>
+                                                        {{$pro[0]->thursday_start_time}} - {{$pro[0]->thursday_end_time}}<br>
+                                                    @endif
+
+                                                    @if($pro[0]->friday=="on")
+                                                        <b>Friday</b><br>
+                                                        {{$pro[0]->friday_start_time}} - {{$pro[0]->friday_end_time}}<br>
+                                                    @endif
+
+                                                    @if($pro[0]->saturday=="on")
+                                                        <b>Saturday</b><br>
+                                                        {{$pro[0]->saturday_start_time}} - {{$pro[0]->saturday_end_time}}<br>
+                                                    @endif
+
+                                                    @if($pro[0]->sunday=="on")
+                                                        <b>Sunday</b><br>
+                                                        {{$pro[0]->sunday_start_time}} - {{$pro[0]->sunday_end_time}}<br>
+                                                    @endif
                                                 </p>
                                                 
                                             </div><!--end tab-pen-->
@@ -282,11 +302,7 @@
                          <div class="row mt-5 pt-4">
                             <div class="col-lg-12">
                                 <div class="card">
-                                        <footer class="footer text-center text-sm-left">
-                                            &copy; 2019 Frogetor <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
-                                        </footer>
-                                        
-                                                                                                             
+                                    <x-client-dashboard-footer-component />                                                                    
                                 </div><!--end card-body-->
                             </div><!--end card-->
                         </div><!--end col-->
@@ -302,35 +318,22 @@
             <!--end page-wrapper-inner -->
         </div>
         <!-- end page-wrapper -->
+@endsection
 
-        <!-- jQuery  -->
-        <script src="admin/assets/js/jquery.min.js"></script>
-        <script src="admin/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="admin/assets/js/metisMenu.min.js"></script>
-        <script src="admin/assets/js/waves.min.js"></script>
-        <script src="admin/assets/js/jquery.slimscroll.min.js"></script>
 
-        <script src="admin/assets/plugins/moment/moment.js"></script>
-        <script src="admin/assets/plugins/apexcharts/apexcharts.min.js"></script>
+@section('scriptlinks')
+        <script src="{{asset('admin/assets/plugins/moment/moment.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/apexcharts/apexcharts.min.js')}}"></script>
         <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
         <script src="https://apexcharts.com/samples/assets/series1000.js"></script>
         <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
-        <script src="admin/assets/plugins/dropify/js/dropify.min.js"></script>
-        <script src="admin/assets/plugins/ticker/jquery.jConveyorTicker.min.js"></script>
-        <script src="admin/assets/plugins/peity-chart/jquery.peity.min.js"></script>
-        <script src="admin/assets/plugins/chartjs/chart.min.js"></script>
-        <script src="admin/assets/pages/jquery.profile.init.js"></script>
+        <script src="{{asset('admin/assets/plugins/dropify/js/dropify.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/ticker/jquery.jConveyorTicker.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/peity-chart/jquery.peity.min.js')}}"></script>
+        <script src="{{asset('admin/assets/plugins/chartjs/chart.min.js')}}"></script>
+        <script src="{{asset('admin/assets/pages/jquery.profile.init.js')}}"></script>
+@endsection
 
-        <!-- App js -->
-        <script src="admin/assets/js/app.js"></script>
+@section('script_code')
 
-    </body>
-</html>
-
-<style>
-    .btn-submit, .btn-cancel{
-        background-image: linear-gradient(180deg,#2b2b48 0%,#224858 50%);
-        color: #fff;
-    }
-</style>
 @endsection

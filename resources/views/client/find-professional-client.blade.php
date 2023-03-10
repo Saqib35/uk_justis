@@ -3,8 +3,8 @@
 @section('header_style')
 <title>Justice Call</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta content="A premium admin dashboard template by themesbrand" name="description" />
-<meta content="Mannatthemes" name="author" />
+<meta content="" name="description" />
+<meta content="Code Hub" name="author" />
 <link href="{{asset('admin/assets/plugins/ticker/jquery.jConveyorTicker.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{asset('admin/assets/plugins/dropify/css/dropify.min.css')}}" rel="stylesheet">
 @endsection
@@ -51,7 +51,7 @@
 
                         
 
-                        @if(Session::has('search_result'))
+                        @if(Session::has('search_result') && isset($pro_users))
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card">
@@ -62,20 +62,28 @@
                                                     <div class="col-lg-12">
                                                         <h4 class="mt-0 header-title">All Professionals Result</h4>
                                                     </div>
-                                                    
+                                                    @isset($pro_users)
+                                                    @foreach($pro_users as $pro)
                                                     <div class="col-lg-12">
                                                         <div class="row border rounded">
                                                             <div class="col-sm-4 col-xs-12 mt-3">
                                                                 <div class="profile-image-div">
-                                                                    <img src="{{asset('admin/assets/images/users/user-1.jpg')}}" alt="">
+                                                                    <img src="{{asset($pro->profile_img)}}" alt="" style="max-width:200px">
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-4 col-xs-12 mt-3">
                                                                 <div class="col-sm-12">
-                                                                    <h4>Name</h4>
+                                                                    <h4>{{$pro->first_name}} {{$pro->last_name}}</h4>
                                                                 </div>
                                                                 <div class="col-sm-12">
-                                                                    <b><label>Lawyer</label></b>
+                                                                    <b><label>
+                                                                        @foreach($pro_categories as $pro_category)
+                                                                            @if($pro_category->id==$pro->category_id)
+                                                                                {{$pro_category->name}}
+                                                                                @break
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </label></b>
                                                                 </div>
                                                                 <div class="col-sm-12">
                                                                     <label>5 Years Experiance</label>
@@ -100,17 +108,16 @@
                                                                 <div class="col-sm-12 col-xs-12">
                                                                     <label>
                                                                         <i class="mdi mdi-map-marker"></i>
-                                                                        109 Bd Carnot, 06400 Cannes, France
-                                                                        Postal Code: 06400
+                                                                        {{$pro->address}}
                                                                     </label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-12 mt-3 bg-light py-3 my-2">
                                                                 <div class="row">
                                                                     <div class="col-sm-3 col-xs-12">
-                                                                        <button class="btn-cancel form-control">
+                                                                        <a class="btn-cancel form-control" href="{{ url('client/profile_professional/'.$pro->id) }}">
                                                                             View Profile
-                                                                        </button>
+                                                                        </a>
                                                                     </div>
                                                                     <div class="col-sm-6 col-xs-12"></div>
                                                                     <div class="col-sm-3 col-xs-12">
@@ -122,6 +129,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endforeach
+                                                    @endisset
+
+
                                                 </div> <!--end col-->                                          
                                             </div><!--end row-->
                                         </div><!--end tab-pane-->

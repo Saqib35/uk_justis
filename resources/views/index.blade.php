@@ -27,55 +27,51 @@
                 <div class="service-box  w-100">
                     <div class="service-box_inner w-100">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div>
-                                        <select class="form-control">
-                                            <option>speciality</option>
-                                            <option>speciality</option>
-                                            <option>speciality</option>
-                                            <option>speciality</option>
-                                            
+                            <form class="form-horizontal form-material mb-0" action="" method="get">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div>
+                                        <select class="form-control" name="category_id" id="category-id">
+                                            <option selected disabled>Choose Category</option>
+                                            @foreach($pro_categories as $pro_category)
+                                                <option value="{{$pro_category->id}}">{{$pro_category->name}}</option>
+                                            @endforeach
                                         </select>
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="text" class="form-control" name="city" placeholder="City Name" maxlength="255">
+                                        </div>
                                     </div>
-                                    <div class="mt-3">
-                                        <input type="text" class="form-control" placeholder="Enter City" name="">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                     <div>
-                                        <select class="form-control">
-                                            <option>sub category</option>
-                                            <option>sub category</option>
-                                            <option>sub category</option>
-                                            <option>sub category</option>
-                                            
+                                    <div class="col-md-3">
+                                        <div>
+                                        <select class="form-control" name="sub_category_id" id="sub-category-id">
+                                            <option selected disabled>Choose Sub Category</option>
                                         </select>
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="text" class="form-control" name="pro_name" placeholder="Pro Name" maxlength="255">
+                                        </div>
                                     </div>
-                                    <div class="mt-3">
-                                        <input type="text" class="form-control" placeholder="Enter City" name="">
+                                    <div class="col-md-3">
+                                        <div>
+                                            <select class="form-control" name="country" id="country-id">
+                                                <option selected disabled>Choose Country</option>
+                                                @foreach($countries as $country)
+                                                <option value="{{$country->sortname}}">{{$country->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="text" class="form-control" name="zipcode" placeholder="Zipcode">
+                                        </div>
                                     </div>
+                                    <div class="col-md-3 align-center">
+                                    <div class="top-button align-center" style="margin-top:40px"> 
+                                        <button class="as-btn white-btn" type="submit">Search</button> </div>
+                                    </div>
+                                    
                                 </div>
-                                <div class="col-md-3">
-                                     <div>
-                                        <select class="form-control">
-                                            <option>france</option>
-                                            <option>france</option>
-                                            <option>france</option>
-                                            <option>france</option>
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="mt-3">
-                                        <input type="text" class="form-control" placeholder="Enter City" name="">
-                                    </div>
-                                </div>
-                                <div class="col-md-3 align-center">
-                                   <div class="top-button align-center" style="margin-top:40px"> 
-                                <button class="as-btn white-btn">Search</button> </div>
-                                </div>
-                                
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -85,7 +81,60 @@
         </div>
     </section>
     <!--==============================About Area ==============================-->
+    <section>
+    @if(Session::has('search_result') && isset($pro_users))
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="profile-tabContent">
+                            <div class="tab-pane fade  show active" id="profile-settings">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h4 class="mt-0 header-title">All Professionals Result</h4>
+                                    </div>
+                                    @isset($pro_users)
+                                    @foreach($pro_users as $pro)
+                                    <div class="col-md-4">
+                                        <div class="card" >
+                                            <img class="card-img-top" src="{{asset($pro->profile_img)}}" alt="Card image" style="width:100%">
+                                            <div class="card-body">
+                                                <h4 class="card-title">{{$pro->first_name}} {{$pro->last_name}}</h4>
+                                                <p class="card-text">
+                                                    @foreach($pro_categories as $pro_category)
+                                                        @if($pro_category->id==$pro->category_id)
+                                                            {{$pro_category->name}}
+                                                            @break
+                                                        @endif
+                                                    @endforeach
+                                                </p>
+                                                <p class="card-text">
+                                                    {{$pro->address}}
+                                                </p>
+                                                <a href="#" class="btn btn-primary">See Profile</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    @endisset
 
+
+                                </div> <!--end col-->                                          
+                            </div><!--end row-->
+                        </div><!--end tab-pane-->
+                    </div>  <!--end tab-content-->                                                                              
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+    </div>
+    @endif
+    </section>
+    
+    
+    
+    
+    
     <div class="bg-top-center mt-5">
         <div class="video-wrapper">
             <div class="video-item" data-bg-src="{{ $home_achievement[0]->img }}">
