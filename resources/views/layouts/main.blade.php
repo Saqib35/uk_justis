@@ -187,11 +187,33 @@
                         <div class="header-logo" data-bg-src=""> <a href="{{ url('/')}}"><img src="{{ $headerFooter[0]->logo  }}" width="70px" alt=""></a> </div>
                         <div class="col-auto">
                             <div class="header-social">
-                                <button class="btn"><a href="{{ url('client/login')}}">Client Sign In</a></button>
+                                <!-- <button class="btn"><a href="{{ url('client/login')}}">Client Sign In</a></button>
                                 <button  class="btn"><a href="{{ url('client/register')}}">Client Sign Up</a></button>
                                 <button class="btn "><a href="{{ url('pro/login')}}">Pro Sign In</a></button>
                                 <button  class="btn"><a href="{{ url('pro/register')}}">Pro Sign Up</a></button>
-                                
+                                 -->
+                                 <div class="dropdown" style="margin-right:50px">
+                                    <button type="button"  style="width:150px;background-color: var(--theme-color);color:white" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
+                                     Client
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('client/login')}}">Sign In</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('client/register')}}">Sign Up</a></li>
+                                    
+                                    </ul>
+                                </div>
+                                 
+                                <div class="dropdown" style="margin-right:70px">
+                                    <button type="button"  style="width:150px;background-color: var(--theme-color);color:white" class="btn  dropdown-toggle" data-bs-toggle="dropdown">
+                                    Pro
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('pro/login')}}">Sign In</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('pro/register')}}">Sign Up</a></li>
+                                    
+                                    </ul>
+                                </div>
+  
                             </div>
                         </div>
                     </div>
