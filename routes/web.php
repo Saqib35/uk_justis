@@ -104,13 +104,15 @@ Route::get("calender-admin", function(){
 });
 
 
- Route::get("app-chat", [MessageController::class,'AdminChatShow']);
-
-Route::get("show-conversation/{id}/{sender_id}", [MessageController::class,'AdminChatShowConversation']);
 
 
-
+Route::get("get-updated-message", [MessageController::class,'GetUpdatedMessage']);
+Route::get("app-chat", [MessageController::class,'AdminChatShow']);
+Route::post("send-message", [MessageController::class,'SendMessage']);
+Route::get("show-conversation/{id}/{receiver_id}", [MessageController::class,'AdminChatShowConversation']);
 Route::get("find-chat-search", [MessageController::class,'FindPro']);
+Route::get("del-conversation/{group_id}", [MessageController::class,'delConversation']);
+
  
 
 Route::get("chnage-pro-status-ispaid", [UpdateProfile::class,'changeProStatusIspaid']);
