@@ -3,7 +3,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Message_Groups;
+use App\Models\messages;
+
 use DB;
 
 class MessageController extends Controller
@@ -38,8 +42,29 @@ class MessageController extends Controller
 
         }
 
+    }
+
+    public function AdminChatShow()
+    {
+
+        // $cards = DB::select("SELECT * FROM  `message_groups`  WHERE (`sender_id`='{$sender_id}' AND `receiver_id`='{$receiver_id}') OR (`sender_id`='{$receiver_id}' AND `receiver_id`='{$sender_id}')");
+        // print_r($cards);
+        $sender_id=Auth::user()->id;
+        $chat_lists = DB::select("SELECT * FROM  `message_groups`  WHERE `sender_id`='{$sender_id}' OR   `receiver_id`='{$sender_id}'");
+      
+        return view("admin.app-chat",['chat_lists'=>$chat_lists]);
+    }
+
+    public function AdminChatShowConversation(REQUEST $req)
+    {
+
+      
+        $sender_id=Auth::user()->id;
+        $chat_lists = DB::select("SELECT * FROM  `message_groups`  WHERE `sender_id`='{$sender_id}' OR   `receiver_id`='{$sender_id}'");
+      
+        $conversation=messages::where('group_id',$req->id)->get();
 
 
-
+        return view("admin.app-chat",['chat_lists'=>$chat_lists,'conversation'=>$conversation]);
     }
 }
