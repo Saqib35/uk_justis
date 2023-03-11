@@ -98,13 +98,15 @@ Route::get("add-categories", function(){
 //   return view("admin.panel-price");
 // });
 
-Route::get("app-chat", function(){
-  return view("admin.app-chat");
-});
 
 Route::get("calender-admin", function(){
   return view("admin.calendar");
 });
+
+
+ Route::get("app-chat", [MessageController::class,'AdminChatShow']);
+
+Route::get("show-conversation/{id}/{sender_id}", [MessageController::class,'AdminChatShowConversation']);
 
 
 
