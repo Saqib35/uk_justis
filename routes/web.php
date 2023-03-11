@@ -104,7 +104,8 @@ Route::get("calender-admin", function(){
 });
 
 
-Route::get("app-chat", [MessageController::class,'AdminChatShow']);
+ Route::get("app-chat", [MessageController::class,'AdminChatShow']);
+
 Route::get("show-conversation/{id}/{sender_id}", [MessageController::class,'AdminChatShowConversation']);
 
 
