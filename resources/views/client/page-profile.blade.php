@@ -58,9 +58,9 @@
                                             <div class="tab-pane fade  show active" id="profile-settings">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <form class="form-horizontal form-material mb-0" action="" method="post">
+                                                        <form class="form-horizontal form-material mb-0" action="" method="post" enctype="multipart/form-data">
                                                             @csrf
-                                                            <input type="file" id="input-file-now-custom-1" class="dropify" data-default-file="{{asset(auth()->user()->profile_img)}}"/>
+                                                            <input type="file" id="input-file-now-custom-1" class="dropify" data-default-file="{{asset(auth()->user()->profile_img)}}" name="profile_img"/>
                                                            
                                                             <div class="row">
                                                                 <div class="form-group col-sm-6 col-xs-12">

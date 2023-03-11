@@ -7,10 +7,18 @@
     <meta content="Mannatthemes" name="author" />
     <link href="{{asset('admin/assets/plugins/ticker/jquery.jConveyorTicker.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('admin/assets/plugins/dropify/css/dropify.min.css')}}" rel="stylesheet">
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+    </style>
 @endsection
 
 
-@section('main_content')
+@section('main_content') 
         {{-- @include('client.layouts.header')--}}
         <x-client-dashboard-header-component pagename="Profile Professional"/>
         
@@ -217,6 +225,7 @@
 
                                             <div class="tab-pane fade" id="profile-activities">
                                                 <h4 class="header-title mt-0 mb-4">Location</h4>
+                                                <div class="row">
                                                 <div class="col-sm-6 col-xs-12 mt-3">
 
                                                     <div class="col-sm-12">
@@ -239,6 +248,10 @@
                                                             Postal Code: {{$pro[0]->post_code}}
                                                         </label>
                                                     </div>
+                                                </div>
+                                                <div class="col-sm-6 col-xs-12 mt-3">
+                                                    <div id="map"></div>
+                                                </div>
                                                 </div>
                                             </div><!--end tab-pane-->
 
@@ -332,8 +345,47 @@
         <script src="{{asset('admin/assets/plugins/peity-chart/jquery.peity.min.js')}}"></script>
         <script src="{{asset('admin/assets/plugins/chartjs/chart.min.js')}}"></script>
         <script src="{{asset('admin/assets/pages/jquery.profile.init.js')}}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRJ9NKLuz1a30NakDmyGExaq8c7c9YrBk"></script>
+
 @endsection
 
 @section('script_code')
-
+<script>
+    function initMap() {
+  var coordinates = {
+    lat: {{$pro[0]->latitude}},
+    lng: {{$pro[0]->longitude}}
+  };
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: coordinates,
+    scrollwheel: false
+  });
+  var measle = new google.maps.Marker({
+    position: coordinates,
+    map: map,
+    icon: {
+      url: "https://maps.gstatic.com/intl/en_us/mapfiles/markers2/measle.png",
+      size: new google.maps.Size(7, 7),
+      anchor: new google.maps.Point(3.8, 3.8)
+    }
+  });
+  var marker = new google.maps.Marker({
+    position: coordinates,
+    map: map,
+    icon: {
+      url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+      labelOrigin: new google.maps.Point(75, 32),
+      size: new google.maps.Size(32, 32),
+      anchor: new google.maps.Point(16, 32)
+    },
+    label: {
+      text: "{{$pro[0]->first_name}} {{$pro[0]->last_name}}",
+      color: "#C70E20",
+      fontWeight: "bold"
+    }
+  });
+}
+google.maps.event.addDomListener(window, "load", initMap);
+</script>
 @endsection

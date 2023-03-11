@@ -47,7 +47,7 @@
                         <div class="card-body">  
                             <div class="px-3">
                             @php
-                            $headerFooter= \App\Models\header_and_footer::get();
+                                $headerFooter= \App\Models\header_and_footer::get();
                             @endphp  
                             
                                 <div class="media">
@@ -548,26 +548,6 @@
             $('#latitude').val(place.geometry.location.lat());
             $('#longitude').val(place.geometry.location.lng());
             
-            // var addressComponent = place.address_components;     
-            // // alert((addressComponent[0].long_name));       
-            // console.log(addressComponent);       
-            // // place.address_components;
-            // for (var x = 0 ; x < addressComponent.length; x++) {
-            //     var chk = addressComponent[x];
-            //     if (chk.types[0] == 'country') {
-            //         var zipCode = chk.long_name;
-            //     }
-            //     if (chk.types[0] == 'locality') {
-            //         var city = chk.long_name;
-            //     }
-            // }
-            // if (zipCode) {
-            //     alert(zipCode+" / "+city);
-            // }else {
-            //     alert('No result found!!');
-            // }
-            
-
 
             var address = place.formatted_address;
             var latitude = place.geometry.location.lat();
@@ -609,25 +589,10 @@
                             $("#pCode").val("");
                         }
 
-                        // $("#country-id > option").each(function() {
-                        //     if(this.value==country){
-                        //        country_find=true;  
-                        //     }
-                        //     if(this.value==pin){
-                        //        country_find=true;  
-                        //     }
-                        // });
-                        // if(country_find==false){
-                        //     $("#country-id option[text='Choose Country']").attr("selected","selected");
-                        // }
-
                         console.log(country)
                         console.log(state)
                         console.log(city)
                         console.log(pin)
-
-                       
-
                         
                     }
                 }

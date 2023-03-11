@@ -1,3 +1,4 @@
+    @php $client_logo=\App\Models\header_and_footer::pluck('client_logo')->first() @endphp
    <!-- Top Bar Start -->
    <div class="topbar">
              <!-- Navbar -->
@@ -7,7 +8,7 @@
                 <div class="topbar-left">
                     <a href="{{ route('client-dashboard') }}" class="logo">
                         <span>
-                            <img src="{{ asset('assets/img/logo.png')}}" alt="logo-small" class="logo-m" style="width:60px">
+                            <img src="{{ asset($client_logo)}}" alt="logo-small" class="logo-m" style="width:60px">
                         </span>
                         
                     </a>

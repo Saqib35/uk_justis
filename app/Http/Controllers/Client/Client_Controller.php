@@ -42,6 +42,17 @@ class Client_Controller extends Controller
             return redirect()->back()->withErrors($messages);
         }
 
+        $client_profile=auth()->user()->profile_img;
+        if($request->hasFile('profile_img'))
+        {
+            //upload profile image
+            $dir1 = 'client/profile_images/';
+            $extension1 = strtolower($request['profile_img']->getClientOriginalExtension()); // get image extension
+            $fileName1 = bin2hex(random_bytes(20)).'.'. $extension1; // rename image
+            $request['profile_img']->move($dir1, $fileName1);
+            $client_profile ="{$dir1}{$fileName1}";
+        }    
+
         $user =Auth::user();
         $user->first_name = $request['first_name'];
         $user->last_name = $request['last_name'];
@@ -50,6 +61,7 @@ class Client_Controller extends Controller
         $user->date_of_birth = $request['date_of_birth'];
         $user->address = $request['address'];
         $user->post_code = $request['post_code'];
+        $user->profile_img = $client_profile;
         $user->city = $request['city'];
         $user->save();
 
@@ -156,11 +168,6 @@ class Client_Controller extends Controller
     }
 
     public function profile_professional_client($id){
-        //   $pro=User::Join('pro_categories', function($join){
-        //     $join->on('pro_categories.id', '=', 'users.category_id');
-        //   })->where('users.id',$id)->where('users.status',1)->where('users.user_type','pro')->get(['users.*','pro_categories.name as category_name']);
-        //->where('users.Is_piad','on')
-        
         $pro=User::where('id',$id)->where('status',1)->where('user_type','pro')->get();
         //->where('users.Is_piad','on')
 

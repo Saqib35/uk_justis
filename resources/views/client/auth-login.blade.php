@@ -8,6 +8,8 @@
 @endsection
 
 @section('main_content')
+@php $client_logo=\App\Models\header_and_footer::pluck('client_logo')->first() @endphp
+
 <!-- Log In page -->
 <div class="row vh-100">
             <div class="col-lg-6  pr-0">
@@ -16,7 +18,7 @@
                         
                         <div class="px-3">
                             <div class="media">
-                                <a href="{{ url('/') }}" class="logo logo-admin"><img src="{{ asset('assets/img/logo.png') }}" height="55" alt="logo" class="my-3"></a>
+                                <a href="{{ url('/') }}" class="logo logo-admin"><img src="{{ asset($client_logo) }}" height="55" alt="logo" class="my-3"></a>
                                 <div class="media-body ml-3 align-self-center">                                                                                                                       
                                     <h4 class="mt-0 mb-1">Login on Justiscall</h4>
                                 </div>
@@ -49,7 +51,7 @@
                                 </div>                            
                             </form>
                         </div>
-                        <div class="account-social text-center">
+                        <!-- <div class="account-social text-center">
                             <h6 class="my-4">Or Login With</h6>
                             <ul class="list-inline mb-4">
                                 <li class="list-inline-item">
@@ -58,7 +60,7 @@
                                     </a>                                    
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                         <div class="m-3 text-center bg-light p-3 text-primary">
                             <h5 class="">Don't have an account ? </h5>
                             <a href="{{  url('client/register') }}" class="btn btn-primary btn-round waves-effect waves-light">Sign Up</a>                
@@ -69,7 +71,7 @@
             <div class="col-lg-6 p-0 d-flex justify-content-center">
                 <div class="accountbg d-flex align-items-center"> 
                     <div class="account-title text-white text-center">
-                        <img src="admin/assets/images/logo-sm.png" alt="" class="thumb-sm">
+                        <img src="{{asset($client_logo)}}" alt="" class="thumb-sm">
                         <h4 class="mt-3">Welcome To Frogetor</h4>
                         <div class="border w-25 mx-auto border-primary"></div>
                         <h1 class="">Let's Get Started</h1>

@@ -70,7 +70,7 @@ class RegisterController extends Controller
             $validator= Validator::make($data, [
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255','unique:users'],
                 'mobile' => ['required', 'string', 'max:50', 'unique:users'],
                 // 'password' => ['required', 'string', 'min:8', 'confirmed'],
                 'categories_type' => ['required', 'string'],
@@ -89,9 +89,11 @@ class RegisterController extends Controller
             $validator=Validator::make($data, [
                 'first_name' => ['required', 'string', 'max:255'],
                 'last_name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255','unique:users'],
                 'mobile' => ['required', 'string', 'max:50', 'unique:users'],
                 'gender' => ['required', 'string', 'max:10'],
+                'address' => ['required', 'string'],
+                'date_of_birth' => ['required'],
                 'country' => ['required', 'string', 'max:100'],
             ]);
         }
@@ -188,6 +190,14 @@ class RegisterController extends Controller
               // });
               // echo "Basic Email Sent. Check your inbox.";
               // dd('ok');
+            
+            //upload profile image
+            $dir1 = 'client/profile_images/';
+            $extension1 = strtolower($data['profile_img']->getClientOriginalExtension()); // get image extension
+            $fileName1 = bin2hex(random_bytes(20)).'.'. $extension1; // rename image
+            $data['profile_img']->move($dir1, $fileName1);
+            $data['profile_img'] ="{$dir1}{$fileName1}";
+
             $User= User::create([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -195,6 +205,11 @@ class RegisterController extends Controller
                 'mobile' => $data['mobile'],
                 'gender' => $data['gender'],
                 'country' => $data['country'],
+                'address' => $data['address'],
+                'latitude' => $data['latitude'],
+                'longitude' => $data['longitude'],
+                'date_of_birth' => $data['date_of_birth'],
+                'profile_img' => $data['profile_img'],
                 'user_type' => "client",      
                 'ip_address' => request()->ip(),   
                 'password' => Hash::make("12345678"),

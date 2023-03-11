@@ -533,6 +533,7 @@ class ComposerStaticInitfb68f880b533c9b3d4b81b73b41cf5cb
         'App\\Http\\Controllers\\Client\\Client_Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Client/Client_Controller.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\MessageController' => __DIR__ . '/../..' . '/app/Http/Controllers/MessageController.php',
         'App\\Http\\Controllers\\Pro\\ProStripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Pro/ProStripeController.php',
         'App\\Http\\Controllers\\TwilioSMSController' => __DIR__ . '/../..' . '/app/Http/Controllers/TwilioSMSController.php',
         'App\\Http\\Controllers\\aboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/aboutController.php',

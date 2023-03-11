@@ -10,6 +10,8 @@
 
 
 @section('main_content')
+@php $client_logo=\App\Models\header_and_footer::pluck('client_logo')->first() @endphp
+
 <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
@@ -17,7 +19,7 @@
                         <div class="card-body">  
                             <div class="px-3">
                                 <div class="media">
-                                    <a href="{{url('/')}}" class="logo logo-admin"><img src="{{ asset('assets/img/logo.png')}}" height="55" alt="logo" class="my-3"></a>
+                                    <a href="{{url('/')}}" class="logo logo-admin"><img src="{{ asset($client_logo)}}" height="55" alt="logo" class="my-3"></a>
                                     <div class="media-body ml-3 align-self-center">   
                                         <h4 class="mt-0 mb-1">Free Register for Justis Call</h4>
                                         <p class="text-muted mb-0">Get your free Justis Call account now.</p>
@@ -122,6 +124,63 @@
                                             </div>                            
                                         </div>
 
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label for="profile">Upload Profile</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text form-control" id="basic-addon1"><i class="mdi mdi-image font-16"></i></span>
+                                                </div>
+                                                <input type="file" id="file-ip-11" class="form-control" accept="image/*" onchange="showPrevieww(event);" name="profile_img" required>
+                                                @error('profile_img')
+                                                    <span class="text-danger">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                               
+                                                <div class="preview1">
+                                                    <img id="file-ip-11-preview" style="max-width:200px;">
+                                                </div>
+
+                                            </div>                                    
+                                        </div>
+
+                                        <div class="form-group col-sm-6 col-xs-12">
+                                            <label for="dob">Date of Birth</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar"></i></span>
+                                                </div>
+                                                <input type="date" class="form-control" required="" id="dob" placeholder="Date of Birth" name="date_of_birth" value="{{old('date_of_birth')}}" max="{{date('Y-m-d', strtotime('-5 years'))}}">
+                                                @error('date_of_birth')
+                                                    <span class="text-danger">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>                                  
+                                        </div>
+
+                                        <div class="form-group col-sm-12 ">
+                                            <label for="google-map-address">Address</label>
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-map-marker-outline font-16"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="google-map-address" placeholder="Enter Address" name="address" size="50" required value="{{old('address')}}">
+                                                @error('address')
+                                                    <span class="text-danger">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                                <input type="hidden" name="latitude" id="latitude" value="{{old('latitude')}}">
+                                                <input type="hidden" name="longitude" id="longitude" value="{{old('longitude')}}">
+                                            </div>                                    
+                                        </div>
+                                        <div class="col-sm-6 col-md-12  mb-3">
+                                            <div id="map" style="height: 300px;"></div>
+                                        </div>
+
+                                        
+
                                         <div class="col-sm-12 col-xs-12">
                                             <input type="checkbox" id="terms_conditions" name="" required>
                                             <label for="terms_conditions"> Accept Terms & Conditions</label>
@@ -153,7 +212,7 @@
                 <div class="col-lg-6 col-sm-12 px-0">
                     <div class="accountbg d-flex align-items-center"> 
                         <div class="account-title text-white text-center">
-                            <img src="{{ asset('assets/img/logo.png')}}" alt="" class="thumb-sm">
+                            <img src="{{ asset($client_logo)}}" alt="" class="thumb-sm">
                             <h4 class="mt-3">Welcome To Justis Call</h4>
                             <div class="border w-25 mx-auto border-primary"></div>
                             <h1 class="">Let's Get Started</h1>
@@ -168,6 +227,61 @@
 
 
 @section('script_code')
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRJ9NKLuz1a30NakDmyGExaq8c7c9YrBk&libraries=places"></script>
+<script>
+    var map;
+    var service;
+    var infowindow;
+
+    function initialize() {
+        var pyrmont = new google.maps.LatLng(-33.8665433, 151.1956316);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: pyrmont,
+            zoom: 15
+        })
+
+        var input = document.getElementById('google-map-address');
+
+        let autocomplete = new google.maps.places.Autocomplete(input)
+
+        autocomplete.bindTo('bounds', map)
+
+        let marker = new google.maps.Marker({
+            map: map
+        })
+
+        google.maps.event.addListener(autocomplete, 'place_changed', () => {
+            let place = autocomplete.getPlace()
+      
+            $('#latitude').val(place.geometry.location.lat());
+            $('#longitude').val(place.geometry.location.lng());
+                            
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport)
+            } else {
+                map.setCenter(place.geometry.location)
+                map.setZoom(17)
+            }
+            marker.setPosition(place.geometry.location)
+            marker.setVisible(true)
+
+            let request = {
+                location: place.geometry.location,
+                radius: '500',
+                type: ['atm']
+            }
+
+            service = new google.maps.places.PlacesService(map)
+            service.nearbySearch(request, callback)
+
+        })
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize)
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
 <script>
 var phone_number = window.intlTelInput(document.querySelector("#mobile"), {
@@ -178,5 +292,16 @@ var phone_number = window.intlTelInput(document.querySelector("#mobile"), {
   utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
 });
 
+</script>
+
+<script>
+    function showPrevieww(event){
+      if(event.target.files.length > 0){
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-ip-11-preview");
+        preview.src = src;
+        preview.style.display = "block";
+      }
+    }
 </script>
 @endsection

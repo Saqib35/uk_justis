@@ -22,6 +22,7 @@ return array(
     'App\\Http\\Controllers\\Client\\Client_Controller' => $baseDir . '/app/Http/Controllers/Client/Client_Controller.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+    'App\\Http\\Controllers\\MessageController' => $baseDir . '/app/Http/Controllers/MessageController.php',
     'App\\Http\\Controllers\\Pro\\ProStripeController' => $baseDir . '/app/Http/Controllers/Pro/ProStripeController.php',
     'App\\Http\\Controllers\\TwilioSMSController' => $baseDir . '/app/Http/Controllers/TwilioSMSController.php',
     'App\\Http\\Controllers\\aboutController' => $baseDir . '/app/Http/Controllers/aboutController.php',

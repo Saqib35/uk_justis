@@ -1,3 +1,4 @@
+@php $design_by=\App\Models\header_and_footer::pluck('design_by')->first() @endphp
 <footer class="footer text-center text-sm-left">
-    &copy; 2019 Frogetor <span class="text-muted d-none d-sm-inline-block float-right">Crafted with <i class="mdi mdi-heart text-danger"></i> by Codehub</span>
+    &copy; {{$design_by}} <span class="text-muted d-none d-sm-inline-block float-right"></span>
 </footer>
