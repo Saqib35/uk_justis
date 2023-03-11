@@ -162,7 +162,7 @@ class publicController extends Controller
 
         header_and_footer::first()
         ->update([
-         'pro_logo'=>$logoss
+         'client_logo'=>$logoss
            ]);
 
       }
