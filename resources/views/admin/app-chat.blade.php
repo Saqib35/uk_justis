@@ -9,7 +9,6 @@
 @endsection
 
 
-
 @section('main_content')
     @include('admin.layouts.header')
         
@@ -66,79 +65,72 @@
 
                                     <div class="tab-content chat-list slimscroll" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="general_chat">
-                                            @foreach ($chat_lists as $chat_listss)
-
-
-                                                @if($chat_listss->sender_id==Auth::user()->id)
-                                                
-                                                    @php
-                                                    $id=$chat_listss->receiver_id
-                                                    @endphp   
-                                                            
-                                                @else
-                                                  
-                                                   @php
-                                                   $id=$chat_listss->sender_id  
-                                                   @endphp
-                                                
-                                                @endif
-                                                
-                                                @php
-                                                $user_img= \App\Models\User::where('id',$id)->get();
-                                                @endphp 
-                                                @if (count($user_img))
-                                              
-                                             <a href="{{ url('show-conversation/'.$chat_listss->group_id.'/'.$id) }}" class="media new-message">
+                                            <a href="" class="media new-message">
                                                 <div class="media-left">
-                                                  
-                                                    <img src="{{ url($user_img[0]->profile_img) }}" alt="user" class="rounded-circle thumb-lg">
-                                                        
-                                                
+                                                    <img src="admin/assets/images/users/user-1.jpg" alt="user" class="rounded-circle thumb-lg">
                                                 </div><!-- media-left -->
                                                 <div class="media-body">
                                                     <div class="d-inline-block">
-                                                   
-                                                        <h6>{{ $user_img[0]->first_name.' '.$user_img[0]->last_name  }}</h6>
-                                                      
-                                                        <p>{{ $chat_listss->last_message  }}</p>
+                                                        <h6>Daniel Madsen</h6>
+                                                        <p>Good morning! Congratulations Friend...</p>
                                                     </div>
                                                     <div>
-                                                        <span>{{ $chat_listss->created_at }} </span>
+                                                        <span>20 Feb</span>
                                                     </div>
                                                 </div><!-- end media-body -->
                                             </a> <!--end media-->    
-                                              @endif
-                                              
-                                            @endforeach
-                                                                               
+                                            <a href="" class="media new-message">
+                                                <div class="media-left">
+                                                    <img src="admin/assets/images/users/user-2.jpg" alt="user" class="rounded-circle thumb-lg">
+                                                </div><!-- media-left -->
+                                                <div class="media-body">
+                                                    <div>
+                                                        <h6>Robert Jefferson</h6>
+                                                        <p>Congratulations Friend...</p>
+                                                    </div>
+                                                    <div>
+                                                        <span>20 Feb</span>
+                                                        
+                                                    </div>
+                                                </div><!-- end media-body -->
+                                            </a> <!--end media-->
+                                                                                    
                                         </div><!--end general chat-->
                                     </div><!--end tab-content-->
                                 </div><!--end chat-box-left -->
                                 @if(isset($conversation))
                                 <div class="chat-box-right">
-                                   
                                     <div class="chat-header">
                                         <a href="" class="media">
                                             <div class="media-left">
+<<<<<<< HEAD
                                                 <img src="{{ url($sender_details[0]->profile_img) }}" alt="user" class="rounded-circle thumb-md">
+=======
+                                                <img src="admin/assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
                                             </div><!-- media-left -->
                                             <div class="media-body">
                                                 <div>
-                                                    <h6 class="mb-1 mt-0"></h6>
+                                                    <h6 class="mb-1 mt-0">Mary Schneider</h6>
                                                   
                                                 </div>
                                             </div><!-- end media-body -->
                                         </a><!--end media-->   
                                         <div class="chat-features">
                                             <div class="d-none d-sm-inline-block">
-                                                <!-- <a href=""><i class="fas fa-phone"></i></a>
+                                                <a href=""><i class="fas fa-phone"></i></a>
                                                 <a href=""><i class="fas fa-video"></i></a>
+<<<<<<< HEAD
                                                  -->
                                                 <a href="{{  url('del-conversation/'.$conversation[0]->group_id) }}"><i class="fas fa-trash-alt"></i></a>
+=======
+                                                <a href=""><i class="fas fa-trash-alt"></i></a>
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
                                                                                                    
                                             </div>
                                         </div><!-- end chat-features -->
                                     </div><!-- end chat-header -->
+<<<<<<< HEAD
                                     <div class="chat-body">
                                         <div class="chat-detail slimscroll" id="slimscroll" >
                                       
@@ -156,12 +148,33 @@
                                                         <br>
                                                            <a href="{{ url($conversations['file'])  }}" ><img src="{{ url($conversations['file'])  }}" class="mt-3" width="100px" height="130px" style="border-radius:30px"></a>
                                                         @endif
+=======
+                                    <div class="chat-body ">
+                                        <div class="chat-detail slimscroll">
+                                          
+                                            <div class="media">
+                                                <div class="media-img">
+                                                    <img src="admin/assets/images/users/user-4.jpg" alt="user" class="rounded-circle thumb-md">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="chat-msg">
+                                                        <p>Good Morning !</p>
+                                                    </div>
+                                                </div><!--end media-body--> 
+                                            </div> <!--end media--> 
+    
+                                            <div class="media">                                                        
+                                                <div class="media-body reverse">
+                                                    <div class="chat-msg">
+                                                        <p>Good Morning !</p>
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
                                                     </div>
                                                  
                                                 </div><!--end media-body--> 
                                                 <div class="media-img">
-                                                    <img src="{{ url(Auth::user()->profile_img)  }}" alt="user" class="rounded-circle thumb-md">
+                                                    <img src="admin/assets/images/users/user-3.jpg" alt="user" class="rounded-circle thumb-md">
                                                 </div>
+<<<<<<< HEAD
                                             </div>
                                             
                                             <!--end media--> 
@@ -191,6 +204,9 @@
                                          @endforeach
                                           
                                           
+=======
+                                            </div> <!--end media--> 
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
 
 
                                             
@@ -200,7 +216,7 @@
                                     <div class="chat-footer">
                                         <div class="row">                                                    
                                             <div class="col-12 col-md-9">
-                                                <span class="chat-admin"><img src="{{ url(Auth::user()->profile_img) }}" alt="user" class="rounded-circle thumb-sm"></span>
+                                                <span class="chat-admin"><img src="admin/assets/images/users/user-3.jpg" alt="user" class="rounded-circle thumb-sm"></span>
                                                 
                                                 <input type="hidden" class="form-control" name="receiver_id" value="{{  $sender_details[0]->id }}">
                                                 <input type="text" class="form-control" id="message" name="message" placeholder="Type something here...">
@@ -209,9 +225,15 @@
                                                 
                                             </div><!-- col-8 -->
                                             <div class="col-3 text-right">
+<<<<<<< HEAD
                                             <div class="d-none d-sm-inline-block chat-features">
                                                   <label for="img"><i class="fas fa-paperclip"></i><label>
                                                     <button class="btn btn-success ml-3" type="submit">Send</button>
+=======
+                                                <div class="d-none d-sm-inline-block chat-features">
+                                                    <a href="">Send</a>
+                                                    
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
                                                 </div>
                                             </div><!-- end col -->
                                         </div><!-- end row -->

@@ -3,11 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Message_Groups;
-use App\Models\messages;
-
 use DB;
 
 class MessageController extends Controller
@@ -43,6 +39,7 @@ class MessageController extends Controller
 
         }
 
+<<<<<<< HEAD
     }
 
     public function AdminChatShow()
@@ -68,6 +65,11 @@ class MessageController extends Controller
 
 
         return view("admin.app-chat",['chat_lists'=>$chat_lists,'conversation'=>$conversation,'sender_details'=>$sender_details]);
+=======
+
+
+
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
     }
 
 
