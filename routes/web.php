@@ -98,13 +98,19 @@ Route::get("add-categories", function(){
 //   return view("admin.panel-price");
 // });
 
+Route::get("app-chat", function(){
+  return view("admin.app-chat");
+});
 
 Route::get("calender-admin", function(){
   return view("admin.calendar");
 });
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of c11c2dd (Merge branch 'master' of https://github.com/Saqib35/uk_justis)
 
 Route::get("get-updated-message", [MessageController::class,'GetUpdatedMessage']);
 Route::get("app-chat", [MessageController::class,'AdminChatShow']);

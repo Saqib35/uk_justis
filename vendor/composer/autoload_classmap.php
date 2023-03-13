@@ -44,7 +44,6 @@ return array(
     'App\\Models\\Admin\\Add_Subscription' => $baseDir . '/app/Models/Admin/Add_Subscription.php',
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
     'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
-    'App\\Models\\Message_Groups' => $baseDir . '/app/Models/Message_Groups.php',
     'App\\Models\\Privacy_policys' => $baseDir . '/app/Models/Privacy_policys.php',
     'App\\Models\\Pro\\Pro_Stripe_Subcriptions' => $baseDir . '/app/Models/Pro/Pro_Stripe_Subcriptions.php',
     'App\\Models\\Pro_Category' => $baseDir . '/app/Models/Pro_Category.php',

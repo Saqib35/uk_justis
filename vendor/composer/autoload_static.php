@@ -555,7 +555,6 @@ class ComposerStaticInit992b1174839b27818e45baceaeb60f19
         'App\\Models\\Admin\\Add_Subscription' => __DIR__ . '/../..' . '/app/Models/Admin/Add_Subscription.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
         'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
-        'App\\Models\\Message_Groups' => __DIR__ . '/../..' . '/app/Models/Message_Groups.php',
         'App\\Models\\Privacy_policys' => __DIR__ . '/../..' . '/app/Models/Privacy_policys.php',
         'App\\Models\\Pro\\Pro_Stripe_Subcriptions' => __DIR__ . '/../..' . '/app/Models/Pro/Pro_Stripe_Subcriptions.php',
         'App\\Models\\Pro_Category' => __DIR__ . '/../..' . '/app/Models/Pro_Category.php',
